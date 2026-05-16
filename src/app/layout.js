@@ -1,8 +1,3 @@
-icons: {
-  icon: "/icon.png",
-  apple: "/icon.png",
-},
-
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
