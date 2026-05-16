@@ -15,6 +15,8 @@ export const metadata = {
   title: "Spin & Shame",
   description: "Het partyspel met letters",
 
+  manifest: "/manifest.json",
+
   icons: {
     icon: "/icon.png",
     apple: "/icon.png",
