@@ -919,7 +919,7 @@ export default function Home() {
                     if (
                       index === players.length - 1 &&
                       e.target.value.trim() !== "" &&
-                      players.length < 12
+                      players.length < 8
                     ) {
                       updatedPlayers.push("");
                     }
@@ -932,7 +932,7 @@ export default function Home() {
               ))}
             </div>
             <p className="text-sm text-white/40 mt-4 leading-relaxed">
-              Voeg gewoon meer namen toe — nieuwe spelers verschijnen automatisch.
+              Voeg spelers toe — maximaal 8 spelers
             </p>
           </div>
 
