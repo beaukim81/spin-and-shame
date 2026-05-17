@@ -302,7 +302,34 @@ export default function Home() {
   const [chaosMode, setChaosMode] = useState(false);
   const [language, setLanguage] = useState("nl");
 
-  const categories = categoryModes[selectedMode];
+  const translations = {
+
+  "Een dier": "An animal",
+  "Een snack": "A snack",
+  "Een drankje": "A drink",
+  "Een vrucht": "A fruit",
+  "Een groente": "A vegetable",
+  "Een film": "A movie",
+  "Een serie": "A series",
+  "Een beroep": "A profession",
+  "Een voertuig": "A vehicle",
+  "Een sport": "A sport",
+  "Een hobby": "A hobby",
+  "Een kleur": "A color",
+  "Een land": "A country",
+  "Een stad": "A city",
+  "Een superheld": "A superhero",
+  "Een app": "An app",
+  "Een liedje": "A song",
+
+};
+
+const categories = categoryModes[selectedMode].map(
+  (category) =>
+    language === "en"
+      ? translations[category] || category
+      : category
+);
 
   const text = {
 
@@ -415,7 +442,7 @@ export default function Home() {
 
   function addPoint(playerIndex = currentPlayer) {
 
-    setFeedback("CORRECT!");
+    setFeedback(text[language].correct);
 
     if (countdownSound.current) {
       countdownSound.current.pause();
@@ -460,7 +487,7 @@ export default function Home() {
 
   function handleTooLate() {
 
-    setFeedback("Skip!");
+    setFeedback(text[language].skip);
 
     if (countdownSound.current) {
       countdownSound.current.pause();
@@ -934,7 +961,7 @@ export default function Home() {
                 <div>
 
                   <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
-                    Chaos Mode
+                    {text[language].chaosMode}
                   </h3>
 
                   <p className="text-white/60 mt-1">
@@ -1072,7 +1099,7 @@ export default function Home() {
             className="bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] mb-8"
           >
             <p className="text-orange-400 text-sm font-black tracking-widest mb-3">
-              CATEGORIE
+              {text[language].category}
             </p>
 
             <h3 className="text-[clamp(1.3rem,4vw,2.5rem)] font-semibold leading-snug text-white">
@@ -1161,7 +1188,7 @@ export default function Home() {
                     </p>
 
                     <h3 className="text-[clamp(1.2rem,4vw,2.2rem)] font-bold uppercase tracking-[1px] mt-1 text-white">
-                      Wie was het snelst?
+                      {text[language].fastestPlayer}
                     </h3>
                   </>
 
@@ -1169,7 +1196,7 @@ export default function Home() {
 
                   <>
                     <p className="text-gray-300 text-sm uppercase tracking-widest">
-                      Huidige speler
+                      {text[language].currentPlayer}
                     </p>
 
                     <h3 className="text-[clamp(1.5rem,4vw,3rem)] font-bold uppercase tracking-[1px] mt-1 text-white">
