@@ -636,7 +636,7 @@ export default function Home() {
 
           <div className="relative z-10 w-full max-w-2xl text-center">
 
-            <div className="flex justify-center mb-10">
+            <div className="flex justify-center mb-6">
 
               <Image
                 src="/logo.png"
@@ -648,7 +648,7 @@ export default function Home() {
 
             </div>
 
-            <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-black leading-none mb-8">
+            <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-black leading-none mb-5">
 
               DENK SNEL.
               <br />
@@ -656,7 +656,7 @@ export default function Home() {
 
             </h1>
 
-            <div className="space-y-5 mb-10">
+            <div className="space-y-5 mb-6">
 
               <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl">
 
