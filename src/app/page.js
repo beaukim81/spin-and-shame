@@ -499,12 +499,14 @@ export default function Home() {
         ];
 
       setDisplayLetter(randomLetter);
-      if (tickSound.current) {
-        tickSound.current.currentTime = 0;
+      if (
+        tickSound.current &&
+        tickSound.current.paused
+      ) {
         tickSound.current.play().catch(() => { });
       }
 
-    }, 120);
+    }, 160);
 
     setTimeout(() => {
 
@@ -979,6 +981,17 @@ export default function Home() {
           )}
 
           <motion.div
+            animate={
+              isDanger
+                ? {
+                  x: [-2, 2, -2, 2, 0],
+                }
+                : {}
+            }
+            transition={{
+              duration: 0.2,
+              repeat: isDanger ? Infinity : 0,
+            }}
             drag="x"
             style={{
               x,
