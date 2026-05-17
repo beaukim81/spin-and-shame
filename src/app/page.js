@@ -405,6 +405,11 @@ export default function Home() {
 
     setFeedback("CORRECT!");
 
+    if (countdownSound.current) {
+      countdownSound.current.pause();
+      countdownSound.current.currentTime = 0;
+    }
+
     if (correctSound.current) {
 
       correctSound.current.currentTime = 0;
@@ -442,6 +447,11 @@ export default function Home() {
   function handleTooLate() {
 
     setFeedback("PASS!");
+
+    if (countdownSound.current) {
+      countdownSound.current.pause();
+      countdownSound.current.currentTime = 0;
+    }
 
     if (wrongSound.current) {
 
@@ -497,6 +507,11 @@ export default function Home() {
     setTimeout(() => {
 
       clearInterval(interval);
+
+      if (tickSound.current) {
+        tickSound.current.pause();
+        tickSound.current.currentTime = 0;
+      }
 
       const finalLetter =
         letters[
