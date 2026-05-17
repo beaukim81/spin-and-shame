@@ -415,19 +415,13 @@ export default function Home() {
       return;
     }
 
-    setTimeout(() => {
-      setFeedback("");
-    }, 600);
+setTimeout(() => {
 
-    if (chaosMode) {
+  setFeedback("");
 
-      spinLetter();
+  spinLetter();
 
-    } else {
-
-      nextTurn();
-
-    }
+}, 600);
   }
 
   function handleTooLate() {
@@ -455,19 +449,13 @@ export default function Home() {
       setScores(updatedScores);
     }
 
-    setTimeout(() => {
-      setFeedback("");
-    }, 600);
+setTimeout(() => {
 
-    if (chaosMode) {
+  setFeedback("");
 
-      spinLetter();
+  spinLetter();
 
-    } else {
-
-      nextTurn();
-
-    }
+}, 600);
   }
 
   function spinLetter() {
