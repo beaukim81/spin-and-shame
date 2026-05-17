@@ -408,7 +408,7 @@ export default function Home() {
 
     setScores(updatedScores);
 
-    if (updatedScores[playerIndex] >= 10){
+    if (updatedScores[playerIndex] >= 10) {
 
       if (winSound.current) {
 
@@ -636,14 +636,6 @@ export default function Home() {
               />
 
             </div>
-
-            <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-black leading-none mb-5">
-
-              DENK SNEL.
-              <br />
-              SWIPE SNELLER.
-
-            </h1>
 
             <div className="space-y-5 mb-6">
 
