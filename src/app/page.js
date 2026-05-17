@@ -154,7 +154,7 @@ export default function Home() {
 
       const randomCategory =
         categories[
-          Math.floor(Math.random() * categories.length)
+        Math.floor(Math.random() * categories.length)
         ];
 
       setCurrentCategory(randomCategory);
@@ -171,7 +171,12 @@ export default function Home() {
 
     setFeedback("CORRECT!");
 
-    correctSound.current?.play();
+    if (correctSound.current) {
+
+      correctSound.current.currentTime = 0;
+
+      correctSound.current.play().catch(() => { });
+    }
 
     const updatedScores = [...scores];
 
@@ -181,7 +186,12 @@ export default function Home() {
 
     if (updatedScores[currentPlayer] >= 10) {
 
-      winSound.current?.play();
+      if (winSound.current) {
+
+        winSound.current.currentTime = 0;
+
+        winSound.current.play().catch(() => { });
+      }
 
       setWinner(players[currentPlayer]);
 
@@ -199,7 +209,12 @@ export default function Home() {
 
     setFeedback("PASS!");
 
-    wrongSound.current?.play();
+    if (wrongSound.current) {
+
+      wrongSound.current.currentTime = 0;
+
+      wrongSound.current.play().catch(() => { });
+    }
 
     if (competitiveMode) {
 
@@ -225,7 +240,7 @@ export default function Home() {
 
     const randomCategory =
       categories[
-        Math.floor(Math.random() * categories.length)
+      Math.floor(Math.random() * categories.length)
       ];
 
     setCurrentCategory(randomCategory);
@@ -234,7 +249,7 @@ export default function Home() {
 
       const randomLetter =
         letters[
-          Math.floor(Math.random() * letters.length)
+        Math.floor(Math.random() * letters.length)
         ];
 
       setDisplayLetter(randomLetter);
@@ -247,7 +262,7 @@ export default function Home() {
 
       const finalLetter =
         letters[
-          Math.floor(Math.random() * letters.length)
+        Math.floor(Math.random() * letters.length)
         ];
 
       setDisplayLetter(finalLetter);
@@ -497,11 +512,10 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              className={`mb-4 text-center text-2xl font-black py-3 rounded-2xl ${
-                feedback === "CORRECT!"
+              className={`mb-4 text-center text-2xl font-black py-3 rounded-2xl ${feedback === "CORRECT!"
                   ? "bg-green-500/20 text-green-400"
                   : "bg-red-500/20 text-red-400"
-              }`}
+                }`}
             >
               {feedback}
             </motion.div>
