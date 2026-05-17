@@ -87,7 +87,113 @@ export default function Home() {
       "Een rode vlag",
       "Iets dat spicy is",
       "Een guilty pleasure"
-    ]
+    ],
+
+    genz: [
+      "Iets dat cringe is",
+      "Iets dat toxic is",
+      "Iets dat viral gaat",
+      "Iets dat gecanceld wordt",
+      "Een red flag",
+      "Een green flag",
+      "Iets dat je ghost",
+      "Iets dat je doomscrollt",
+      "Iets dat je post voor aandacht",
+      "Iets dat je niet aan je ouders laat zien",
+      "Iets dat overrated is",
+      "Iets dat underrated is",
+      "Iets dat awkward is",
+      "Iets dat AI kan maken",
+      "Iets dat een influencer zou zeggen",
+      "Iets dat je om 3 uur 's nachts doet",
+      "Iets dat je online bestelt zonder na te denken",
+      "Iets dat te duur is",
+      "Iets dat je meteen verwijdert uit je zoekgeschiedenis",
+      "Iets dat je niet in de groepschat zet",
+      "Een TikTok trend",
+      "Een meme",
+      "Een streamer",
+      "Een influencer",
+      "Een app waar je teveel tijd op verspilt",
+      "Iets dat je batterij leegmaakt",
+      "Iets dat main character energy heeft",
+      "Iets dat NPC energy heeft",
+      "Iets dat je alleen doet als niemand kijkt",
+      "Iets dat je ex waarschijnlijk doet",
+      "Iets dat je screenrecordt",
+      "Iets dat je mute op social media",
+      "Iets dat je stiekem leuk vindt",
+      "Iets dat verdacht ruikt",
+      "Iets dat chaos veroorzaakt",
+      "Iets dat je alleen dronken doet",
+      "Iets dat je direct skipt",
+      "Iets dat verslavend is",
+      "Iets dat je faked voor social media",
+      "Iets dat lowkey gênant is",
+      "Iets dat highkey gênant is",
+      "Iets dat je niet wil liken per ongeluk",
+      "Iets dat je screenshots waard vindt",
+      "Iets dat je moeder niet begrijpt",
+      "Iets dat chronisch online is",
+      "Iets dat iedereen ineens doet",
+      "Iets dat je in een podcast hoort",
+      "Iets dat alleen online bestaat",
+      "Iets dat instant drama veroorzaakt",
+      "Iets dat je meteen judged"
+    ],
+
+    popculture: [
+      "Een film",
+      "Een serie",
+      "Een Netflix serie",
+      "Een Disney film",
+      "Een horrorfilm",
+      "Een actiefilm",
+      "Een romantische film",
+      "Een tekenfilm",
+      "Een superheld",
+      "Een Disney karakter",
+      "Een Marvel karakter",
+      "Een film schurk",
+      "Een acteur",
+      "Een actrice",
+      "Een bekende zanger",
+      "Een bekende rapper",
+      "Een band",
+      "Een DJ",
+      "Een liedje",
+      "Een album",
+      "Een artiest",
+      "Een influencer",
+      "Een YouTuber",
+      "Een TikTokker",
+      "Een streamer",
+      "Een bekend persoon",
+      "Iets dat viral ging",
+      "Een meme",
+      "Een realityprogramma",
+      "Een TV-programma",
+      "Een game",
+      "Een game karakter",
+      "Een Pokémon",
+      "Een app",
+      "Een social media app",
+      "Iets op TikTok",
+      "Iets op Netflix",
+      "Een celebrity crush",
+      "Iets dat fandoms hebben",
+      "Iets dat gecanceld werd",
+      "Een iconische quote",
+      "Iets dat nostalgisch is",
+      "Een artiest die iedereen kent",
+      "Iets dat je binge-watcht",
+      "Een concert",
+      "Een festival",
+      "Een beroemde familie",
+      "Een realityster",
+      "Een internettrend",
+      "Een cartoon karakter"
+    ],
   };
 
   const [players, setPlayers] = useState(["", "", "", ""]);
@@ -484,53 +590,71 @@ export default function Home() {
             />
           </div>
 
-<div className="grid grid-cols-2 gap-3 mb-6">
+          <div className="grid grid-cols-3 gap-3 mb-6">
 
-  <button
-    onClick={() => setSelectedMode("family")}
-    className={`rounded-2xl p-4 font-black border transition-all ${
-      selectedMode === "family"
-        ? "bg-orange-500 text-white border-orange-400"
-        : "bg-white/5 text-white border-white/10"
-    }`}
-  >
-    👨‍👩‍👧 Familie
-  </button>
+            <button
+              onClick={() => setSelectedMode("family")}
+              className={`rounded-2xl p-4 font-black border transition-all ${selectedMode === "family"
+                ? "bg-orange-500 text-white border-orange-400"
+                : "bg-white/5 text-white border-white/10"
+                }`}
+            >
+              👨‍👩‍👧 Familie
+            </button>
 
-  <button
-    onClick={() => setSelectedMode("kids")}
-    className={`rounded-2xl p-4 font-black border transition-all ${
-      selectedMode === "kids"
-        ? "bg-pink-500 text-white border-pink-400"
-        : "bg-white/5 text-white border-white/10"
-    }`}
-  >
-    🧒 Kinderen
-  </button>
+            <button
+              onClick={() => setSelectedMode("kids")}
+              className={`rounded-2xl p-4 font-black border transition-all ${selectedMode === "kids"
+                ? "bg-pink-500 text-white border-pink-400"
+                : "bg-white/5 text-white border-white/10"
+                }`}
+            >
+              🧒 Kinderen
+            </button>
 
-  <button
-    onClick={() => setSelectedMode("couples")}
-    className={`rounded-2xl p-4 font-black border transition-all ${
-      selectedMode === "couples"
-        ? "bg-purple-500 text-white border-purple-400"
-        : "bg-white/5 text-white border-white/10"
-    }`}
-  >
-    ❤️ Koppels
-  </button>
+            <button
+              onClick={() => setSelectedMode("couples")}
+              className={`rounded-2xl p-4 font-black border transition-all ${selectedMode === "couples"
+                ? "bg-purple-500 text-white border-purple-400"
+                : "bg-white/5 text-white border-white/10"
+                }`}
+            >
+              ❤️ Koppels
+            </button>
 
-  <button
-    onClick={() => setSelectedMode("adult")}
-    className={`rounded-2xl p-4 font-black border transition-all ${
-      selectedMode === "adult"
-        ? "bg-red-500 text-white border-red-400"
-        : "bg-white/5 text-white border-white/10"
-    }`}
-  >
-    🔞 18+
-  </button>
+            <button
+              onClick={() => setSelectedMode("adult")}
+              className={`rounded-2xl p-4 font-black border transition-all ${selectedMode === "adult"
+                ? "bg-red-500 text-white border-red-400"
+                : "bg-white/5 text-white border-white/10"
+                }`}
+            >
+              🔞 18+
+            </button>
 
-</div>
+            <button
+  onClick={() => setSelectedMode("genz")}
+  className={`rounded-2xl p-4 font-black border transition-all ${
+    selectedMode === "genz"
+      ? "bg-cyan-500 text-white border-cyan-400"
+      : "bg-white/5 text-white border-white/10"
+  }`}
+>
+  💀 Gen-Z
+</button>
+
+<button
+  onClick={() => setSelectedMode("popculture")}
+  className={`rounded-2xl p-4 font-black border transition-all ${
+    selectedMode === "popculture"
+      ? "bg-yellow-500 text-black border-yellow-400"
+      : "bg-white/5 text-white border-white/10"
+  }`}
+>
+  🎬 Popcultuur
+</button>
+
+          </div>
 
           <div className="space-y-4">
             {players.map((player, index) => (
