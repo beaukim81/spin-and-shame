@@ -93,7 +93,7 @@ export default function Home() {
   const [players, setPlayers] = useState(["", "", "", ""]);
   const [currentLetter, setCurrentLetter] = useState("S");
   const [displayLetter, setDisplayLetter] = useState("S");
-  const [currentCategory, setCurrentCategory] = useState(categories[0]);
+  const [currentCategory, setCurrentCategory] = useState("");
   const [currentPlayer, setCurrentPlayer] = useState(0);
   const [timer, setTimer] = useState(10);
   const [scores, setScores] = useState([0, 0, 0, 0]);
