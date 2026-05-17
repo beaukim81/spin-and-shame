@@ -575,7 +575,7 @@ export default function Home() {
                     key={displayLetter}
                     initial={{ scale: 0.6, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    className="text-[clamp(1.5rem,3.5vw,2.3rem)] font-semibold leading-snug text-white"
+                    className="text-[clamp(6rem,18vw,11rem)] font-black text-white leading-none"
                   >
                     {displayLetter}
                   </motion.h2>
