@@ -462,7 +462,15 @@ export default function Home() {
   function spinLetter() {
 
     if (isRolling) return;
+    if (!chaosMode) {
 
+      setCurrentPlayer((prev) =>
+        prev + 1 >= players.filter(player => player.trim() !== "").length
+          ? 0
+          : prev + 1
+      );
+
+    }
     setIsRolling(true);
 
     const randomCategory =
@@ -507,19 +515,6 @@ export default function Home() {
 
       setCurrentLetter(finalLetter);
 
-      if (chaosMode) {
-
-        setCurrentPlayer(0);
-
-      } else {
-
-        setCurrentPlayer((prev) =>
-          prev + 1 >= players.filter(player => player.trim() !== "").length
-            ? 0
-            : prev + 1
-        );
-
-      }
       setTimer(gameTime);
 
       x.set(0);
