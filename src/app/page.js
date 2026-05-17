@@ -372,97 +372,97 @@ export default function Home() {
 
     if (showIntro) {
 
-  return (
+      return (
 
-    <main className="min-h-screen bg-black text-white flex items-center justify-center p-6 overflow-hidden">
+        <main className="min-h-screen bg-black text-white flex items-center justify-center p-6 overflow-hidden">
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
 
-      <div className="relative z-10 w-full max-w-2xl text-center">
+          <div className="relative z-10 w-full max-w-2xl text-center">
 
-        <div className="flex justify-center mb-10">
+            <div className="flex justify-center mb-10">
 
-          <Image
-            src="/logo.png"
-            width={420}
-            height={220}
-            alt="Spin & Shame"
-            priority
-          />
+              <Image
+                src="/logo.png"
+                width={420}
+                height={220}
+                alt="Spin & Shame"
+                priority
+              />
 
-        </div>
+            </div>
 
-        <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-black leading-none mb-8">
+            <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-black leading-none mb-8">
 
-          DENK SNEL.
-          <br />
-          SWIPE SNELLER.
+              DENK SNEL.
+              <br />
+              SWIPE SNELLER.
 
-        </h1>
+            </h1>
 
-        <div className="bg-white/5 border border-white/10 rounded-[32px] p-8 backdrop-blur-xl mb-8">
+            <div className="bg-white/5 border border-white/10 rounded-[32px] p-8 backdrop-blur-xl mb-8">
 
-          <p className="text-[clamp(1.1rem,3vw,1.7rem)] text-white/80 leading-relaxed mb-6">
+              <p className="text-[clamp(1.1rem,3vw,1.7rem)] text-white/80 leading-relaxed mb-6">
 
-            De spinner kiest een letter.
-            <br />
-            Jij roept zo snel mogelijk een antwoord
-            <br />
-            Twijfel niet… de timer loopt al ⏳
+                De spinner kiest een letter.
+                <br />
+                Jij roept zo snel mogelijk een antwoord
+                <br />
+                Twijfel niet… de timer loopt al ⏳
 
-          </p>
+              </p>
 
-          <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4">
 
-  <div className="bg-green-500/10 border border-green-400/30 rounded-3xl p-5 backdrop-blur-xl">
+                <div className="bg-red-500/10 border border-red-400/30 rounded-3xl p-5 backdrop-blur-xl">
 
-    <p className="text-green-400 text-sm uppercase tracking-[3px] font-black mb-2">
-      SWIPE RECHTS
-    </p>
+                  <p className="text-red-400 text-sm uppercase tracking-[3px] font-black mb-2">
+                    SWIPE LINKS
+                  </p>
 
-    <h3 className="text-[clamp(0.95rem,2vw,1.2rem)] font-black text-white">
-      Goed antwoord
-    </h3>
+                  <h3 className="text-[clamp(0.95rem,2vw,1.2rem)] font-black text-white">
+                    Pass of te laat
+                  </h3>
 
-    <p className="text-white/60 mt-2">
-      +1 punt
-    </p>
+                  <p className="text-white/60 mt-2">
+                    Geen punt 😈
+                  </p>
 
-  </div>
+                </div>
 
-  <div className="bg-red-500/10 border border-red-400/30 rounded-3xl p-5 backdrop-blur-xl">
+                <div className="bg-green-500/10 border border-green-400/30 rounded-3xl p-5 backdrop-blur-xl">
 
-    <p className="text-red-400 text-sm uppercase tracking-[3px] font-black mb-2">
-      SWIPE LINKS
-    </p>
+                  <p className="text-green-400 text-sm uppercase tracking-[3px] font-black mb-2">
+                    SWIPE RECHTS
+                  </p>
 
-    <h3 className="text-[clamp(0.95rem,2vw,1.2rem)] font-black text-white">
-      Pass of te laat
-    </h3>
+                  <h3 className="text-[clamp(0.95rem,2vw,1.2rem)] font-black text-white">
+                    Goed antwoord
+                  </h3>
 
-    <p className="text-white/60 mt-2">
-      Geen punt 😈
-    </p>
+                  <p className="text-white/60 mt-2">
+                    +1 punt
+                  </p>
 
-  </div>
+                </div>
 
-</div>
+              </div>
 
-        </div>
+            </div>
 
-        <button
-          onClick={() => setShowIntro(false)}
-          className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 px-12 py-5 rounded-3xl text-2xl font-black shadow-[0_0_40px_rgba(236,72,153,0.4)]"
-        >
-          START SPEL
-        </button>
+            <button
+              onClick={() => setShowIntro(false)}
+              className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 px-12 py-5 rounded-3xl text-2xl font-black shadow-[0_0_40px_rgba(236,72,153,0.4)]"
+            >
+              START SPEL
+            </button>
 
-      </div>
+          </div>
 
-    </main>
+        </main>
 
-  );
-}
+      );
+    }
 
     return (
       <main className="min-h-screen bg-[#0B1020] text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
@@ -499,14 +499,14 @@ export default function Home() {
             ))}
           </div>
 
-<button
-  onClick={() =>
-    setPlayers([...players, ""])
-  }
-  className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 text-white font-bold mt-4"
->
-  + SPELER TOEVOEGEN
-</button>
+          <button
+            onClick={() =>
+              setPlayers([...players, ""])
+            }
+            className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 text-white font-bold mt-4"
+          >
+            + SPELER TOEVOEGEN
+          </button>
 
           <button
             onClick={() => {
@@ -617,8 +617,8 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               className={`mb-4 text-center text-2xl font-black py-3 rounded-2xl ${feedback === "CORRECT!"
-                  ? "bg-green-500/20 text-green-400"
-                  : "bg-red-500/20 text-red-400"
+                ? "bg-green-500/20 text-green-400"
+                : "bg-red-500/20 text-red-400"
                 }`}
             >
               {feedback}
