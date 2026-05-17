@@ -920,7 +920,11 @@ export default function Home() {
                 />
               ))}
             </div>
+            <p className="text-sm text-white/40 mt-4 leading-relaxed">
+  Voeg gewoon meer namen toe — nieuwe spelers verschijnen automatisch.
+</p>
           </div>
+
 
           <button
             onClick={() => {
