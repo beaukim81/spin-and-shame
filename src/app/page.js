@@ -1039,7 +1039,7 @@ export default function Home() {
           )}
 
           <motion.div
-            drag="x"
+            drag={!chaosMode ? "x" : false}
             style={{
               x,
               backgroundColor: background,
@@ -1068,7 +1068,10 @@ export default function Home() {
               }
 
             }}
-            className="rounded-3xl p-5 border border-white/10 cursor-grab active:cursor-grabbing backdrop-blur-xl"
+            className={`rounded-3xl p-5 border border-white/10 backdrop-blur-xl ${!chaosMode
+              ? "cursor-grab active:cursor-grabbing"
+              : ""
+              }`}
           >
 
             <div className="flex items-center justify-between">
