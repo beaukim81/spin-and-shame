@@ -283,7 +283,7 @@ export default function Home() {
 
   if (winner) {
     return (
-      <main className="min-h-screen bg-[#0B1020] text-white flex items-center justify-center p-6">
+      <main className="min-h-screen bg-[#0B1020] text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
         <div className="w-full max-w-md bg-[#121A2F] rounded-[32px] p-8 shadow-2xl border border-pink-500/30 text-center">
           <p className="text-6xl mb-4">🏆</p>
 
@@ -315,9 +315,9 @@ export default function Home() {
   if (showScoreboard) {
 
     return (
-      <main className="min-h-screen bg-black text-white flex items-center justify-center p-4">
+      <main className="min-h-screen bg-black text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
 
-        <div className="w-full max-w-sm backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-6">
+        <div className="w-full max-w-2xl backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-6">
 
           <div className="flex justify-center mb-4">
             <Image
@@ -333,7 +333,7 @@ export default function Home() {
             {players.map((player, index) => (
               <div
                 key={player}
-                className="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-4"
+                className="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-[clamp(16px,4vw,40px)]"
               >
                 <h2 className="text-xl font-semibold uppercase text-white">
                   {player}
@@ -465,9 +465,9 @@ export default function Home() {
 }
 
     return (
-      <main className="min-h-screen bg-[#0B1020] text-white flex items-center justify-center p-6">
+      <main className="min-h-screen bg-[#0B1020] text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
 
-        <div className="w-full max-w-md bg-[#121A2F] rounded-[32px] p-6 shadow-2xl border border-purple-500/20">
+        <div className="w-full max-w-md bg-[#121A2F] rounded-[32px] p-[clamp(16px,4vw,40px)] shadow-2xl border border-purple-500/20">
 
           <div className="flex justify-center mb-4">
             <Image
@@ -589,7 +589,7 @@ export default function Home() {
             key={currentCategory}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white/5 border border-white/10 rounded-3xl p-4 mb-5"
+            className="bg-white/5 border border-white/10 rounded-3xl p-[clamp(16px,4vw,40px)] mb-5"
           >
             <p className="text-orange-400 text-sm font-black tracking-widest mb-3">
               CATEGORIE
