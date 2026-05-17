@@ -545,7 +545,7 @@ export default function Home() {
 
       <div className="relative z-10 w-full max-w-[900px] px-4">
 
-        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(16px,4vw,40px)] shadow-[0_0_80px_rgba(168,85,247,0.15)]">
+        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] min-h-[82vh] flex flex-col justify-between">
 
           <div className="flex justify-center mb-6">
             <Image
@@ -559,7 +559,7 @@ export default function Home() {
 
           <div className="flex justify-center mb-4">
 
-            <motion.div className="relative w-[clamp(220px,45vw,420px)] h-[clamp(220px,45vw,420px)] rounded-full">
+            <motion.div className="relative w-[clamp(280px,55vw,520px)] h-[clamp(280px,55vw,520px)] rounded-full">
 
               <div className="absolute inset-0 rounded-full border-[5px] border-orange-400" />
 
@@ -589,7 +589,7 @@ export default function Home() {
             key={currentCategory}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white/5 border border-white/10 rounded-3xl p-[clamp(16px,4vw,40px)] mb-5"
+            className="bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] mb-8"
           >
             <p className="text-orange-400 text-sm font-black tracking-widest mb-3">
               CATEGORIE
@@ -676,8 +676,8 @@ export default function Home() {
 
               </motion.div>
 
-              <div className="w-[clamp(90px,18vw,140px)] h-[clamp(90px,18vw,140px)] rounded-full bg-black/40 border-[5px] border-orange-400 flex items-center justify-center">
-                <span className="text-[clamp(2rem,6vw,4rem)] font-black">
+              <div className="w-[clamp(120px,22vw,180px)] h-[clamp(120px,22vw,180px)] rounded-full bg-black/40 border-[5px] border-orange-400 flex items-center justify-center">
+                <span className="text-[clamp(3rem,8vw,5rem)] font-black">
                   {timer}
                 </span>
               </div>
