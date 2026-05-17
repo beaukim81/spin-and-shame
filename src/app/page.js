@@ -35,58 +35,60 @@ export default function Home() {
     "Z"
   ];
 
-  const categories = [
-    "Iets in de keuken",
-    "Een game",
-    "Iets dat je online bestelt",
-    "Iets dat plakt",
-    "Een cocktail",
-    "Iets dat je niet wil ruiken",
-    "Iets op je bureau",
-    "Iets dat je binge-watcht",
-    "Een voertuig",
-    "Iets dat kapot kan",
-    "Iets in de badkamer",
-    "Iets dat je niet wil laten vallen",
-    "Muziekinstrument",
-    "Iets dat je gebruikt in de ochtend",
-    "Iets dat awkward is",
-    "Fastfood",
-    "Iets dat je verzamelt",
-    "Iets dat geluid maakt",
-    "Iets in je broekzak",
-    "Iets dat je niet wil aanraken",
-    "Iets op je telefoon",
-    "Een bekend persoon",
-    "Iets dat je kwijt raakt",
-    "Iets dat je laat bezorgen",
-    "Iets dat warm wordt",
-    "Een Disney karakter",
-    "Iets dat je gebruikt in de winter",
-    "Iets dat gênant is",
-    "Iets in de koelkast",
-    "Iets dat je moet schoonmaken",
-    "Website",
-    "Iets dat je niet wil horen",
-    "Iets dat je gebruikt tijdens sporten",
-    "Een beroep",
-    "Iets dat je gebruikt in bed",
-    "Iets dat irritant is",
-    "Iets dat je spaart",
-    "Iets dat veel te duur is",
-    "Iets dat je online koopt",
-    "Iets in een rugzak",
-    "Iets dat je openmaakt",
-    "Iets dat koud is",
-    "Iets dat AI kan maken",
-    "Iets dat je bewaart",
-    "Een kledingmerk",
-    "Iets dat vies smaakt",
-    "Iets dat je gebruikt op vakantie",
-    "Iets dat trilt",
-    "Iets dat je eet",
-    "Iets dat je op Netflix kijkt"
-  ];
+  const categoryModes = {
+
+    family: [
+      "Iets in de keuken",
+      "Een game",
+      "Een voertuig",
+      "Iets in de koelkast",
+      "Een Disney karakter",
+      "Iets dat je op vakantie meeneemt",
+      "Iets dat je eet",
+      "Iets dat je drinkt",
+      "Een beroep",
+      "Een kledingmerk"
+    ],
+
+    kids: [
+      "Een superheld",
+      "Een dier",
+      "Een kleur",
+      "Een speelgoed",
+      "Iets op school",
+      "Een snack",
+      "Een game",
+      "Een tekenfilm karakter",
+      "Iets dat stinkt",
+      "Iets dat lawaai maakt"
+    ],
+
+    couples: [
+      "Iets romantisch",
+      "Iets dat awkward is",
+      "Iets dat je partner doet",
+      "Een reden voor ruzie",
+      "Iets op date night",
+      "Iets dat je deelt",
+      "Iets dat irritant is",
+      "Iets dat sexy klinkt",
+      "Iets dat je niet wil horen",
+      "Een green flag"
+    ],
+
+    adult: [
+      "Iets dat je liever geheim houdt",
+      "Een turn-off",
+      "Iets dat je niet tegen je ouders zegt",
+      "Iets dat je doet na middernacht",
+      "Een slechte gewoonte",
+      "Iets dat fout kan gaan op een date",
+      "Iets dat je dronken doet",
+      "Een rode vlag",
+      "Iets dat spicy is",
+      "Een guilty pleasure"
+    ]
+  };
 
   const [players, setPlayers] = useState(["", "", "", ""]);
   const [currentLetter, setCurrentLetter] = useState("S");
@@ -102,6 +104,9 @@ export default function Home() {
   const [feedback, setFeedback] = useState("");
   const [isRolling, setIsRolling] = useState(false);
   const [competitiveMode, setCompetitiveMode] = useState(false);
+  const [selectedMode, setSelectedMode] = useState("family");
+
+  const categories = categoryModes[selectedMode];
 
   const correctSound = useRef(null);
   const wrongSound = useRef(null);
@@ -478,6 +483,54 @@ export default function Home() {
               priority
             />
           </div>
+
+<div className="grid grid-cols-2 gap-3 mb-6">
+
+  <button
+    onClick={() => setSelectedMode("family")}
+    className={`rounded-2xl p-4 font-black border transition-all ${
+      selectedMode === "family"
+        ? "bg-orange-500 text-white border-orange-400"
+        : "bg-white/5 text-white border-white/10"
+    }`}
+  >
+    👨‍👩‍👧 Familie
+  </button>
+
+  <button
+    onClick={() => setSelectedMode("kids")}
+    className={`rounded-2xl p-4 font-black border transition-all ${
+      selectedMode === "kids"
+        ? "bg-pink-500 text-white border-pink-400"
+        : "bg-white/5 text-white border-white/10"
+    }`}
+  >
+    🧒 Kinderen
+  </button>
+
+  <button
+    onClick={() => setSelectedMode("couples")}
+    className={`rounded-2xl p-4 font-black border transition-all ${
+      selectedMode === "couples"
+        ? "bg-purple-500 text-white border-purple-400"
+        : "bg-white/5 text-white border-white/10"
+    }`}
+  >
+    ❤️ Koppels
+  </button>
+
+  <button
+    onClick={() => setSelectedMode("adult")}
+    className={`rounded-2xl p-4 font-black border transition-all ${
+      selectedMode === "adult"
+        ? "bg-red-500 text-white border-red-400"
+        : "bg-white/5 text-white border-white/10"
+    }`}
+  >
+    🔞 18+
+  </button>
+
+</div>
 
           <div className="space-y-4">
             {players.map((player, index) => (
