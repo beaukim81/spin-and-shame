@@ -305,6 +305,7 @@ export default function Home() {
   const [competitiveMode, setCompetitiveMode] = useState(false);
   const [selectedMode, setSelectedMode] = useState("family");
   const [gameTime, setGameTime] = useState(10);
+  const [chaosMode, setChaosMode] = useState(false);
 
   const categories = categoryModes[selectedMode];
 
@@ -385,7 +386,7 @@ export default function Home() {
     }
   }
 
-  function addPoint() {
+  function addPoint(playerIndex = currentPlayer) {
 
     setFeedback("CORRECT!");
 
@@ -403,11 +404,11 @@ export default function Home() {
 
     const updatedScores = [...scores];
 
-    updatedScores[currentPlayer] += 1;
+    updatedScores[playerIndex] += 1;
 
     setScores(updatedScores);
 
-    if (updatedScores[currentPlayer] >= 10) {
+    if (updatedScores[playerIndex] >= 10){
 
       if (winSound.current) {
 
@@ -416,7 +417,7 @@ export default function Home() {
         winSound.current.play().catch(() => { });
       }
 
-      setWinner(players[currentPlayer]);
+      setWinner(players[playerIndex]);
 
       return;
     }
@@ -572,16 +573,6 @@ export default function Home() {
       <main className="min-h-screen overflow-y-auto bg-black text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
 
         <div className="relative z-10 w-full max-w-2xl backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-6">
-
-          <div className="flex justify-center mb-4">
-            <Image
-              src="/logo.png"
-              width={340}
-              height={180}
-              alt="Spin & Shame"
-              priority
-            />
-          </div>
 
           <div className="space-y-3">
             {players.map((player, index) => (
@@ -808,7 +799,7 @@ export default function Home() {
                 <button
                   key={time}
                   onClick={() => setGameTime(time)}
-                  className={`rounded-3xl p-3 font-black border transition-all hover:scale-[1.02] active:scale-[0.98] ${gameTime === time
+                  className={`rounded-3xl p-3 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${gameTime === time
                     ? "bg-purple-500/20 border-purple-400 text-white shadow-[0_0_30px_rgba(168,85,247,0.25)]"
                     : "bg-white/5 border-white/10 text-white/70 hover:text-white"
                     }`}
@@ -852,6 +843,39 @@ export default function Home() {
 
                 <div
                   className={`w-5 h-5 rounded-full ${competitiveMode
+                    ? "bg-purple-400"
+                    : "bg-white/20"
+                    }`}
+                />
+
+              </div>
+
+            </button>
+
+            <button
+              onClick={() => setChaosMode(!chaosMode)}
+              className={`w-full rounded-3xl p-5 border transition-all text-left mt-4 ${chaosMode
+                ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+                : "bg-white/5 border-white/10"
+                }`}
+            >
+
+              <div className="flex items-center justify-between">
+
+                <div>
+
+                  <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
+                    Chaos Mode
+                  </h3>
+
+                  <p className="text-white/60 mt-1">
+                    Iedereen roept tegelijk. Tik op de snelste speler.
+                  </p>
+
+                </div>
+
+                <div
+                  className={`w-5 h-5 rounded-full ${chaosMode
                     ? "bg-purple-400"
                     : "bg-white/20"
                     }`}
@@ -1035,13 +1059,13 @@ export default function Home() {
             }}
             onDragEnd={(event, info) => {
 
-              if (!isRolling && info.offset.x > 100) {
+              if (!chaosMode && !isRolling && info.offset.x > 100) {
                 setTimeout(() => {
                   addPoint();
                 }, 50);
               }
 
-              if (!isRolling && info.offset.x < -100) {
+              if (!chaosMode && !isRolling && info.offset.x < -100) {
                 setTimeout(() => {
                   handleTooLate();
                 }, 50);
@@ -1059,13 +1083,31 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
               >
 
-                <p className="text-gray-300 text-sm uppercase tracking-widest">
-                  Huidige speler
-                </p>
+                {chaosMode ? (
 
-                <h3 className="text-[clamp(1.5rem,4vw,3rem)] font-bold uppercase tracking-[1px] mt-1 text-white">
-                  {players[currentPlayer]}
-                </h3>
+                  <>
+                    <p className="text-gray-300 text-sm uppercase tracking-widest">
+                      Chaos Mode
+                    </p>
+
+                    <h3 className="text-[clamp(1.2rem,4vw,2.2rem)] font-bold uppercase tracking-[1px] mt-1 text-white">
+                      Wie was het snelst?
+                    </h3>
+                  </>
+
+                ) : (
+
+                  <>
+                    <p className="text-gray-300 text-sm uppercase tracking-widest">
+                      Huidige speler
+                    </p>
+
+                    <h3 className="text-[clamp(1.5rem,4vw,3rem)] font-bold uppercase tracking-[1px] mt-1 text-white">
+                      {players[currentPlayer]}
+                    </h3>
+                  </>
+
+                )}
 
               </motion.div>
 
@@ -1095,7 +1137,25 @@ export default function Home() {
 
             </div>
           </motion.div>
+          {chaosMode && (
 
+            <div className="grid grid-cols-2 gap-3 mt-6">
+
+              {players.map((player, index) => (
+
+                <button
+                  key={index}
+                  onClick={() => addPoint(index)}
+                  className="bg-purple-500/20 border border-purple-400 rounded-3xl p-5 text-white font-black uppercase tracking-[2px] backdrop-blur-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
+                >
+                  {player}
+                </button>
+
+              ))}
+
+            </div>
+
+          )}
         </div>
       </div >
     </main >
