@@ -412,7 +412,7 @@ export default function Home() {
 
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4">
 
   <div className="bg-green-500/10 border border-green-400/30 rounded-3xl p-5 backdrop-blur-xl">
 
@@ -420,7 +420,7 @@ export default function Home() {
       SWIPE RECHTS
     </p>
 
-    <h3 className="text-[clamp(1.1rem,3vw,1.6rem)] font-black text-white">
+    <h3 className="text-[clamp(0.95rem,2vw,1.2rem)] font-black text-white">
       Goed antwoord
     </h3>
 
@@ -436,7 +436,7 @@ export default function Home() {
       SWIPE LINKS
     </p>
 
-    <h3 className="text-[clamp(1.1rem,3vw,1.6rem)] font-black text-white">
+    <h3 className="text-[clamp(0.95rem,2vw,1.2rem)] font-black text-white">
       Pass of te laat
     </h3>
 
