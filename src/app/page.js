@@ -724,7 +724,7 @@ export default function Home() {
             <button
               onClick={() => setSelectedMode("family")}
               className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "family"
-                ? "bg-purple-500/20 border-purple-400 text-white shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
                 : "bg-white/5 border-white/10 text-white/70 hover:text-white"
                 }`}
             >
@@ -734,7 +734,7 @@ export default function Home() {
             <button
               onClick={() => setSelectedMode("kids")}
               className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "kids"
-                ? "bg-purple-500/20 border-purple-400 text-white shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
                 : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
             >
               Kinderen
@@ -743,7 +743,7 @@ export default function Home() {
             <button
               onClick={() => setSelectedMode("couples")}
               className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "couples"
-                ? "bg-purple-500/20 border-purple-400 text-white shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
                 : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
             >
               Koppels
@@ -752,7 +752,7 @@ export default function Home() {
             <button
               onClick={() => setSelectedMode("adult")}
               className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "adult"
-                ? "bg-purple-500/20 border-purple-400 text-white shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
                 : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
             >
               Friends
@@ -761,7 +761,7 @@ export default function Home() {
             <button
               onClick={() => setSelectedMode("genz")}
               className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "genz"
-                ? "bg-purple-500/20 border-purple-400 text-white shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
                 : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
             >
               Gen-Z
@@ -770,7 +770,7 @@ export default function Home() {
             <button
               onClick={() => setSelectedMode("popculture")}
               className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "popculture"
-                ? "bg-purple-500/20 border-purple-400 text-white shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
                 : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
             >
               Popcultuur
@@ -792,7 +792,7 @@ export default function Home() {
                   key={time}
                   onClick={() => setGameTime(time)}
                   className={`rounded-3xl p-3 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${gameTime === time
-                    ? "bg-purple-500/20 border-purple-400 text-white shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+                    ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
                     : "bg-white/5 border-white/10 text-white/70 hover:text-white"
                     }`}
                 >
