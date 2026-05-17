@@ -820,47 +820,48 @@ export default function Home() {
 
           </div>
 
-          <div className="mb-6">
+<div className="mb-6">
 
-            <p className="text-sm uppercase tracking-[4px] text-white/50 font-black mb-4">
-              SPELMODUS
-            </p>
+  <p className="text-sm uppercase tracking-[4px] text-white/50 font-black mb-4">
+    EXTRA MODUS
+  </p>
 
-            <button
-              onClick={() => setCompetitiveMode(!competitiveMode)}
-              className={`w-full rounded-3xl p-5 border transition-all text-left ${competitiveMode
-                  ? "bg-red-500/20 border-red-400"
-                  : "bg-white/5 border-white/10"
-                }`}
-            >
+  <button
+    onClick={() => setCompetitiveMode(!competitiveMode)}
+    className={`w-full rounded-3xl p-5 border transition-all text-left ${
+      competitiveMode
+        ? "bg-green-500/20 border-green-400"
+        : "bg-white/5 border-white/10"
+    }`}
+  >
 
-              <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between">
 
-                <div>
+      <div>
 
-                  <h3 className="text-white font-black text-lg">
-                    Hardcore Mode
-                  </h3>
+        <h3 className="text-white font-black text-lg">
+          Hardcore Mode
+        </h3>
 
-                  <p className="text-white/60 mt-1">
-                    Verlies een punt bij PASS of fout antwoord.
-                  </p>
+        <p className="text-white/60 mt-1">
+          Verlies een punt bij PASS of fout antwoord.
+        </p>
 
-                </div>
+      </div>
 
-                <div
-                  className={`w-5 h-5 rounded-full ${competitiveMode
-                      ? "bg-red-400"
-                      : "bg-white/20"
-                    }`}
-                />
+      <div
+        className={`w-5 h-5 rounded-full ${
+          competitiveMode
+            ? "bg-green-400"
+            : "bg-white/20"
+        }`}
+      />
 
-              </div>
+    </div>
 
-            </button>
+  </button>
 
-          </div>
-
+</div>
           <p className="text-sm uppercase tracking-[4px] text-white/50 font-black mb-4">
             SPELERS
           </p>
