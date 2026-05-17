@@ -304,32 +304,32 @@ export default function Home() {
 
   const translations = {
 
-  "Een dier": "An animal",
-  "Een snack": "A snack",
-  "Een drankje": "A drink",
-  "Een vrucht": "A fruit",
-  "Een groente": "A vegetable",
-  "Een film": "A movie",
-  "Een serie": "A series",
-  "Een beroep": "A profession",
-  "Een voertuig": "A vehicle",
-  "Een sport": "A sport",
-  "Een hobby": "A hobby",
-  "Een kleur": "A color",
-  "Een land": "A country",
-  "Een stad": "A city",
-  "Een superheld": "A superhero",
-  "Een app": "An app",
-  "Een liedje": "A song",
+    "Een dier": "An animal",
+    "Een snack": "A snack",
+    "Een drankje": "A drink",
+    "Een vrucht": "A fruit",
+    "Een groente": "A vegetable",
+    "Een film": "A movie",
+    "Een serie": "A series",
+    "Een beroep": "A profession",
+    "Een voertuig": "A vehicle",
+    "Een sport": "A sport",
+    "Een hobby": "A hobby",
+    "Een kleur": "A color",
+    "Een land": "A country",
+    "Een stad": "A city",
+    "Een superheld": "A superhero",
+    "Een app": "An app",
+    "Een liedje": "A song",
 
-};
+  };
 
-const categories = categoryModes[selectedMode].map(
-  (category) =>
-    language === "en"
-      ? translations[category] || category
-      : category
-);
+  const categories = categoryModes[selectedMode].map(
+    (category) =>
+      language === "en"
+        ? translations[category] || category
+        : category
+  );
 
   const text = {
 
@@ -345,6 +345,9 @@ const categories = categoryModes[selectedMode].map(
       gameMode: "SPELMODE",
       extraMode: "EXTRA MODUS",
       players: "SPELERS",
+      introTitle: "Twijfel niet. Roep. Swipe. Win.",
+      swipeLeft: "SWIPE LINKS",
+      swipeRight: "SWIPE RECHTS",
     },
 
     en: {
@@ -359,6 +362,9 @@ const categories = categoryModes[selectedMode].map(
       gameMode: "GAME MODE",
       extraMode: "EXTRA MODE",
       players: "PLAYERS",
+      introTitle: "Don't hesitate. Shout. Swipe. Win.",
+      swipeLeft: "SWIPE LEFT",
+      swipeRight: "SWIPE RIGHT",
     }
 
   };
@@ -689,6 +695,30 @@ const categories = categoryModes[selectedMode].map(
 
           <div className="relative z-10 w-full max-w-2xl text-center">
 
+            <div className="flex justify-center gap-3 mb-6">
+
+              <button
+                onClick={() => setLanguage("nl")}
+                className={`px-4 py-2 rounded-2xl font-black border transition-all ${language === "nl"
+                  ? "bg-orange-500/20 border-orange-400 text-white"
+                  : "bg-white/5 border-white/10 text-white/70"
+                  }`}
+              >
+                NL
+              </button>
+
+              <button
+                onClick={() => setLanguage("en")}
+                className={`px-4 py-2 rounded-2xl font-black border transition-all ${language === "en"
+                  ? "bg-orange-500/20 border-orange-400 text-white"
+                  : "bg-white/5 border-white/10 text-white/70"
+                  }`}
+              >
+                EN
+              </button>
+
+            </div>
+
             <div className="flex justify-center mb-6">
 
               <Image
@@ -710,9 +740,7 @@ const categories = categoryModes[selectedMode].map(
                 </p>
 
                 <h2 className="text-[clamp(1.8rem,5vw,3.2rem)] font-black leading-tight text-white">
-                  Twijfel niet.
-                  <br />
-                  Roep. Swipe. Win.
+                  {text[language].introTitle}
                 </h2>
 
               </div>
@@ -722,7 +750,7 @@ const categories = categoryModes[selectedMode].map(
                 <div className="bg-red-500/10 border border-red-400/30 rounded-3xl p-5 backdrop-blur-xl">
 
                   <p className="text-red-400 text-xs uppercase tracking-[3px] font-black mb-2">
-                    SWIPE LINKS
+                    {text[language].swipeLeft}
                   </p>
 
                   <h3 className="text-xl font-black text-white mb-2">
@@ -740,7 +768,7 @@ const categories = categoryModes[selectedMode].map(
                 <div className="bg-green-500/10 border border-green-400/30 rounded-3xl p-5 backdrop-blur-xl">
 
                   <p className="text-green-400 text-xs uppercase tracking-[3px] font-black mb-2">
-                    SWIPE RECHTS
+                    {text[language].swipeRight}
                   </p>
 
                   <h3 className="text-xl font-black text-white mb-2">
@@ -778,30 +806,6 @@ const categories = categoryModes[selectedMode].map(
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
 
         <div className="relative z-10 w-full max-w-2xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] shadow-[0_0_60px_rgba(168,85,247,0.15)]">
-
-<div className="flex gap-3 mb-6">
-
-  <button
-    onClick={() => setLanguage("nl")}
-    className={`px-4 py-2 rounded-2xl font-black border transition-all ${language === "nl"
-      ? "bg-orange-500/20 border-orange-400 text-white"
-      : "bg-white/5 border-white/10 text-white/70"
-      }`}
-  >
-    NL
-  </button>
-
-  <button
-    onClick={() => setLanguage("en")}
-    className={`px-4 py-2 rounded-2xl font-black border transition-all ${language === "en"
-      ? "bg-orange-500/20 border-orange-400 text-white"
-      : "bg-white/5 border-white/10 text-white/70"
-      }`}
-  >
-    EN
-  </button>
-
-</div>
 
           <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
             {text[language].gameMode}
@@ -1047,7 +1051,7 @@ const categories = categoryModes[selectedMode].map(
             }}
             className="w-full mt-8 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-3xl"
           >
-            START GAME
+            {text[language].startGame}
           </button>
 
         </div>
