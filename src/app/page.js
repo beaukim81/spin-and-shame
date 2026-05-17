@@ -844,7 +844,7 @@ export default function Home() {
         </h3>
 
         <p className="text-white/60 mt-1">
-          Verlies een punt bij PASS of fout antwoord.
+          Verlies een punt bij skip of een fout antwoord
         </p>
 
       </div>
