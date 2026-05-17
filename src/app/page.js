@@ -714,8 +714,6 @@ export default function Home() {
 
             </div>
 
-          </div>
-
           <button
             onClick={() => setShowIntro(false)}
             className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 px-12 py-5 rounded-3xl text-2xl font-black shadow-[0_0_40px_rgba(236,72,153,0.4)]"
