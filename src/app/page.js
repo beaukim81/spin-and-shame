@@ -545,7 +545,7 @@ export default function Home() {
 
       <div className="relative z-10 w-full max-w-[900px] px-4">
 
-        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] min-h-[82vh] flex flex-col justify-between">
+        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] min-h-[75vh] flex flex-col justify-between">
 
           <div className="flex justify-center mb-6">
             <Image
@@ -559,7 +559,7 @@ export default function Home() {
 
           <div className="flex justify-center mb-4">
 
-            <motion.div className="relative w-[clamp(280px,55vw,520px)] h-[clamp(280px,55vw,520px)] rounded-full">
+            <motion.div className="relative w-[clamp(230px,46vw,400px)] h-[clamp(230px,46vw,400px)] rounded-full">
 
               <div className="absolute inset-0 rounded-full border-[5px] border-orange-400" />
 
@@ -575,7 +575,7 @@ export default function Home() {
                     key={displayLetter}
                     initial={{ scale: 0.6, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    className="text-[clamp(5rem,15vw,10rem)] font-black text-white"
+                    className="text-[clamp(1.5rem,3.5vw,2.3rem)] font-semibold leading-snug text-white"
                   >
                     {displayLetter}
                   </motion.h2>
