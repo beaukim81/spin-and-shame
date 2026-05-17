@@ -752,6 +752,30 @@ export default function Home() {
 
         <div className="relative z-10 w-full max-w-2xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] shadow-[0_0_60px_rgba(168,85,247,0.15)]">
 
+<div className="flex gap-3 mb-6">
+
+  <button
+    onClick={() => setLanguage("nl")}
+    className={`px-4 py-2 rounded-2xl font-black border transition-all ${language === "nl"
+      ? "bg-orange-500/20 border-orange-400 text-white"
+      : "bg-white/5 border-white/10 text-white/70"
+      }`}
+  >
+    NL
+  </button>
+
+  <button
+    onClick={() => setLanguage("en")}
+    className={`px-4 py-2 rounded-2xl font-black border transition-all ${language === "en"
+      ? "bg-orange-500/20 border-orange-400 text-white"
+      : "bg-white/5 border-white/10 text-white/70"
+      }`}
+  >
+    EN
+  </button>
+
+</div>
+
           <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
             {text[language].gameMode}
           </p>
