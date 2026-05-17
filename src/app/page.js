@@ -424,7 +424,15 @@ export default function Home() {
       setFeedback("");
     }, 600);
 
-    nextTurn();
+    if (chaosMode) {
+
+      spinLetter();
+
+    } else {
+
+      nextTurn();
+
+    }
   }
 
   function handleTooLate() {
@@ -456,7 +464,15 @@ export default function Home() {
       setFeedback("");
     }, 600);
 
-    nextTurn();
+    if (chaosMode) {
+
+      spinLetter();
+
+    } else {
+
+      nextTurn();
+
+    }
   }
 
   function spinLetter() {
@@ -1027,7 +1043,7 @@ export default function Home() {
 
             </div>
 
-            )}
+          )}
 
           {feedback && (
             <motion.div
