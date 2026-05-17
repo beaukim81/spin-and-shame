@@ -406,23 +406,47 @@ export default function Home() {
 
             De spinner kiest een letter.
             <br />
-            Jij schreeuwt een antwoord.
+            Jij roept zo snel mogelijk een antwoord
             <br />
-            Je vrienden beoordelen je lot 😈
+            Twijfel niet… de timer loopt al ⏳
 
           </p>
 
-          <div className="flex justify-center gap-8 text-[clamp(1rem,2.5vw,1.4rem)] font-bold">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-            <span className="text-green-400">
-              → Swipe rechts = punt
-            </span>
+  <div className="bg-green-500/10 border border-green-400/30 rounded-3xl p-5 backdrop-blur-xl">
 
-            <span className="text-red-400">
-              ← Swipe links = pass
-            </span>
+    <p className="text-green-400 text-sm uppercase tracking-[3px] font-black mb-2">
+      SWIPE RECHTS
+    </p>
 
-          </div>
+    <h3 className="text-[clamp(1.1rem,3vw,1.6rem)] font-black text-white">
+      Goed antwoord
+    </h3>
+
+    <p className="text-white/60 mt-2">
+      +1 punt
+    </p>
+
+  </div>
+
+  <div className="bg-red-500/10 border border-red-400/30 rounded-3xl p-5 backdrop-blur-xl">
+
+    <p className="text-red-400 text-sm uppercase tracking-[3px] font-black mb-2">
+      SWIPE LINKS
+    </p>
+
+    <h3 className="text-[clamp(1.1rem,3vw,1.6rem)] font-black text-white">
+      Pass of te laat
+    </h3>
+
+    <p className="text-white/60 mt-2">
+      Geen punt 😈
+    </p>
+
+  </div>
+
+</div>
 
         </div>
 
