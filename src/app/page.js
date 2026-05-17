@@ -96,6 +96,7 @@ export default function Home() {
   const [timer, setTimer] = useState(10);
   const [scores, setScores] = useState([0, 0, 0, 0]);
   const [gameStarted, setGameStarted] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
   const [winner, setWinner] = useState(null);
   const [showScoreboard, setShowScoreboard] = useState(false);
   const [feedback, setFeedback] = useState("");
@@ -368,6 +369,76 @@ export default function Home() {
   }
 
   if (!gameStarted) {
+
+    if (showIntro) {
+
+  return (
+
+    <main className="min-h-screen bg-black text-white flex items-center justify-center p-6 overflow-hidden">
+
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
+
+      <div className="relative z-10 w-full max-w-2xl text-center">
+
+        <div className="flex justify-center mb-10">
+
+          <Image
+            src="/logo.png"
+            width={420}
+            height={220}
+            alt="Spin & Shame"
+            priority
+          />
+
+        </div>
+
+        <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-black leading-none mb-8">
+
+          DENK SNEL.
+          <br />
+          SWIPE SNELLER.
+
+        </h1>
+
+        <div className="bg-white/5 border border-white/10 rounded-[32px] p-8 backdrop-blur-xl mb-8">
+
+          <p className="text-[clamp(1.1rem,3vw,1.7rem)] text-white/80 leading-relaxed mb-6">
+
+            De spinner kiest een letter.
+            <br />
+            Jij schreeuwt een antwoord.
+            <br />
+            Je vrienden beoordelen je lot 😈
+
+          </p>
+
+          <div className="flex justify-center gap-8 text-[clamp(1rem,2.5vw,1.4rem)] font-bold">
+
+            <span className="text-green-400">
+              → Swipe rechts = punt
+            </span>
+
+            <span className="text-red-400">
+              ← Swipe links = pass
+            </span>
+
+          </div>
+
+        </div>
+
+        <button
+          onClick={() => setShowIntro(false)}
+          className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 px-12 py-5 rounded-3xl text-2xl font-black shadow-[0_0_40px_rgba(236,72,153,0.4)]"
+        >
+          START SPEL
+        </button>
+
+      </div>
+
+    </main>
+
+  );
+}
 
     return (
       <main className="min-h-screen bg-[#0B1020] text-white flex items-center justify-center p-6">
