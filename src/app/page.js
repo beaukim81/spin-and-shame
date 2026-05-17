@@ -760,8 +760,8 @@ export default function Home() {
 
             <button
               onClick={() => setSelectedMode("family")}
-              className={`rounded-3xl py-5 px-4 font-font-black tracking-[2px] uppercase transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "family"
-                ? "bg-orange-500/15 border-orange-400/40 text-white shadow-[0_0_30px_rgba(251,146,60,0.15)]"
+              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "family"
+                ? "bg-white/10 border-white/20 text-white"
                 : "bg-white/5 border-white/10 text-white/70 hover:text-white"
                 }`}
             >
@@ -770,8 +770,8 @@ export default function Home() {
 
             <button
               onClick={() => setSelectedMode("kids")}
-              className={`rounded-3xl py-5 px-4 font-font-black tracking-[2px] uppercase transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "kids"
-                ? "bg-pink-500/15 border-pink-400/40 text-white shadow-[0_0_30px_rgba(244,114,182,0.15)]"
+              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] active:scale-[0.98] ${selectedMode === "kids"
+                ? "bg-white/10 border-white/20 text-white"
                 : "bg-white/5 text-white border-white/10"
                 }`}
             >
@@ -780,8 +780,8 @@ export default function Home() {
 
             <button
               onClick={() => setSelectedMode("couples")}
-              className={`rounded-3xl py-5 px-4 font-font-black tracking-[2px] uppercase transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "couples"
-                ? "bg-purple-500/15 border-purple-400/40 text-white shadow-[0_0_30px_rgba(168,85,247,0.15)]"
+              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "couples"
+                ? "bg-white/10 border-white/20 text-white"
                 : "bg-white/5 text-white border-white/10"
                 }`}
             >
@@ -790,8 +790,8 @@ export default function Home() {
 
             <button
               onClick={() => setSelectedMode("adult")}
-              className={`rounded-3xl py-5 px-4 font-font-black tracking-[2px] uppercase transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "adult"
-                ? "bg-red-500/15 border-red-400/40 text-white shadow-[0_0_30px_rgba(248,113,113,0.15)]"
+              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "adult"
+                ? "bg-white/10 border-white/20 text-white"
                 : "bg-white/5 text-white border-white/10"
                 }`}
             >
@@ -800,8 +800,8 @@ export default function Home() {
 
             <button
               onClick={() => setSelectedMode("genz")}
-              className={`rounded-3xl py-5 px-4 font-font-black tracking-[2px] uppercase transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "genz"
-                ? "bg-cyan-500/15 border-cyan-400/40 text-white shadow-[0_0_30px_rgba(34,211,238,0.15)]"
+              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "genz"
+                ? "bg-white/10 border-white/20 text-white"
                 : "bg-white/5 text-white border-white/10"
                 }`}
             >
@@ -810,8 +810,8 @@ export default function Home() {
 
             <button
               onClick={() => setSelectedMode("popculture")}
-              className={`rounded-3xl py-5 px-4 font-font-black tracking-[2px] uppercase transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "popculture"
-                ? "bg-yellow-500/15 border-yellow-400/40 text-white shadow-[0_0_30px_rgba(250,204,21,0.15)]"
+              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "popculture"
+                ? "bg-white/10 border-white/20 text-white"
                 : "bg-white/5 text-white border-white/10"
                 }`}
             >
