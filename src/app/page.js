@@ -165,16 +165,12 @@ export default function Home() {
       "Een red flag",
       "Een green flag",
       "Een slechte gewoonte",
-      "Een geheim",
       "Een excuus",
-      "Een leugen",
       "Een datingapp",
       "Een cocktail",
       "Een fetish",
-      "Een bijnaam",
+      "Een spicy bijnaam",
       "Een verslaving",
-      "Een smoes",
-      "Een flirt",
       "Een celebrity crush",
       "Een toxic eigenschap",
       "Een spicy woord",
@@ -186,15 +182,13 @@ export default function Home() {
       "Een lelijke gewoonte",
       "Een slechte beslissing",
       "Een dronken actie",
-      "Een awkward moment",
-      "Een foute outfit",
       "Een slechte gewoonte",
       "Een foute aankoop",
-      "Een slechte gewoonte in bed",
       "Een slechte eigenschap",
-      "Een slechte gewoonte op vakantie",
       "Een awkward hobby",
-      "Een spicy drankje"
+      "Een spicy drankje",
+      "Een vreemd talent",
+      "Een rare verzameling"
     ],
 
     genz: [
@@ -756,7 +750,7 @@ export default function Home() {
                 : "bg-white/5 text-white border-white/10"
                 }`}
             >
-              18+
+              16+
             </button>
 
             <button
