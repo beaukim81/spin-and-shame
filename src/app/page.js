@@ -812,7 +812,15 @@ export default function Home() {
             </p>
 
             <button
-              onClick={() => setCompetitiveMode(!competitiveMode)}
+              onClick={() => {
+
+                setCompetitiveMode(!competitiveMode);
+
+                if (!competitiveMode) {
+                  setChaosMode(false);
+                }
+
+              }}
               className={`w-full rounded-3xl p-5 border transition-all text-left ${competitiveMode
                 ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
                 : "bg-white/5 border-white/10"
@@ -845,7 +853,15 @@ export default function Home() {
             </button>
 
             <button
-              onClick={() => setChaosMode(!chaosMode)}
+              onClick={() => {
+
+                setChaosMode(!chaosMode);
+
+                if (!chaosMode) {
+                  setCompetitiveMode(false);
+                }
+
+              }}
               className={`w-full rounded-3xl p-5 border transition-all text-left mt-4 ${chaosMode
                 ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
                 : "bg-white/5 border-white/10"
