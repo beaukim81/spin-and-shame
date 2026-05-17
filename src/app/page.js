@@ -166,10 +166,9 @@ export default function Home() {
       "Een green flag",
       "Een slechte gewoonte",
       "Een excuus",
-      "Een datingapp",
       "Een cocktail",
       "Een fetish",
-      "Een spicy bijnaam",
+      "Een grappige bijnaam",
       "Een verslaving",
       "Een celebrity crush",
       "Een toxic eigenschap",
@@ -188,7 +187,26 @@ export default function Home() {
       "Een awkward hobby",
       "Een spicy drankje",
       "Een vreemd talent",
-      "Een rare verzameling"
+      "Een rare verzameling",
+      "Een rapper",
+      "Een liedje",
+      "Een artiest",
+      "Een sport",
+      "Een festival",
+      "Een uitgaansplek",
+      "Een outfit",
+      "Een cocktail",
+      "Een vakantieplek",
+      "Een kledingmerk",
+      "Een chips smaak",
+      "Een trend",
+      "Een club",
+      "Een supermarkt",
+      "Een hobby",
+      "Een voertuig",
+      "Een droomauto",
+      "Een parfum",
+      "Een luxe merk"
     ],
 
     genz: [
@@ -750,7 +768,7 @@ export default function Home() {
                 : "bg-white/5 text-white border-white/10"
                 }`}
             >
-              16+
+              Friends
             </button>
 
             <button
