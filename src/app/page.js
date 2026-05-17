@@ -293,8 +293,8 @@ export default function Home() {
           <div className="flex justify-center mb-4">
             <Image
               src="/logo.png"
-              width={260}
-              height={140}
+              width={340}
+              height={180}
               alt="Spin & Shame"
               priority
             />
@@ -321,8 +321,8 @@ export default function Home() {
           <div className="flex justify-center mb-4">
             <Image
               src="/logo.png"
-              width={260}
-              height={140}
+              width={340}
+              height={180}
               alt="Spin & Shame"
               priority
             />
@@ -377,8 +377,8 @@ export default function Home() {
           <div className="flex justify-center mb-4">
             <Image
               src="/logo.png"
-              width={260}
-              height={140}
+              width={340}
+              height={180}
               alt="Spin & Shame"
               priority
             />
@@ -446,8 +446,8 @@ export default function Home() {
           <div className="flex justify-center mb-6">
             <Image
               src="/logo.png"
-              width={260}
-              height={140}
+              width={340}
+              height={180}
               alt="Spin & Shame"
               priority
             />
