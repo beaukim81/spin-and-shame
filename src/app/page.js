@@ -180,7 +180,7 @@ export default function Home() {
       "Iets dat je stiekem leuk vindt",
       "Iets dat je liever niet deelt",
       "Iets dat je aantrekkelijk vindt",
-      "Iets dat instant kick geeft",
+      "Iets dat instant ick geeft",
       "Iets dat je partner altijd kwijtraakt",
       "Iets dat je romantisch vindt",
       "Iets dat je alleen doet als niemand kijkt",
@@ -188,74 +188,74 @@ export default function Home() {
       "Iets dat chaos veroorzaakt in relaties"
     ],
 
-adult: [
-  "Een turn-off",
-  "Een guilty pleasure",
-  "Een red flag",
-  "Een green flag",
-  "Een slechte gewoonte",
-  "Een geheim",
-  "Een excuus",
-  "Een leugen",
-  "Een datingapp",
-  "Een cocktail",
-  "Een fetish",
-  "Een bijnaam",
-  "Een verslaving",
-  "Een smoes",
-  "Een flirt",
-  "Een celebrity crush",
-  "Een toxic eigenschap",
-  "Een spicy woord",
-  "Een spicy plek",
-  "Een fantasie",
-  "Een afknapper",
-  "Een irritatie",
-  "Een relatieprobleem",
-  "Een lelijke gewoonte",
-  "Een slechte beslissing",
-  "Een dronken actie",
-  "Een awkward moment",
-  "Een foute outfit",
-  "Een slechte gewoonte",
-  "Een foute aankoop",
-  "Een slechte gewoonte in bed",
-  "Een slechte eigenschap",
-  "Een slechte gewoonte op vakantie",
-  "Een awkward hobby",
-  "Een spicy drankje"
-],
+    adult: [
+      "Een turn-off",
+      "Een guilty pleasure",
+      "Een red flag",
+      "Een green flag",
+      "Een slechte gewoonte",
+      "Een geheim",
+      "Een excuus",
+      "Een leugen",
+      "Een datingapp",
+      "Een cocktail",
+      "Een fetish",
+      "Een bijnaam",
+      "Een verslaving",
+      "Een smoes",
+      "Een flirt",
+      "Een celebrity crush",
+      "Een toxic eigenschap",
+      "Een spicy woord",
+      "Een spicy plek",
+      "Een fantasie",
+      "Een afknapper",
+      "Een irritatie",
+      "Een relatieprobleem",
+      "Een lelijke gewoonte",
+      "Een slechte beslissing",
+      "Een dronken actie",
+      "Een awkward moment",
+      "Een foute outfit",
+      "Een slechte gewoonte",
+      "Een foute aankoop",
+      "Een slechte gewoonte in bed",
+      "Een slechte eigenschap",
+      "Een slechte gewoonte op vakantie",
+      "Een awkward hobby",
+      "Een spicy drankje"
+    ],
 
     genz: [
-  "Een meme",
-  "Een influencer",
-  "Een TikTok trend",
-  "Een app",
-  "Een red flag",
-  "Een green flag",
-  "Een celebrity",
-  "Een TikTokker",
-  "Een YouTuber",
-  "Een realityster",
-  "Een emoji",
-  "Een hashtag",
-  "Een flex",
-  "Een cringe moment",
-  "Een viral video",
-  "Een trendwoord",
-  "Een AI tool",
-  "Een social media app",
-  "Een datingapp",
-  "Een NPC",
-  "Een main character",
-  "Een spamreactie",
-  "Een challenge",
-  "Een cancelmoment",
-  "Een trend",
-  "Een clickbait titel",
-  "Een internetpersoonlijkheid",
-  "Een internetwoord",
-],
+      "Een meme",
+      "Een influencer",
+      "Een TikTok trend",
+      "Een app",
+      "Een red flag",
+      "Een green flag",
+      "Een celebrity",
+      "Een TikTokker",
+      "Een YouTuber",
+      "Een realityster",
+      "Een emoji",
+      "Een hashtag",
+      "Een flex",
+      "Een cringe moment",
+      "Een viral video",
+      "Een trendwoord",
+      "Een AI tool",
+      "Een social media app",
+      "Een datingapp",
+      "Een NPC",
+      "Een main character",
+      "Een spamreactie",
+      "Een challenge",
+      "Een cancelmoment",
+      "Een trend",
+      "Een clickbait titel",
+      "Een internetpersoonlijkheid",
+      "Een internetwoord"
+    ],
 
     popculture: [
       "Een film",
@@ -322,6 +322,7 @@ adult: [
   const [isRolling, setIsRolling] = useState(false);
   const [competitiveMode, setCompetitiveMode] = useState(false);
   const [selectedMode, setSelectedMode] = useState("family");
+  const [gameTime, setGameTime] = useState(10);
 
   const categories = categoryModes[selectedMode];
 
@@ -384,7 +385,7 @@ adult: [
 
       setCurrentPlayer(nextPlayer);
 
-      setTimer(10);
+      setTimer(gameTime);
 
       x.set(0);
     }
@@ -494,7 +495,7 @@ adult: [
 
       setCurrentPlayer(0);
 
-      setTimer(10);
+      setTimer(gameTime);
 
       x.set(0);
 
@@ -689,7 +690,7 @@ adult: [
     return (
       <main className="min-h-screen bg-[#0B1020] text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
 
-        <div className="w-full max-w-md bg-[#121A2F] rounded-[32px] p-[clamp(16px,4vw,40px)] shadow-2xl border border-purple-500/20">
+        <div className="w-full max-w-2xl bg-[#121A2F] rounded-[32px] p-[clamp(16px,4vw,40px)] shadow-2xl border border-purple-500/20">
 
           <div className="flex justify-center mb-4">
             <Image
@@ -762,6 +763,33 @@ adult: [
             >
               🎬 Popcultuur
             </button>
+
+          </div>
+
+          <div className="mb-6">
+
+            <p className="text-sm uppercase tracking-[3px] text-white/60 font-black mb-3">
+              TIMER
+            </p>
+
+            <div className="grid grid-cols-4 gap-3">
+
+              {[5, 10, 15, 20].map((time) => (
+
+                <button
+                  key={time}
+                  onClick={() => setGameTime(time)}
+                  className={`rounded-2xl p-3 font-black border transition-all ${gameTime === time
+                      ? "bg-cyan-500 text-white border-cyan-400"
+                      : "bg-white/5 text-white border-white/10"
+                    }`}
+                >
+                  {time}s
+                </button>
+
+              ))}
+
+            </div>
 
           </div>
 
