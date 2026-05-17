@@ -424,9 +424,9 @@ export default function Home() {
 
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
 
-      <div className="relative z-10 w-full max-w-sm">
+      <div className="relative z-10 w-full max-w-[900px] px-4">
 
-        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-4 shadow-[0_0_80px_rgba(168,85,247,0.15)]">
+        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(16px,4vw,40px)] shadow-[0_0_80px_rgba(168,85,247,0.15)]">
 
           <div className="flex justify-center mb-6">
             <Image
@@ -440,11 +440,11 @@ export default function Home() {
 
           <div className="flex justify-center mb-4">
 
-            <motion.div className="relative w-40 h-40 rounded-full">
+            <motion.div className="relative w-[clamp(220px,45vw,420px)] h-[clamp(220px,45vw,420px)] rounded-full">
 
               <div className="absolute inset-0 rounded-full border-[5px] border-orange-400" />
 
-              <div className="absolute inset-[22px] rounded-full bg-black flex items-center justify-center border border-white/10">
+              <div className="absolute inset-[clamp(24px,5vw,40px)] rounded-full bg-black flex items-center justify-center border border-white/10">
 
                 <div className="text-center">
 
@@ -456,7 +456,7 @@ export default function Home() {
                     key={displayLetter}
                     initial={{ scale: 0.6, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    className="text-6xl font-black text-white"
+                    className="text-[clamp(5rem,15vw,10rem)] font-black text-white"
                   >
                     {displayLetter}
                   </motion.h2>
@@ -476,7 +476,7 @@ export default function Home() {
               CATEGORIE
             </p>
 
-            <h3 className="text-base font-medium leading-snug text-white/90">
+            <h3 className="text-[clamp(1.3rem,4vw,2.5rem)] font-semibold leading-snug text-white">
               {currentCategory}
             </h3>
           </motion.div>
@@ -552,14 +552,14 @@ export default function Home() {
                   Huidige speler
                 </p>
 
-                <h3 className="text-xl font-medium uppercase tracking-[1px] mt-1 text-white">
+                <h3 className="text-[clamp(1.5rem,4vw,3rem)] font-bold uppercase tracking-[1px] mt-1 text-white">
                   {players[currentPlayer]}
                 </h3>
 
               </motion.div>
 
-              <div className="w-20 h-20 rounded-full bg-black/40 border-[5px] border-orange-400 flex items-center justify-center">
-                <span className="text-4xl font-black">
+              <div className="w-[clamp(90px,18vw,140px)] h-[clamp(90px,18vw,140px)] rounded-full bg-black/40 border-[5px] border-orange-400 flex items-center justify-center">
+                <span className="text-[clamp(2rem,6vw,4rem)] font-black">
                   {timer}
                 </span>
               </div>
