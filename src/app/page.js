@@ -300,8 +300,41 @@ export default function Home() {
   const [selectedMode, setSelectedMode] = useState("family");
   const [gameTime, setGameTime] = useState(10);
   const [chaosMode, setChaosMode] = useState(false);
+  const [language, setLanguage] = useState("nl");
 
   const categories = categoryModes[selectedMode];
+
+  const text = {
+
+    nl: {
+      startGame: "START GAME",
+      category: "CATEGORIE",
+      currentPlayer: "HUIDIGE SPELER",
+      chaosMode: "CHAOS MODE",
+      fastestPlayer: "Wie was het snelst?",
+      skip: "SKIP!",
+      correct: "CORRECT!",
+      timer: "TIMER",
+      gameMode: "SPELMODE",
+      extraMode: "EXTRA MODUS",
+      players: "SPELERS",
+    },
+
+    en: {
+      startGame: "START GAME",
+      category: "CATEGORY",
+      currentPlayer: "CURRENT PLAYER",
+      chaosMode: "CHAOS MODE",
+      fastestPlayer: "Who was the fastest?",
+      skip: "SKIP!",
+      correct: "CORRECT!",
+      timer: "TIMER",
+      gameMode: "GAME MODE",
+      extraMode: "EXTRA MODE",
+      players: "PLAYERS",
+    }
+
+  };
 
   const correctSound = useRef(null);
   const wrongSound = useRef(null);
@@ -720,7 +753,7 @@ export default function Home() {
         <div className="relative z-10 w-full max-w-2xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] shadow-[0_0_60px_rgba(168,85,247,0.15)]">
 
           <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
-            SPELMODE
+            {text[language].gameMode}
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
@@ -785,7 +818,7 @@ export default function Home() {
           <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
             <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
-              TIMER
+              {text[language].timer}
             </p>
 
             <div className="grid grid-cols-4 gap-3">
@@ -812,7 +845,7 @@ export default function Home() {
           <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
             <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
-              EXTRA MODUS
+              {text[language].extraMode}
             </p>
 
             <button
@@ -901,7 +934,7 @@ export default function Home() {
           <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
             <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
-              SPELERS
+              {text[language].players}
             </p>
 
             <div className="space-y-4">
