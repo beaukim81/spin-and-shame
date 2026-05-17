@@ -552,16 +552,6 @@ export default function Home() {
 
             </div>
 
-            <div className="flex justify-center mb-4">
-              <Image
-                src="/logo.png"
-                width={340}
-                height={180}
-                alt="Spin & Shame"
-                priority
-              />
-            </div>
-
             <button
               onClick={() => window.location.reload()}
               className="w-full bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-2xl"
@@ -742,16 +732,6 @@ export default function Home() {
 
         <div className="relative z-10 w-full max-w-2xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] shadow-[0_0_60px_rgba(168,85,247,0.15)]">
 
-          <div className="flex justify-center mb-4">
-            <Image
-              src="/logo.png"
-              width={340}
-              height={180}
-              alt="Spin & Shame"
-              priority
-            />
-          </div>
-
           <p className="text-sm uppercase tracking-[4px] text-white/50 font-black mb-4">
             SPELMODE
           </p>
@@ -772,8 +752,7 @@ export default function Home() {
               onClick={() => setSelectedMode("kids")}
               className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "kids"
                 ? "bg-white/10 border-white/20 text-white"
-                : "bg-white/5 text-white border-white/10"
-                }`}
+                : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
             >
               Kinderen
             </button>
@@ -782,8 +761,7 @@ export default function Home() {
               onClick={() => setSelectedMode("couples")}
               className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "couples"
                 ? "bg-white/10 border-white/20 text-white"
-                : "bg-white/5 text-white border-white/10"
-                }`}
+                : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
             >
               Koppels
             </button>
@@ -792,8 +770,7 @@ export default function Home() {
               onClick={() => setSelectedMode("adult")}
               className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "adult"
                 ? "bg-white/10 border-white/20 text-white"
-                : "bg-white/5 text-white border-white/10"
-                }`}
+                : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
             >
               Friends
             </button>
@@ -802,8 +779,7 @@ export default function Home() {
               onClick={() => setSelectedMode("genz")}
               className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "genz"
                 ? "bg-white/10 border-white/20 text-white"
-                : "bg-white/5 text-white border-white/10"
-                }`}
+                : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
             >
               Gen-Z
             </button>
@@ -812,8 +788,7 @@ export default function Home() {
               onClick={() => setSelectedMode("popculture")}
               className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "popculture"
                 ? "bg-white/10 border-white/20 text-white"
-                : "bg-white/5 text-white border-white/10"
-                }`}
+                : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
             >
               Popcultuur
             </button>
@@ -834,8 +809,8 @@ export default function Home() {
                   key={time}
                   onClick={() => setGameTime(time)}
                   className={`rounded-3xl p-3 font-black border transition-all hover:scale-[1.02] active:scale-[0.98] ${gameTime === time
-                    ? "bg-cyan-500 text-white border-cyan-400"
-                    : "bg-white/5 text-white border-white/10"
+                    ? "bg-white/10 border-white/20 text-white"
+                    : "bg-white/5 border-white/10 text-white/70 hover:text-white"
                     }`}
                 >
                   {time}s
