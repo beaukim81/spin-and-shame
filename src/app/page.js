@@ -760,9 +760,9 @@ export default function Home() {
 
             <button
               onClick={() => setSelectedMode("family")}
-              className={`rounded-3xl py-5 px-4 font-black border transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "family"
-                ? "bg-orange-500 text-white border-orange-400"
-                : "bg-white/5 text-white border-white/10"
+              className={`rounded-3xl py-5 px-4 font-font-black tracking-[2px] uppercase transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "family"
+                ? "bg-orange-500/15 border-orange-400/40 text-white shadow-[0_0_30px_rgba(251,146,60,0.15)]"
+                : "bg-white/5 border-white/10 text-white/70 hover:text-white"
                 }`}
             >
               Familie
@@ -770,8 +770,8 @@ export default function Home() {
 
             <button
               onClick={() => setSelectedMode("kids")}
-              className={`rounded-3xl py-5 px-4 font-black border transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "kids"
-                ? "bg-pink-500 text-white border-pink-400"
+              className={`rounded-3xl py-5 px-4 font-font-black tracking-[2px] uppercase transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "kids"
+                ? "bg-pink-500/15 border-pink-400/40 text-white shadow-[0_0_30px_rgba(244,114,182,0.15)]"
                 : "bg-white/5 text-white border-white/10"
                 }`}
             >
@@ -780,8 +780,8 @@ export default function Home() {
 
             <button
               onClick={() => setSelectedMode("couples")}
-              className={`rounded-3xl py-5 px-4 font-black border transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "couples"
-                ? "bg-purple-500 text-white border-purple-400"
+              className={`rounded-3xl py-5 px-4 font-font-black tracking-[2px] uppercase transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "couples"
+                ? "bg-purple-500/15 border-purple-400/40 text-white shadow-[0_0_30px_rgba(168,85,247,0.15)]"
                 : "bg-white/5 text-white border-white/10"
                 }`}
             >
@@ -790,8 +790,8 @@ export default function Home() {
 
             <button
               onClick={() => setSelectedMode("adult")}
-              className={`rounded-3xl py-5 px-4 font-black border transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "adult"
-                ? "bg-red-500 text-white border-red-400"
+              className={`rounded-3xl py-5 px-4 font-font-black tracking-[2px] uppercase transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "adult"
+                ? "bg-red-500/15 border-red-400/40 text-white shadow-[0_0_30px_rgba(248,113,113,0.15)]"
                 : "bg-white/5 text-white border-white/10"
                 }`}
             >
@@ -800,8 +800,8 @@ export default function Home() {
 
             <button
               onClick={() => setSelectedMode("genz")}
-              className={`rounded-3xl py-5 px-4 font-black border transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "genz"
-                ? "bg-cyan-500 text-white border-cyan-400"
+              className={`rounded-3xl py-5 px-4 font-font-black tracking-[2px] uppercase transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "genz"
+                ? "bg-cyan-500/15 border-cyan-400/40 text-white shadow-[0_0_30px_rgba(34,211,238,0.15)]"
                 : "bg-white/5 text-white border-white/10"
                 }`}
             >
@@ -810,8 +810,8 @@ export default function Home() {
 
             <button
               onClick={() => setSelectedMode("popculture")}
-              className={`rounded-3xl py-5 px-4 font-black border transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "popculture"
-                ? "bg-yellow-500 text-black border-yellow-400"
+              className={`rounded-3xl py-5 px-4 font-font-black tracking-[2px] uppercase transition-all hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "popculture"
+                ? "bg-yellow-500/15 border-yellow-400/40 text-white shadow-[0_0_30px_rgba(250,204,21,0.15)]"
                 : "bg-white/5 text-white border-white/10"
                 }`}
             >
@@ -865,7 +865,7 @@ export default function Home() {
 
                 <div>
 
-                  <h3 className="text-white font-black text-lg">
+                  <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
                     Hardcore Mode
                   </h3>
 
@@ -916,13 +916,13 @@ export default function Home() {
                     setPlayers(updatedPlayers);
 
                   }}
-                  className="w-full bg-[#1A2440] border border-white/10 rounded-3xl px-4 py-3 text-white"
+                  className="w-full bg-orange-500/10 border border-orange-400/20 rounded-3xl px-4 py-3 text-white placeholder:text-white/30"
                 />
               ))}
             </div>
             <p className="text-sm text-white/40 mt-4 leading-relaxed">
-  Voeg gewoon meer namen toe — nieuwe spelers verschijnen automatisch.
-</p>
+              Voeg gewoon meer namen toe — nieuwe spelers verschijnen automatisch.
+            </p>
           </div>
 
 
