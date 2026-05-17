@@ -956,16 +956,6 @@ export default function Home() {
 
         <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] min-h-[75vh] flex flex-col justify-between">
 
-          <div className="flex justify-center mb-6">
-            <Image
-              src="/logo.png"
-              width={340}
-              height={180}
-              alt="Spin & Shame"
-              priority
-            />
-          </div>
-
           <div className="flex justify-center mb-4">
 
             <motion.div className="relative w-[clamp(230px,46vw,400px)] h-[clamp(230px,46vw,400px)] rounded-full">
