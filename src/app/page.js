@@ -1,5 +1,5 @@
 "use client";
-
+import Confetti from "react-confetti";
 import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import Image from "next/image";
@@ -521,32 +521,48 @@ export default function Home() {
 
   if (winner) {
     return (
-      <main className="min-h-screen bg-[#0B1020] overflow-y-auto text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
-        <div className="w-full max-w-2xl bg-[#121A2F] rounded-[32px] p-8 shadow-2xl border border-pink-500/30 text-center">
-          <p className="text-6xl mb-4">🏆</p>
+      <>
+        <Confetti
+          recycle={false}
+          numberOfPieces={400}
+        />
 
-          <h1 className="text-4xl font-bold text-white mb-4 tracking-wide">
-            {winner} WINT!
-          </h1>
+        <main className="min-h-screen bg-[#0B1020] overflow-y-auto text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
 
-          <div className="flex justify-center mb-4">
-            <Image
-              src="/logo.png"
-              width={340}
-              height={180}
-              alt="Spin & Shame"
-              priority
-            />
+          <div className="w-full max-w-2xl bg-[#121A2F] rounded-[32px] p-8 shadow-2xl border border-pink-500/30 text-center">
+
+            <p className="text-6xl mb-4">🏆</p>
+
+            <motion.h1
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 120 }}
+              className="text-5xl font-black text-white mb-4 tracking-wide"
+            >
+              {winner} WINT!
+            </motion.h1>
+
+            <div className="flex justify-center mb-4">
+              <Image
+                src="/logo.png"
+                width={340}
+                height={180}
+                alt="Spin & Shame"
+                priority
+              />
+            </div>
+
+            <button
+              onClick={() => window.location.reload()}
+              className="w-full bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-2xl"
+            >
+              SPEEL OPNIEUW
+            </button>
+
           </div>
 
-          <button
-            onClick={() => window.location.reload()}
-            className="w-full bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-2xl"
-          >
-            SPEEL OPNIEUW
-          </button>
-        </div>
-      </main>
+        </main>
+      </>
     );
   }
 
@@ -820,48 +836,46 @@ export default function Home() {
 
           </div>
 
-<div className="mb-6">
+          <div className="mb-6">
 
-  <p className="text-sm uppercase tracking-[4px] text-white/50 font-black mb-4">
-    EXTRA MODUS
-  </p>
+            <p className="text-sm uppercase tracking-[4px] text-white/50 font-black mb-4">
+              EXTRA MODUS
+            </p>
 
-  <button
-    onClick={() => setCompetitiveMode(!competitiveMode)}
-    className={`w-full rounded-3xl p-5 border transition-all text-left ${
-      competitiveMode
-        ? "bg-green-500/20 border-green-400"
-        : "bg-white/5 border-white/10"
-    }`}
-  >
+            <button
+              onClick={() => setCompetitiveMode(!competitiveMode)}
+              className={`w-full rounded-3xl p-5 border transition-all text-left ${competitiveMode
+                ? "bg-green-500/20 border-green-400"
+                : "bg-white/5 border-white/10"
+                }`}
+            >
 
-    <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between">
 
-      <div>
+                <div>
 
-        <h3 className="text-white font-black text-lg">
-          Hardcore Mode
-        </h3>
+                  <h3 className="text-white font-black text-lg">
+                    Hardcore Mode
+                  </h3>
 
-        <p className="text-white/60 mt-1">
-          Verlies een punt bij skip of een fout antwoord
-        </p>
+                  <p className="text-white/60 mt-1">
+                    Verlies een punt bij skip of een fout antwoord
+                  </p>
 
-      </div>
+                </div>
 
-      <div
-        className={`w-5 h-5 rounded-full ${
-          competitiveMode
-            ? "bg-green-400"
-            : "bg-white/20"
-        }`}
-      />
+                <div
+                  className={`w-5 h-5 rounded-full ${competitiveMode
+                    ? "bg-green-400"
+                    : "bg-white/20"
+                    }`}
+                />
 
-    </div>
+              </div>
 
-  </button>
+            </button>
 
-</div>
+          </div>
           <p className="text-sm uppercase tracking-[4px] text-white/50 font-black mb-4">
             SPELERS
           </p>
