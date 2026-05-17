@@ -1013,17 +1013,21 @@ export default function Home() {
             </h3>
           </motion.div>
 
-          <div className="flex justify-between text-xs font-black uppercase tracking-widest mb-3 px-2">
+          {!chaosMode && (
 
-            <span className="text-red-400/70">
-              ← Skip
-            </span>
+            <div className="flex justify-between text-xs font-black uppercase tracking-widest mb-3 px-2">
 
-            <span className="text-green-400/70">
-              +1 →
-            </span>
+              <span className="text-red-400/70">
+                ← Skip
+              </span>
 
-          </div>
+              <span className="text-green-400/70">
+                +1 →
+              </span>
+
+            </div>
+
+            )}
 
           {feedback && (
             <motion.div
