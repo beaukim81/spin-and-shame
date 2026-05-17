@@ -389,7 +389,7 @@ export default function Home() {
               <input
                 key={index}
                 value={player}
-                placeholder={`PLAYER ${index + 1}`}
+                placeholder={`Speler ${index + 1}`}
                 onChange={(e) => {
 
                   const updatedPlayers = [...players];
@@ -403,6 +403,15 @@ export default function Home() {
               />
             ))}
           </div>
+
+<button
+  onClick={() =>
+    setPlayers([...players, ""])
+  }
+  className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 text-white font-bold mt-4"
+>
+  + SPELER TOEVOEGEN
+</button>
 
           <button
             onClick={() => {
