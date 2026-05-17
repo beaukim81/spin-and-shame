@@ -533,14 +533,24 @@ export default function Home() {
 
             <p className="text-6xl mb-4">🏆</p>
 
-            <motion.h1
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: "spring", stiffness: 120 }}
-              className="text-5xl font-black text-white mb-4 tracking-wide"
-            >
-              {winner} WINT!
-            </motion.h1>
+            <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
+
+              <p className="text-orange-400 text-xs uppercase tracking-[4px] font-black mb-3">
+                WINNAAR
+              </p>
+
+              <motion.h1
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: "spring", stiffness: 120 }}
+                className="text-[clamp(2.2rem,6vw,4.5rem)] font-black leading-tight text-white"
+              >
+                {winner}
+                <br />
+                WINT!
+              </motion.h1>
+
+            </div>
 
             <div className="flex justify-center mb-4">
               <Image
