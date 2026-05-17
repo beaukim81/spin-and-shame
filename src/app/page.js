@@ -41,7 +41,7 @@ export default function Home() {
       "Een dier",
       "Een snack",
       "Een drankje",
-      "Een fruit",
+      "Een vrucht",
       "Een groente",
       "Een fastfoodketen",
       "Een film",
@@ -69,13 +69,12 @@ export default function Home() {
       "Een snoep",
       "Een Disney karakter",
       "Een superheld",
-      "Een cartoon karakter",
-      "Een eten",
       "Een lichaamsdeel",
       "Een bloem",
       "Een boom",
       "Een insect",
-      "Een vogel"
+      "Een vogel",
+      "Een zee dier"
     ],
 
     kids: [
@@ -89,10 +88,9 @@ export default function Home() {
       "Een Pokémon",
       "Een Disney karakter",
       "Een Mario karakter",
-      "Een fruit",
-      "Een groente",
-      "Een ijsje",
-      "Een snoep",
+      "Fruit",
+      "Groente",
+      "Snoep",
       "Een sport",
       "Een beroep",
       "Een voertuig",
