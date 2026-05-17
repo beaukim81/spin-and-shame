@@ -90,58 +90,44 @@ export default function Home() {
       "Een app"
     ],
 
-    kids: [
-      "Een superheld",
-      "Een dier",
-      "Een kleur",
-      "Een speelgoed",
-      "Iets op school",
-      "Een snack",
-      "Een game",
-      "Een tekenfilm karakter",
-      "Een Pokémon",
-      "Een Disney karakter",
-      "Een Mario karakter",
-      "Iets dat stinkt",
-      "Iets dat lawaai maakt",
-      "Iets dat je tekent",
-      "Iets dat je op school gebruikt",
-      "Iets dat je buiten doet",
-      "Iets dat je op een kinderfeestje ziet",
-      "Iets dat vliegt",
-      "Iets dat zwemt",
-      "Iets dat groot is",
-      "Iets dat klein is",
-      "Iets dat grappig is",
-      "Iets dat vies is",
-      "Iets dat plakkerig is",
-      "Iets dat zacht is",
-      "Iets dat snel is",
-      "Iets dat langzaam is",
-      "Iets dat je bouwt",
-      "Iets dat je verzamelt",
-      "Iets dat je niet wil opruimen",
-      "Iets dat je op YouTube ziet",
-      "Iets dat je op TikTok ziet",
-      "Een fruitsoort",
-      "Een groente",
-      "Een ijsje",
-      "Een snoepje",
-      "Een sport",
-      "Een beroep",
-      "Een voertuig",
-      "Een muziekinstrument",
-      "Een app",
-      "Een film",
-      "Een serie",
-      "Een liedje",
-      "Een cartoon karakter",
-      "Iets dat je verjaardag leuk maakt",
-      "Iets dat je meeneemt naar school",
-      "Iets dat in een pretpark staat",
-      "Iets dat je in een speeltuin vindt",
-      "Iets dat je liever niet eet"
-    ],
+  kids: [
+  "Een superheld",
+  "Een dier",
+  "Een kleur",
+  "Een speelgoed",
+  "Een snack",
+  "Een game",
+  "Een tekenfilm karakter",
+  "Een Pokémon",
+  "Een Disney karakter",
+  "Een Mario karakter",
+  "Een fruit",
+  "Een groente",
+  "Een ijsje",
+  "Een snoep",
+  "Een sport",
+  "Een beroep",
+  "Een voertuig",
+  "Een muziekinstrument",
+  "Een app",
+  "Een film",
+  "Een serie",
+  "Een liedje",
+  "Een schoolvak",
+  "Een schoolspul",
+  "Een kledingstuk",
+  "Een emoji",
+  "Een drankje",
+  "Een dierentuin dier",
+  "Een zee dier",
+  "Een insect",
+  "Een vogel",
+  "Een lichaamsdeel",
+  "Een land",
+  "Een stad",
+  "Een Minecraft item",
+  "Een chips smaak"
+],
 
     couples: [
       "Iets romantisch",
@@ -714,14 +700,14 @@ export default function Home() {
 
             </div>
 
-          <button
-            onClick={() => setShowIntro(false)}
-            className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 px-12 py-5 rounded-3xl text-2xl font-black shadow-[0_0_40px_rgba(236,72,153,0.4)]"
-          >
-            START SPEL
-          </button>
+            <button
+              onClick={() => setShowIntro(false)}
+              className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 px-12 py-5 rounded-3xl text-2xl font-black shadow-[0_0_40px_rgba(236,72,153,0.4)]"
+            >
+              START SPEL
+            </button>
 
-        </div>
+          </div>
 
         </main >
 
