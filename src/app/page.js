@@ -416,13 +416,13 @@ export default function Home() {
       return;
     }
 
-setTimeout(() => {
+    setTimeout(() => {
 
-  setFeedback("");
+      setFeedback("");
 
-  spinLetter();
+      spinLetter();
 
-}, 600);
+    }, 600);
   }
 
   function handleTooLate() {
@@ -450,13 +450,13 @@ setTimeout(() => {
       setScores(updatedScores);
     }
 
-setTimeout(() => {
+    setTimeout(() => {
 
-  setFeedback("");
+      setFeedback("");
 
-  spinLetter();
+      spinLetter();
 
-}, 600);
+    }, 600);
   }
 
   function spinLetter() {
@@ -507,8 +507,19 @@ setTimeout(() => {
 
       setCurrentLetter(finalLetter);
 
-      setCurrentPlayer(0);
+      if (chaosMode) {
 
+        setCurrentPlayer(0);
+
+      } else {
+
+        setCurrentPlayer((prev) =>
+          prev + 1 >= players.filter(player => player.trim() !== "").length
+            ? 0
+            : prev + 1
+        );
+
+      }
       setTimer(gameTime);
 
       x.set(0);
@@ -947,6 +958,10 @@ setTimeout(() => {
               setTimer(0);
 
               setGameStarted(true);
+
+              if (!chaosMode) {
+                setCurrentPlayer(-1);
+              }
 
               spinLetter();
 
