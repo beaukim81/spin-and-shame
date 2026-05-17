@@ -1117,7 +1117,7 @@ export default function Home() {
                   duration: 0.6,
                   repeat: isDanger ? Infinity : 0,
                 }}
-                className={`w-[clamp(120px,22vw,180px)] h-[clamp(120px,22vw,180px)] rounded-full flex items-center justify-center border-[5px] ${isDanger
+                className={`shrink-0 w-[clamp(120px,22vw,180px)] h-[clamp(120px,22vw,180px)] rounded-full flex items-center justify-center border-[5px] ${isDanger
                   ? "bg-red-500/20 border-red-400 shadow-[0_0_40px_rgba(248,113,113,0.8)]"
                   : "bg-black/40 border-orange-400"
                   }`}
