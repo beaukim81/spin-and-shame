@@ -770,7 +770,7 @@ export default function Home() {
 
             <button
               onClick={() => setSelectedMode("kids")}
-              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] active:scale-[0.98] ${selectedMode === "kids"
+              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "kids"
                 ? "bg-white/10 border-white/20 text-white"
                 : "bg-white/5 text-white border-white/10"
                 }`}
