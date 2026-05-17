@@ -715,7 +715,7 @@ export default function Home() {
 
         <div className="relative z-10 w-full max-w-2xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] shadow-[0_0_60px_rgba(168,85,247,0.15)]">
 
-          <p className="text-sm uppercase tracking-[4px] text-white/50 font-black mb-4">
+          <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
             SPELMODE
           </p>
 
@@ -780,7 +780,7 @@ export default function Home() {
 
           <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
-            <p className="text-sm uppercase tracking-[4px] text-white/50 font-black mb-4">
+            <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
               TIMER
             </p>
 
@@ -807,7 +807,7 @@ export default function Home() {
 
           <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
-            <p className="text-sm uppercase tracking-[4px] text-white/50 font-black mb-4">
+            <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
               EXTRA MODUS
             </p>
 
@@ -880,7 +880,7 @@ export default function Home() {
           </div>
           <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
-            <p className="text-sm uppercase tracking-[4px] text-white/50 font-black mb-4">
+            <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
               SPELERS
             </p>
 
