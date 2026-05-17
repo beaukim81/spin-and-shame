@@ -547,7 +547,7 @@ export default function Home() {
               >
                 {winner}
                 <br />
-                WINT!
+                heeft gewonnen!
               </motion.h1>
 
             </div>
@@ -581,7 +581,7 @@ export default function Home() {
     return (
       <main className="min-h-screen overflow-y-auto bg-black text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
 
-        <div className="w-full max-w-2xl backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-6">
+        <div className="relative z-10 w-full max-w-2xl backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-6">
 
           <div className="flex justify-center mb-4">
             <Image
@@ -737,9 +737,10 @@ export default function Home() {
     }
 
     return (
-      <main className="min-h-screen bg-[#0B1020] overflow-y-auto text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
+      <main className="min-h-screen bg-black text-white flex items-center justify-center p-[clamp(16px,4vw,40px)] overflow-hidden relative">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
 
-        <div className="w-full max-w-2xl bg-[#121A2F] rounded-[32px] p-[clamp(16px,4vw,40px)] shadow-2xl border border-purple-500/20">
+        <div className="relative z-10 w-full max-w-2xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] shadow-[0_0_60px_rgba(168,85,247,0.15)]">
 
           <div className="flex justify-center mb-4">
             <Image
@@ -819,7 +820,7 @@ export default function Home() {
 
           </div>
 
-          <div className="mb-6">
+          <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
             <p className="text-sm uppercase tracking-[4px] text-white/50 font-black mb-4">
               TIMER
@@ -846,7 +847,7 @@ export default function Home() {
 
           </div>
 
-          <div className="mb-6">
+          <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
             <p className="text-sm uppercase tracking-[4px] text-white/50 font-black mb-4">
               EXTRA MODUS
