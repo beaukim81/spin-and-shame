@@ -334,6 +334,8 @@ export default function Home() {
 
   const x = useMotionValue(0);
 
+  const isDanger = timer <= 3 && timer > 0;
+
   const background = useTransform(
     x,
     [-150, 0, 150],
@@ -1027,17 +1029,35 @@ export default function Home() {
 
               </motion.div>
 
-              <div className="w-[clamp(120px,22vw,180px)] h-[clamp(120px,22vw,180px)] rounded-full bg-black/40 border-[5px] border-orange-400 flex items-center justify-center">
+              <motion.div
+                animate={
+                  isDanger
+                    ? {
+                      scale: [1, 1.08, 1],
+                    }
+                    : {
+                      scale: 1,
+                    }
+                }
+                transition={{
+                  duration: 0.6,
+                  repeat: isDanger ? Infinity : 0,
+                }}
+                className={`w-[clamp(120px,22vw,180px)] h-[clamp(120px,22vw,180px)] rounded-full flex items-center justify-center border-[5px] ${isDanger
+                  ? "bg-red-500/20 border-red-400 shadow-[0_0_40px_rgba(248,113,113,0.8)]"
+                  : "bg-black/40 border-orange-400"
+                  }`}
+              >
                 <span className="text-[clamp(3rem,8vw,5rem)] font-black">
                   {timer}
                 </span>
-              </div>
+              </motion.div>
 
             </div>
           </motion.div>
 
         </div>
-      </div>
-    </main>
+      </div >
+    </main >
   );
 }
