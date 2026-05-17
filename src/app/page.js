@@ -61,8 +61,8 @@ export default function Home() {
       "Een winkel",
       "Een meubel",
       "Een keukenitem",
-      "Een badkamer item",
-      "Een slaapkamer item",
+      "Een badkameritem",
+      "Een slaapkameritem",
       "Een speelgoed",
       "Een chips smaak",
       "Een ijsje",
@@ -430,7 +430,7 @@ export default function Home() {
 
   function handleTooLate() {
 
-    setFeedback("PASS!");
+    setFeedback("Skip!");
 
     if (countdownSound.current) {
       countdownSound.current.pause();
@@ -529,7 +529,7 @@ export default function Home() {
 
         <main className="min-h-screen bg-[#0B1020] overflow-y-auto text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
 
-          <div className="w-full max-w-2xl bg-[#121A2F] rounded-[32px] p-8 shadow-2xl border border-pink-500/30 text-center">
+          <div className="w-full max-w-2xl bg-white/5 backdrop-blur-xl rounded-[32px] p-8 shadow-2xl border border-pink-500/30 text-center">
 
             <p className="text-6xl mb-4">🏆</p>
 
@@ -689,7 +689,7 @@ export default function Home() {
                   </p>
 
                   <h3 className="text-xl font-black text-white mb-2">
-                    PASS
+                    SKIP
                   </h3>
 
                   <p className="text-white/60 leading-relaxed">
@@ -887,36 +887,39 @@ export default function Home() {
             </button>
 
           </div>
-          <p className="text-sm uppercase tracking-[4px] text-white/50 font-black mb-4">
-            SPELERS
-          </p>
+          <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
-          <div className="space-y-4">
-            {players.map((player, index) => (
-              <input
-                key={index}
-                value={player}
-                placeholder={`Speler ${index + 1}`}
-                onChange={(e) => {
+            <p className="text-sm uppercase tracking-[4px] text-white/50 font-black mb-4">
+              SPELERS
+            </p>
 
-                  const updatedPlayers = [...players];
+            <div className="space-y-4">
+              {players.map((player, index) => (
+                <input
+                  key={index}
+                  value={player}
+                  placeholder={`Speler ${index + 1}`}
+                  onChange={(e) => {
 
-                  updatedPlayers[index] = e.target.value;
+                    const updatedPlayers = [...players];
 
-                  if (
-                    index === players.length - 1 &&
-                    e.target.value.trim() !== "" &&
-                    players.length < 12
-                  ) {
-                    updatedPlayers.push("");
-                  }
+                    updatedPlayers[index] = e.target.value;
 
-                  setPlayers(updatedPlayers);
+                    if (
+                      index === players.length - 1 &&
+                      e.target.value.trim() !== "" &&
+                      players.length < 12
+                    ) {
+                      updatedPlayers.push("");
+                    }
 
-                }}
-                className="w-full bg-[#1A2440] border border-white/10 rounded-3xl px-4 py-3 text-white"
-              />
-            ))}
+                    setPlayers(updatedPlayers);
+
+                  }}
+                  className="w-full bg-[#1A2440] border border-white/10 rounded-3xl px-4 py-3 text-white"
+                />
+              ))}
+            </div>
           </div>
 
           <button
@@ -1014,11 +1017,11 @@ export default function Home() {
           <div className="flex justify-between text-xs font-black uppercase tracking-widest mb-3 px-2">
 
             <span className="text-red-400/70">
-              ← PASS
+              ← Skip
             </span>
 
             <span className="text-green-400/70">
-              +1 POINT →
+              +1 →
             </span>
 
           </div>
