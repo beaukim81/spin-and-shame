@@ -846,6 +846,14 @@ export default function Home() {
 
                   updatedPlayers[index] = e.target.value;
 
+                  if (
+                    index === players.length - 1 &&
+                    e.target.value.trim() !== "" &&
+                    players.length < 12
+                  ) {
+                    updatedPlayers.push("");
+                  }
+
                   setPlayers(updatedPlayers);
 
                 }}
@@ -853,15 +861,6 @@ export default function Home() {
               />
             ))}
           </div>
-
-          <button
-            onClick={() =>
-              setPlayers([...players, ""])
-            }
-            className="w-full bg-white/5 border border-white/10 rounded-3xl py-3 text-white font-bold mt-4"
-          >
-            + SPELER TOEVOEGEN
-          </button>
 
           <button
             onClick={() => {
