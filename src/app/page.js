@@ -656,48 +656,56 @@ export default function Home() {
 
             </h1>
 
-            <div className="bg-white/5 border border-white/10 rounded-[32px] p-8 backdrop-blur-xl mb-8">
+            <div className="space-y-5 mb-10">
 
-              <p className="text-[clamp(1.1rem,3vw,1.7rem)] text-white/80 leading-relaxed mb-6">
+              <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl">
 
-                De spinner kiest een letter.
-                <br />
-                Jij roept zo snel mogelijk een antwoord
-                <br />
-                Twijfel niet… de timer loopt al ⏳
+                <p className="text-orange-400 text-xs uppercase tracking-[4px] font-black mb-3">
+                  HOE HET WERKT
+                </p>
 
-              </p>
+                <h2 className="text-[clamp(1.8rem,5vw,3.2rem)] font-black leading-tight text-white">
+                  Twijfel niet.
+                  <br />
+                  Roep. Swipe. Win.
+                </h2>
+
+              </div>
 
               <div className="grid grid-cols-2 gap-4">
 
                 <div className="bg-red-500/10 border border-red-400/30 rounded-3xl p-5 backdrop-blur-xl">
 
-                  <p className="text-red-400 text-sm uppercase tracking-[3px] font-black mb-2">
+                  <p className="text-red-400 text-xs uppercase tracking-[3px] font-black mb-2">
                     SWIPE LINKS
                   </p>
 
-                  <h3 className="text-[clamp(0.95rem,2vw,1.2rem)] font-black text-white">
-                    Pass of te laat
+                  <h3 className="text-xl font-black text-white mb-2">
+                    PASS
                   </h3>
 
-                  <p className="text-white/60 mt-2">
-                    Geen punt 😈
+                  <p className="text-white/60 leading-relaxed">
+                    Geen antwoord?
+                    <br />
+                    Geen punt.
                   </p>
 
                 </div>
 
                 <div className="bg-green-500/10 border border-green-400/30 rounded-3xl p-5 backdrop-blur-xl">
 
-                  <p className="text-green-400 text-sm uppercase tracking-[3px] font-black mb-2">
+                  <p className="text-green-400 text-xs uppercase tracking-[3px] font-black mb-2">
                     SWIPE RECHTS
                   </p>
 
-                  <h3 className="text-[clamp(0.95rem,2vw,1.2rem)] font-black text-white">
-                    Goed antwoord
+                  <h3 className="text-xl font-black text-white mb-2">
+                    CORRECT
                   </h3>
 
-                  <p className="text-white/60 mt-2">
-                    +1 punt
+                  <p className="text-white/60 leading-relaxed">
+                    Goed antwoord?
+                    <br />
+                    Pak je punt.
                   </p>
 
                 </div>
@@ -706,16 +714,18 @@ export default function Home() {
 
             </div>
 
-            <button
-              onClick={() => setShowIntro(false)}
-              className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 px-12 py-5 rounded-3xl text-2xl font-black shadow-[0_0_40px_rgba(236,72,153,0.4)]"
-            >
-              START SPEL
-            </button>
-
           </div>
 
-        </main>
+          <button
+            onClick={() => setShowIntro(false)}
+            className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 px-12 py-5 rounded-3xl text-2xl font-black shadow-[0_0_40px_rgba(236,72,153,0.4)]"
+          >
+            START SPEL
+          </button>
+
+        </div>
+
+        </main >
 
       );
     }
