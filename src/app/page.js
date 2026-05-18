@@ -1237,6 +1237,9 @@ export default function Home() {
 
 
           <button
+            disabled={
+              players.filter(player => player.trim() !== "").length === 0
+            }
             onClick={() => {
 
               const filteredPlayers = players.filter(
@@ -1260,7 +1263,7 @@ export default function Home() {
               spinLetter();
 
             }}
-            className="w-full mt-8 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-3xl"
+            className="w-full mt-8 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-3xl disabled:opacity-40 disabled:cursor-not-allowed"
           >
             {text[language].startGame}
           </button>
@@ -1474,10 +1477,10 @@ export default function Home() {
                 </div>
 
               )}
-               </div>
             </div>
-          </div >
-        </div>
+          </div>
+        </div >
+      </div>
     </main >
   );
 }
