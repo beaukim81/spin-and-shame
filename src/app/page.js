@@ -586,18 +586,19 @@ export default function Home() {
       isRolling
     ) return;
 
-    if (
-      timer <= 3 &&
-      timer > 0 &&
-      countdownSound.current &&
-      countdownSound.current.paused
-    ) {
+if (
+  !feedback &&
+  timer <= 3 &&
+  timer > 0 &&
+  countdownSound.current &&
+  countdownSound.current.paused
+) {
 
-      countdownSound.current.currentTime = 0;
+  countdownSound.current.currentTime = 0;
 
-      countdownSound.current.play().catch(() => { });
+  countdownSound.current.play().catch(() => { });
 
-    }
+}
 
     if (timer <= 0) {
       handleTooLate();
