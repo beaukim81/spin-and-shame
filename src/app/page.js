@@ -517,7 +517,8 @@ export default function Home() {
       currentLetterLabel: "DE LETTER IS",
       fastest: "SNELST!",
       tooLate: "TE LAAT!",
-      swipeInstruction: "Swipe links of rechts om te spelen",
+      swipeInstruction: "Swipe naar links of rechts om te spelen",
+      point: "+1 PUNT →",
     },
 
     en: {
@@ -557,7 +558,8 @@ export default function Home() {
       currentLetterLabel: "THE LETTER IS",
       fastest: "FASTEST!",
       tooLate: "TOO LATE!",
-      swipeInstruction: "Swipe left or right to play",
+      swipeInstruction: "Swipe to left or right to play",
+      point: "+1 POINT →",
     }
 
   };
@@ -1081,7 +1083,7 @@ export default function Home() {
                   </span>
 
                   <span>
-                    +1 PUNT →
+                    {text[language].point}
                   </span>
 
                 </div>
