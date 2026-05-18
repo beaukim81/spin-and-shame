@@ -664,7 +664,15 @@ export default function Home() {
 
     return () => clearTimeout(countdown);
 
-  }, [timer, gameStarted, winner, showScoreboard, isRolling]);
+  }, [
+    timer,
+    gameStarted,
+    winner,
+    showScoreboard,
+    isRolling,
+    isPaused,
+    feedback
+  ]);
 
   function nextTurn() {
 
@@ -1009,7 +1017,7 @@ export default function Home() {
 
                 animate={
                   !introTouched
-                    ? { x: [-20, 20, -20] }
+                    ? { x: [[-10, 10, -10]] }
                     : {}
                 }
                 transition={{
@@ -1047,65 +1055,23 @@ export default function Home() {
                   SWIPE
                 </p>
 
-                <h3 className="text-2xl font-black text-white mb-2">
-                  ← SKIP &nbsp;&nbsp; +1 →
-                </h3>
+                <div className="flex justify-between items-center text-2xl font-black text-white mb-2">
+
+                  <span>
+                    ← SKIP
+                  </span>
+
+                  <span>
+                    +1 CORRECT →
+                  </span>
+
+                </div>
 
                 <p className="text-white/60">
                   {text[language].swipeInstruction}
                 </p>
 
               </motion.div>
-
-              <div className="grid grid-cols-2 gap-4">
-
-                <div className="bg-red-500/10 border border-red-400/30 rounded-3xl p-5 backdrop-blur-xl">
-
-                  <p className="text-red-400 text-xs uppercase tracking-[3px] font-black mb-2">
-                    {text[language].swipeLeft}
-                  </p>
-
-                  <h3 className="text-xl font-black text-white mb-2">
-                    SKIP
-                  </h3>
-
-                  <p className="text-white/60 leading-relaxed">
-                    <>
-                      {text[language].skipDescription.split("\n").map((line, index) => (
-                        <span key={index}>
-                          {line}
-                          <br />
-                        </span>
-                      ))}
-                    </>
-                  </p>
-
-                </div>
-
-                <div className="bg-green-500/10 border border-green-400/30 rounded-3xl p-5 backdrop-blur-xl">
-
-                  <p className="text-green-400 text-xs uppercase tracking-[3px] font-black mb-2">
-                    {text[language].swipeRight}
-                  </p>
-
-                  <h3 className="text-xl font-black text-white mb-2">
-                    {text[language].correctTitle}
-                  </h3>
-
-                  <p className="text-white/60 leading-relaxed">
-                    <>
-                      {text[language].correctDescription.split("\n").map((line, index) => (
-                        <span key={index}>
-                          {line}
-                          <br />
-                        </span>
-                      ))}
-                    </>
-                  </p>
-
-                </div>
-
-              </div>
 
             </div>
 
