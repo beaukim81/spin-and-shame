@@ -988,80 +988,70 @@ export default function Home() {
 
               </motion.div>
 
-              <p className="text-orange-400 text-xs uppercase tracking-[4px] font-black mb-2">
-                SWIPE
-              </p>
+              <div className="grid grid-cols-2 gap-4">
 
-              <h3 className="text-2xl font-black text-white mb-2">
-                ← SKIP &nbsp;&nbsp; +1 →
-              </h3>
+                <div className="bg-red-500/10 border border-red-400/30 rounded-3xl p-5 backdrop-blur-xl">
 
-              <p className="text-white/60">
-                {text[language].swipeInstruction}
-              </p>
+                  <p className="text-red-400 text-xs uppercase tracking-[3px] font-black mb-2">
+                    {text[language].swipeLeft}
+                  </p>
 
-            </motion.div>
+                  <h3 className="text-xl font-black text-white mb-2">
+                    SKIP
+                  </h3>
 
-            <div className="grid grid-cols-2 gap-4">
+                  <p className="text-white/60 leading-relaxed">
+                    <>
+                      {text[language].skipDescription.split("\n").map((line, index) => (
+                        <span key={index}>
+                          {line}
+                          <br />
+                        </span>
+                      ))}
+                    </>
+                  </p>
 
-              <div className="bg-red-500/10 border border-red-400/30 rounded-3xl p-5 backdrop-blur-xl">
+                </div>
 
-                <p className="text-red-400 text-xs uppercase tracking-[3px] font-black mb-2">
-                  {text[language].swipeLeft}
-                </p>
+                <div className="bg-green-500/10 border border-green-400/30 rounded-3xl p-5 backdrop-blur-xl">
 
-                <h3 className="text-xl font-black text-white mb-2">
-                  SKIP
-                </h3>
+                  <p className="text-green-400 text-xs uppercase tracking-[3px] font-black mb-2">
+                    {text[language].swipeRight}
+                  </p>
 
-                <p className="text-white/60 leading-relaxed">
-                  <>
-                    {text[language].skipDescription.split("\n").map((line, index) => (
-                      <span key={index}>
-                        {line}
-                        <br />
-                      </span>
-                    ))}
-                  </>
-                </p>
+                  <h3 className="text-xl font-black text-white mb-2">
+                    {text[language].correctTitle}
+                  </h3>
 
-              </div>
+                  <p className="text-white/60 leading-relaxed">
+                    <>
+                      {text[language].correctDescription.split("\n").map((line, index) => (
+                        <span key={index}>
+                          {line}
+                          <br />
+                        </span>
+                      ))}
+                    </>
+                  </p>
 
-              <div className="bg-green-500/10 border border-green-400/30 rounded-3xl p-5 backdrop-blur-xl">
-
-                <p className="text-green-400 text-xs uppercase tracking-[3px] font-black mb-2">
-                  {text[language].swipeRight}
-                </p>
-
-                <h3 className="text-xl font-black text-white mb-2">
-                  {text[language].correctTitle}
-                </h3>
-
-                <p className="text-white/60 leading-relaxed">
-                  <>
-                    {text[language].correctDescription.split("\n").map((line, index) => (
-                      <span key={index}>
-                        {line}
-                        <br />
-                      </span>
-                    ))}
-                  </>
-                </p>
+                </div>
 
               </div>
 
             </div>
 
+            <button
+              onClick={() => {
+
+                setShowIntro(false);
+
+              }}
+              className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 px-12 py-5 rounded-3xl text-2xl font-black shadow-[0_0_40px_rgba(236,72,153,0.4)]"
+            >
+              {text[language].startGame}
+            </button>
+
           </div>
-
-          <button
-            onClick={() => setShowIntro(false)}
-            className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 px-12 py-5 rounded-3xl text-2xl font-black shadow-[0_0_40px_rgba(236,72,153,0.4)]"
-          >
-            {text[language].startGame}
-          </button>
-
-        </div>
 
         </main >
 
@@ -1442,6 +1432,8 @@ export default function Home() {
                   rotate: 5,
                 }}
                 onDragEnd={(event, info) => {
+                  
+                  if (isRolling || feedback) return;
 
                   if (!chaosMode && !isRolling && info.offset.x > 100) {
                     setTimeout(() => {
