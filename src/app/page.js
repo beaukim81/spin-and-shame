@@ -1333,7 +1333,10 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              className={`mb-4 text-center text-2xl font-black py-3 rounded-2xl ${feedback === "CORRECT!"
+              className={`mb-4 text-center text-2xl font-black py-3 rounded-2xl ${[
+                text[language].correct,
+                text[language].fastest
+              ].includes(feedback)
                 ? "bg-green-500/20 text-green-400"
                 : "bg-red-500/20 text-red-400"
                 }`}
