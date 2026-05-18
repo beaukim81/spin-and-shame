@@ -586,10 +586,17 @@ export default function Home() {
       isRolling
     ) return;
 
-    if (timer <= 3 && timer > 0 && countdownSound.current) {
-      countdownSound.current.pause();
+    if (
+      timer <= 3 &&
+      timer > 0 &&
+      countdownSound.current &&
+      countdownSound.current.paused
+    ) {
+
       countdownSound.current.currentTime = 0;
+
       countdownSound.current.play().catch(() => { });
+
     }
 
     if (timer <= 0) {
