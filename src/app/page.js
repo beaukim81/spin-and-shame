@@ -973,7 +973,7 @@ export default function Home() {
 
           <div className="relative z-10 w-full max-w-2xl text-center">
 
-            <div className="flex justify-center gap-3 mb-6">
+            <div className="flex justify-center items-center gap-3 mb-6">
 
               <button
                 onClick={() => setLanguage("nl")}
@@ -993,6 +993,16 @@ export default function Home() {
                   }`}
               >
                 EN
+              </button>
+
+              <button
+                onClick={() => setSoundEnabled(!soundEnabled)}
+                className={`w-12 h-12 rounded-2xl border backdrop-blur-xl flex items-center justify-center text-xl transition-all ${soundEnabled
+                    ? "bg-orange-500/20 border-orange-400 shadow-[0_0_20px_rgba(251,146,60,0.25)]"
+                    : "bg-white/5 border-white/10 text-white/50"
+                  }`}
+              >
+                {soundEnabled ? "🔊" : "🔇"}
               </button>
 
             </div>
@@ -1287,41 +1297,6 @@ export default function Home() {
 
                 <div
                   className={`w-5 h-5 rounded-full ${chaosMode
-                    ? "bg-purple-400"
-                    : "bg-white/20"
-                    }`}
-                />
-
-              </div>
-
-            </button>
-
-            <button
-              onClick={() => setSoundEnabled(!soundEnabled)}
-              className={`w-full rounded-3xl p-5 border transition-all text-left mt-4 ${soundEnabled
-                ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
-                : "bg-white/5 border-white/10"
-                }`}
-            >
-
-              <div className="flex items-center justify-between">
-
-                <div>
-
-                  <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
-                    SOUND
-                  </h3>
-
-                  <p className="text-white/60 mt-1">
-                    {soundEnabled
-                      ? "Geluid staat aan"
-                      : "Geluid staat uit"}
-                  </p>
-
-                </div>
-
-                <div
-                  className={`w-5 h-5 rounded-full ${soundEnabled
                     ? "bg-purple-400"
                     : "bg-white/20"
                     }`}
