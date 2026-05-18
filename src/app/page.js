@@ -510,6 +510,7 @@ export default function Home() {
       currentLetterLabel: "DE LETTER IS",
       fastest: "SNELST!",
       tooLate: "TE LAAT!",
+      swipeInstruction: "Swipe links of rechts om te spelen",
     },
 
     en: {
@@ -549,6 +550,7 @@ export default function Home() {
       currentLetterLabel: "THE LETTER IS",
       fastest: "FASTEST!",
       tooLate: "TOO LATE!",
+      swipeInstruction: "Swipe left or right to play",
     }
 
   };
@@ -945,6 +947,29 @@ export default function Home() {
                 </h2>
 
               </div>
+
+              <motion.div
+                animate={{ x: [-25, 25, -25] }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                }}
+                className="mb-6 bg-white/5 border border-white/10 rounded-[32px] p-5 backdrop-blur-xl text-center"
+              >
+
+                <p className="text-orange-400 text-xs uppercase tracking-[4px] font-black mb-2">
+                  SWIPE
+                </p>
+
+                <h3 className="text-2xl font-black text-white mb-2">
+                  ← SKIP &nbsp;&nbsp; +1 →
+                </h3>
+
+                <p className="text-white/60">
+                  {text[language].swipeInstruction}
+                </p>
+
+              </motion.div>
 
               <div className="grid grid-cols-2 gap-4">
 
