@@ -999,7 +999,6 @@ export default function Home() {
 
               </div>
 
-//INTROSLIDER
               <motion.div
                 drag="x"
                 style={{
