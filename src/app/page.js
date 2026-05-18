@@ -1361,6 +1361,15 @@ export default function Home() {
               )}
 
               <motion.div
+                animate={
+                  !chaosMode && !feedback
+                    ? { x: [-20, 20, -20] }
+                    : {}
+                }
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                }}
                 drag={!chaosMode ? "x" : false}
                 style={{
                   x,
