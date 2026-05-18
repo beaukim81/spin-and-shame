@@ -360,6 +360,13 @@ export default function Home() {
       adultMode: "Friends",
       genzMode: "Gen-Z",
       popcultureMode: "Popcultuur",
+      hardcoreMode: "HARDCORE MODE",
+      hardcoreDescription: "Verlies een punt bij skip of een fout antwoord",
+      maxPlayers: "Voeg spelers toe — maximaal 8 spelers",
+      howItWorks: "HOE HET WERKT",
+      correctTitle: "CORRECT",
+      skipDescription: "Geen antwoord?\nGeen punt.",
+      correctDescription: "Goed antwoord?\nPak je punt.",
     },
 
     en: {
@@ -389,6 +396,13 @@ export default function Home() {
       adultMode: "Friends",
       genzMode: "Gen-Z",
       popcultureMode: "Pop Culture",
+      hardcoreMode: "HARDCORE MODE",
+      hardcoreDescription: "Lose a point for a skip or wrong answer",
+      maxPlayers: "Add players — maximum 8 players",
+      howItWorks: "HOW IT WORKS",
+      correctTitle: "CORRECT",
+      skipDescription: "No answer?\nNo point.",
+      correctDescription: "Correct answer?\nClaim your point.",
     }
 
   };
@@ -760,7 +774,7 @@ export default function Home() {
               <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl">
 
                 <p className="text-orange-400 text-xs uppercase tracking-[4px] font-black mb-3">
-                  HOE HET WERKT
+                  {text[language].howItWorks}
                 </p>
 
                 <h2 className="text-[clamp(1.8rem,5vw,3.2rem)] font-black leading-tight text-white">
@@ -796,7 +810,7 @@ export default function Home() {
                   </p>
 
                   <h3 className="text-xl font-black text-white mb-2">
-                    CORRECT
+                    {text[language].correctTitle}
                   </h3>
 
                   <p className="text-white/60 leading-relaxed">
@@ -948,11 +962,11 @@ export default function Home() {
                 <div>
 
                   <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
-                    Hardcore Mode
+                    {text[language].hardcoreMode}
                   </h3>
 
                   <p className="text-white/60 mt-1">
-                    Verlies een punt bij skip of een fout antwoord
+                    {text[language].hardcoreDescription}
                   </p>
 
                 </div>
@@ -1044,7 +1058,7 @@ export default function Home() {
               ))}
             </div>
             <p className="text-sm text-white/40 mt-4 leading-relaxed">
-              Voeg spelers toe — maximaal 8 spelers
+              {text[language].maxPlayers}
             </p>
           </div>
 
