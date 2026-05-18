@@ -304,6 +304,7 @@ export default function Home() {
   const [introSwipeDone, setIntroSwipeDone] = useState(false);
   const [introTouched, setIntroTouched] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const spinInterval = useRef(null);
 
   const translations = {
 
@@ -587,6 +588,7 @@ export default function Home() {
     const handleVisibility = () => {
 
       if (document.hidden) {
+        clearInterval(spinInterval.current);
 
         setIsPaused(true);
 
@@ -793,7 +795,7 @@ export default function Home() {
 
     setCurrentCategory(randomCategory);
 
-    const interval = setInterval(() => {
+    spinInterval.current = setInterval(() => {
 
       const randomLetter =
         letters[
@@ -812,7 +814,7 @@ export default function Home() {
 
     setTimeout(() => {
 
-      clearInterval(interval);
+      clearInterval(spinInterval.current);
 
       if (tickSound.current) {
         tickSound.current.pause();
@@ -1475,7 +1477,7 @@ export default function Home() {
                 dragElastic={0.8}
                 whileDrag={{
                   scale: 1.05,
-                  rotate: 5,
+                  y: -4,
                 }}
                 onDragEnd={(event, info) => {
 
