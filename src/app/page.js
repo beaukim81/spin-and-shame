@@ -1,7 +1,12 @@
 "use client";
 import Confetti from "react-confetti";
 import { useEffect, useState, useRef } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  animate
+} from "framer-motion";
 import Image from "next/image";
 
 export default function Home() {
@@ -1038,8 +1043,14 @@ export default function Home() {
 
                   if (Math.abs(info.offset.x) > 100) {
 
-                    introX.set(
-                      info.offset.x > 0 ? 600 : -600
+                    animate(
+                      introX,
+                      info.offset.x > 0 ? 600 : -600,
+                      {
+                        type: "spring",
+                        stiffness: 120,
+                        damping: 18,
+                      }
                     );
 
                     setIntroSwipeDone(true);
