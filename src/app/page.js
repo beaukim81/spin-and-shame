@@ -979,9 +979,9 @@ export default function Home() {
 
                 }}
 
-                className={`mb-6 border rounded-[32px] p-5 backdrop-blur-xl text-center transition-all ${introSwipeDone
+                className={`mb-6 border-2 rounded-[32px] p-5 backdrop-blur-xl text-center transition-all shadow-[0_0_35px_rgba(251,146,60,0.25)] ${introSwipeDone
                   ? "bg-green-500/20 border-green-400"
-                  : "bg-white/5 border-white/10"
+                  : "bg-orange-500/10 border-orange-400 animate-pulse"
                   }`}
               >
 
@@ -1416,7 +1416,7 @@ export default function Home() {
                   duration: 2,
                   repeat: Infinity,
                 }}
-                drag={!chaosMode ? "x" : false}
+                drag={!chaosMode && !isRolling ? "x" : false}
                 style={{
                   x,
                   backgroundColor: background,
