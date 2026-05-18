@@ -875,6 +875,23 @@ export default function Home() {
       }
 
     }, 160);
+    const shouldUseRareLetter =
+      Math.random() < 0.05;
+
+    const letterPool =
+      shouldUseRareLetter
+        ? rareLetters
+        : letters;
+
+    const finalLetter =
+      letterPool[
+      Math.floor(Math.random() * letterPool.length)
+      ];
+
+    const randomCategory =
+      getUniqueCategory(finalLetter);
+
+    setCurrentCategory(randomCategory);
 
     setTimeout(() => {
 
@@ -884,24 +901,6 @@ export default function Home() {
         tickSound.current.pause();
         tickSound.current.currentTime = 0;
       }
-
-      const shouldUseRareLetter =
-        Math.random() < 0.05;
-
-      const letterPool =
-        shouldUseRareLetter
-          ? rareLetters
-          : letters;
-
-      const finalLetter =
-        letterPool[
-        Math.floor(Math.random() * letterPool.length)
-        ];
-
-      const randomCategory =
-        getUniqueCategory(finalLetter);
-
-      setCurrentCategory(randomCategory);
 
       setDisplayLetter(finalLetter);
 
@@ -1124,11 +1123,11 @@ export default function Home() {
 
                 onDragEnd={(event, info) => {
 
-                  if (info.offset.x > 100)
+                  if (info.offset.x > 100) {
 
                     animate(
                       introX,
-                      600
+                      600,
                       {
                         type: "spring",
                         stiffness: 120,
@@ -1136,40 +1135,40 @@ export default function Home() {
                       }
                     );
 
-                  setIntroSwipeDone(true);
+                    setIntroSwipeDone(true);
 
-                  setTimeout(() => {
+                    setTimeout(() => {
 
-                    setIntroTouched(false);
+                      setIntroTouched(false);
 
-                    setShowIntro(false);
+                      setShowIntro(false);
 
-                  }, 300);
+                    }, 300);
 
-                }
+                  }
 
                 }}
 
-              className="mb-6 border-2 border-orange-400/40 rounded-[32px] p-5 backdrop-blur-xl text-center transition-all shadow-[0_0_45px_rgba(251,146,60,0.35)] bg-white/5 cursor-grab active:cursor-grabbing"
+                className="mb-6 border-2 border-orange-400/40 rounded-[32px] p-5 backdrop-blur-xl text-center transition-all shadow-[0_0_45px_rgba(251,146,60,0.35)] bg-white/5 cursor-grab active:cursor-grabbing"
               >
 
-              <div className="flex justify-center items-center text-orange-400 text-xs uppercase tracking-[2px] font-black">
+                <div className="flex justify-center items-center text-orange-400 text-xs uppercase tracking-[2px] font-black">
 
-                <span>
                   <span>
-                    {language === "nl"
-                      ? "SWIPE OM TE SPELEN ➜"
-                      : "SWIPE TO PLAY ➜"}
+                    <span>
+                      {language === "nl"
+                        ? "SWIPE OM TE SPELEN ➜"
+                        : "SWIPE TO PLAY ➜"}
+                    </span>
                   </span>
-                </span>
 
-              </div>
+                </div>
 
-            </motion.div>
+              </motion.div>
+
+            </div>
 
           </div>
-
-        </div>
 
         </main >
 
