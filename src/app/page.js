@@ -954,94 +954,91 @@ export default function Home() {
                 dragConstraints={{ left: 0, right: 0 }}
                 onDragEnd={(event, info) => {
 
-                  if (info.offset.x > 100) {
+                  if (Math.abs(info.offset.x) > 100)
 
                     setIntroSwipeDone(true);
 
-                    setTimeout(() => {
-                      setShowIntro(false);
-                    }, 300);
+                  setTimeout(() => {
+                    setShowIntro(false);
+                  }, 300);
 
-                  }
+                }
 
                 }}
 
-                className={`mb-6 border rounded-[32px] p-5 backdrop-blur-xl text-center transition-all ${introSwipeDone
-                  ? "bg-green-500/20 border-green-400"
-                  : "bg-white/5 border-white/10"
-                  }`}
+              className={`mb-6 border rounded-[32px] p-5 backdrop-blur-xl text-center transition-all ${introSwipeDone
+                ? "bg-green-500/20 border-green-400"
+                : "bg-white/5 border-white/10"
+                }`}
               >
 
-                <p className="text-orange-400 text-xs uppercase tracking-[4px] font-black mb-2">
-                  SWIPE
+              <p className="text-orange-400 text-xs uppercase tracking-[4px] font-black mb-2">
+                SWIPE
+              </p>
+
+              <h3 className="text-2xl font-black text-white mb-2">
+                ← SKIP &nbsp;&nbsp; +1 →
+              </h3>
+
+              <p className="text-white/60">
+                {text[language].swipeInstruction}
+              </p>
+
+            </motion.div>
+
+            <div className="grid grid-cols-2 gap-4">
+
+              <div className="bg-red-500/10 border border-red-400/30 rounded-3xl p-5 backdrop-blur-xl">
+
+                <p className="text-red-400 text-xs uppercase tracking-[3px] font-black mb-2">
+                  {text[language].swipeLeft}
                 </p>
 
-                <h3 className="text-2xl font-black text-white mb-2">
-                  ← SKIP &nbsp;&nbsp; +1 →
+                <h3 className="text-xl font-black text-white mb-2">
+                  SKIP
                 </h3>
 
-                <p className="text-white/60">
-                  {text[language].swipeInstruction}
+                <p className="text-white/60 leading-relaxed">
+                  <>
+                    {text[language].skipDescription.split("\n").map((line, index) => (
+                      <span key={index}>
+                        {line}
+                        <br />
+                      </span>
+                    ))}
+                  </>
                 </p>
 
-              </motion.div>
+              </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="bg-green-500/10 border border-green-400/30 rounded-3xl p-5 backdrop-blur-xl">
 
-                <div className="bg-red-500/10 border border-red-400/30 rounded-3xl p-5 backdrop-blur-xl">
+                <p className="text-green-400 text-xs uppercase tracking-[3px] font-black mb-2">
+                  {text[language].swipeRight}
+                </p>
 
-                  <p className="text-red-400 text-xs uppercase tracking-[3px] font-black mb-2">
-                    {text[language].swipeLeft}
-                  </p>
+                <h3 className="text-xl font-black text-white mb-2">
+                  {text[language].correctTitle}
+                </h3>
 
-                  <h3 className="text-xl font-black text-white mb-2">
-                    SKIP
-                  </h3>
-
-                  <p className="text-white/60 leading-relaxed">
-                    <>
-                      {text[language].skipDescription.split("\n").map((line, index) => (
-                        <span key={index}>
-                          {line}
-                          <br />
-                        </span>
-                      ))}
-                    </>
-                  </p>
-
-                </div>
-
-                <div className="bg-green-500/10 border border-green-400/30 rounded-3xl p-5 backdrop-blur-xl">
-
-                  <p className="text-green-400 text-xs uppercase tracking-[3px] font-black mb-2">
-                    {text[language].swipeRight}
-                  </p>
-
-                  <h3 className="text-xl font-black text-white mb-2">
-                    {text[language].correctTitle}
-                  </h3>
-
-                  <p className="text-white/60 leading-relaxed">
-                    <>
-                      {text[language].correctDescription.split("\n").map((line, index) => (
-                        <span key={index}>
-                          {line}
-                          <br />
-                        </span>
-                      ))}
-                    </>
-                  </p>
-
-                </div>
+                <p className="text-white/60 leading-relaxed">
+                  <>
+                    {text[language].correctDescription.split("\n").map((line, index) => (
+                      <span key={index}>
+                        {line}
+                        <br />
+                      </span>
+                    ))}
+                  </>
+                </p>
 
               </div>
 
             </div>
-            
-              {text[language].startGame}
-            </button>
 
           </div>
+
+        </div>
 
         </main >
 
@@ -1274,8 +1271,7 @@ export default function Home() {
 
           <button
             disabled={
-              players.filter(player => player.trim() !== "").length === 0 ||
-              !introSwipeDone
+              players.filter(player => player.trim() !== "").length === 0
             }
             onClick={() => {
 
@@ -1514,7 +1510,13 @@ export default function Home() {
 
                     <button
                       key={index}
-                      onClick={() => addPoint(index)}
+                      onClick={() => {
+
+                        if (feedback || isRolling) return;
+
+                        addPoint(index);
+
+                      }}
                       className="bg-purple-500/20 border border-purple-400 rounded-3xl p-5 text-white font-black uppercase tracking-[2px] backdrop-blur-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
                     >
                       {player}
