@@ -348,6 +348,18 @@ export default function Home() {
       introTitle: "Twijfel niet. Roep. Swipe. Win.",
       swipeLeft: "SWIPE LINKS",
       swipeRight: "SWIPE RECHTS",
+      chaosDescription: "Iedereen roept tegelijk. Tik op de snelste speler.",
+      player: "Speler",
+      winner: "WINNAAR",
+      hasWon: "heeft gewonnen!",
+      playAgain: "SPEEL OPNIEUW",
+      nextRound: "VOLGENDE RONDE",
+      familyMode: "Familie",
+      kidsMode: "Kinderen",
+      couplesMode: "Koppels",
+      adultMode: "Friends",
+      genzMode: "Gen-Z",
+      popcultureMode: "Popcultuur",
     },
 
     en: {
@@ -365,6 +377,18 @@ export default function Home() {
       introTitle: "Don't hesitate. Shout. Swipe. Win.",
       swipeLeft: "SWIPE LEFT",
       swipeRight: "SWIPE RIGHT",
+      chaosDescription: "Everyone shouts at once. Tap the fastest player.",
+      player: "Player",
+      winner: "WINNER",
+      hasWon: "has won!",
+      playAgain: "PLAY AGAIN",
+      nextRound: "NEXT ROUND",
+      familyMode: "Family",
+      kidsMode: "Kids",
+      couplesMode: "Couples",
+      adultMode: "Friends",
+      genzMode: "Gen-Z",
+      popcultureMode: "Pop Culture",
     }
 
   };
@@ -607,7 +631,7 @@ export default function Home() {
             <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
               <p className="text-orange-400 text-xs uppercase tracking-[4px] font-black mb-3">
-                WINNAAR
+                {text[language].winner}
               </p>
 
               <motion.h1
@@ -618,7 +642,7 @@ export default function Home() {
               >
                 {winner}
                 <br />
-                heeft gewonnen!
+                {text[language].hasWon}
               </motion.h1>
 
             </div>
@@ -627,7 +651,7 @@ export default function Home() {
               onClick={() => window.location.reload()}
               className="w-full bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-2xl"
             >
-              SPEEL OPNIEUW
+              {text[language].playAgain}
             </button>
 
           </div>
@@ -675,7 +699,7 @@ export default function Home() {
             }}
             className="w-full mt-6 bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 text-white font-black text-xl py-4 rounded-2xl"
           >
-            VOLGENDE RONDE
+            {text[language].nextRound}
           </button>
 
         </div>
@@ -820,7 +844,7 @@ export default function Home() {
                 : "bg-white/5 border-white/10 text-white/70 hover:text-white"
                 }`}
             >
-              Familie
+              {text[language].familyMode}
             </button>
 
             <button
@@ -829,7 +853,7 @@ export default function Home() {
                 ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
                 : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
             >
-              Kinderen
+              {text[language].kidsMode}
             </button>
 
             <button
@@ -838,7 +862,7 @@ export default function Home() {
                 ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
                 : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
             >
-              Koppels
+              {text[language].couplesMode}
             </button>
 
             <button
@@ -847,7 +871,7 @@ export default function Home() {
                 ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
                 : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
             >
-              Friends
+              {text[language].adultMode}
             </button>
 
             <button
@@ -856,7 +880,7 @@ export default function Home() {
                 ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
                 : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
             >
-              Gen-Z
+              {text[language].genzMode}
             </button>
 
             <button
@@ -865,7 +889,7 @@ export default function Home() {
                 ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
                 : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
             >
-              Popcultuur
+              {text[language].popcultureMode}
             </button>
 
           </div>
@@ -969,7 +993,7 @@ export default function Home() {
                   </h3>
 
                   <p className="text-white/60 mt-1">
-                    Iedereen roept tegelijk. Tik op de snelste speler.
+                    {text[language].chaosDescription}
                   </p>
 
                 </div>
@@ -997,7 +1021,7 @@ export default function Home() {
                 <input
                   key={index}
                   value={player}
-                  placeholder={`Speler ${index + 1}`}
+                  pplaceholder={`${text[language].player} ${index + 1}`}
                   onChange={(e) => {
 
                     const updatedPlayers = [...players];
