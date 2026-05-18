@@ -310,6 +310,7 @@ export default function Home() {
   const [isPaused, setIsPaused] = useState(false);
   const spinInterval = useRef(null);
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const [usedCombinations, setUsedCombinations] = useState([]);
 
   const translations = {
 
@@ -688,20 +689,45 @@ export default function Home() {
     soundEnabled
   ]);
 
+  function getUniqueCategory(letter) {
+
+    const availableCategories = categories.filter(
+      (category) =>
+        !usedCombinations.includes(
+          `${letter}-${category}`
+        )
+    );
+
+    const pool =
+      availableCategories.length > 0
+        ? availableCategories
+        : categories;
+
+    const selected =
+      pool[
+      Math.floor(Math.random() * pool.length)
+      ];
+
+    setUsedCombinations((prev) => [
+      ...prev,
+      `${letter}-${selected}`
+    ]);
+
+    return selected;
+  }
+
   function nextTurn() {
 
     const nextPlayer = currentPlayer + 1;
+
+    const randomCategory =
+      getUniqueCategory(currentLetter);
 
     if (nextPlayer >= players.length) {
 
       setShowScoreboard(true);
 
     } else {
-
-      const randomCategory =
-        categories[
-        Math.floor(Math.random() * categories.length)
-        ];
 
       setCurrentCategory(randomCategory);
 
@@ -710,7 +736,9 @@ export default function Home() {
       setTimer(gameTime);
 
       x.set(0);
+
     }
+
   }
 
   function addPoint(playerIndex = currentPlayer) {
@@ -817,9 +845,7 @@ export default function Home() {
     }
 
     const randomCategory =
-      categories[
-      Math.floor(Math.random() * categories.length)
-      ];
+      getUniqueCategory(currentLetter);
 
     setCurrentCategory(randomCategory);
 
@@ -998,8 +1024,8 @@ export default function Home() {
               <button
                 onClick={() => setSoundEnabled(!soundEnabled)}
                 className={`px-4 h-12 rounded-2xl border backdrop-blur-xl flex items-center gap-2 text-sm font-black tracking-[1px] transition-all ${soundEnabled
-                    ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_20px_rgba(251,146,60,0.25)]"
-                    : "bg-white/5 border-white/10 text-white/50"
+                  ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_20px_rgba(251,146,60,0.25)]"
+                  : "bg-white/5 border-white/10 text-white/50"
                   }`}
               >
                 <span>
