@@ -34,7 +34,6 @@ export default function Home() {
     "U", "U",
     "V", "V",
     "W",
-    "X",
     "IJ",
   ];
   const rareLetters = ["Q", "X"];
@@ -310,6 +309,7 @@ export default function Home() {
   const spinInterval = useRef(null);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [usedCombinations, setUsedCombinations] = useState([]);
+  const [lastCategory, setLastCategory] = useState("");
   const [showPointAnimation, setShowPointAnimation] = useState(false);
 
   const translations = {
@@ -693,15 +693,21 @@ export default function Home() {
 
     const availableCategories = categories.filter(
       (category) =>
+
         !usedCombinations.includes(
           `${letter}-${category}`
-        )
+        ) &&
+
+        category !== lastCategory
     );
 
     const pool =
       availableCategories.length > 0
         ? availableCategories
-        : categories;
+        : categories.filter(
+          (category) =>
+            category !== lastCategory
+        );
 
     const selected =
       pool[
@@ -712,7 +718,7 @@ export default function Home() {
       ...prev,
       `${letter}-${selected}`
     ]);
-
+    setLastCategory(selected);
     return selected;
   }
 
