@@ -309,6 +309,7 @@ export default function Home() {
   const [introTouched, setIntroTouched] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const spinInterval = useRef(null);
+  const [soundEnabled, setSoundEnabled] = useState(true);
 
   const translations = {
 
@@ -647,6 +648,7 @@ export default function Home() {
     ) return;
 
     if (
+      soundEnabled &&
       !feedback &&
       timer <= 3 &&
       timer > 0 &&
@@ -660,7 +662,7 @@ export default function Home() {
 
     }
 
-    if (timer <= 0) {
+    if (timer <= 0 && !isRolling) {
       handleTooLate();
       return;
     }
@@ -678,7 +680,8 @@ export default function Home() {
     showScoreboard,
     isRolling,
     isPaused,
-    feedback
+    feedback,
+    soundEnabled
   ]);
 
   function nextTurn() {
@@ -719,11 +722,12 @@ export default function Home() {
       countdownSound.current.currentTime = 0;
     }
 
-    if (correctSound.current) {
+    if (soundEnabled && correctSound.current) {
 
       correctSound.current.currentTime = 0;
 
       correctSound.current.play().catch(() => { });
+
     }
 
     const updatedScores = [...scores];
@@ -734,7 +738,7 @@ export default function Home() {
 
     if (updatedScores[playerIndex] >= 10) {
 
-      if (winSound.current) {
+      if (soundEnabled && winSound.current) {
 
         winSound.current.currentTime = 0;
 
@@ -768,7 +772,7 @@ export default function Home() {
       countdownSound.current.currentTime = 0;
     }
 
-    if (wrongSound.current) {
+    if (soundEnabled && wrongSound.current) {
 
       wrongSound.current.currentTime = 0;
 
@@ -824,6 +828,7 @@ export default function Home() {
 
       setDisplayLetter(randomLetter);
       if (
+        soundEnabled &&
         tickSound.current &&
         tickSound.current.paused
       ) {
@@ -1278,6 +1283,41 @@ export default function Home() {
 
                 <div
                   className={`w-5 h-5 rounded-full ${chaosMode
+                    ? "bg-purple-400"
+                    : "bg-white/20"
+                    }`}
+                />
+
+              </div>
+
+            </button>
+
+            <button
+              onClick={() => setSoundEnabled(!soundEnabled)}
+              className={`w-full rounded-3xl p-5 border transition-all text-left mt-4 ${soundEnabled
+                ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+                : "bg-white/5 border-white/10"
+                }`}
+            >
+
+              <div className="flex items-center justify-between">
+
+                <div>
+
+                  <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
+                    SOUND
+                  </h3>
+
+                  <p className="text-white/60 mt-1">
+                    {soundEnabled
+                      ? "Geluid staat aan"
+                      : "Geluid staat uit"}
+                  </p>
+
+                </div>
+
+                <div
+                  className={`w-5 h-5 rounded-full ${soundEnabled
                     ? "bg-purple-400"
                     : "bg-white/20"
                     }`}
