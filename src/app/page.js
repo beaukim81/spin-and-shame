@@ -713,7 +713,11 @@ export default function Home() {
     setTimeout(() => {
 
       setFeedback("");
+
+      setTimer(gameTime);
+
       setIsRolling(false);
+
       spinLetter();
 
     }, 600);
