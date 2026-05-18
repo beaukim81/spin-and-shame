@@ -586,19 +586,19 @@ export default function Home() {
       isRolling
     ) return;
 
-if (
-  !feedback &&
-  timer <= 3 &&
-  timer > 0 &&
-  countdownSound.current &&
-  countdownSound.current.paused
-) {
+    if (
+      !feedback &&
+      timer <= 3 &&
+      timer > 0 &&
+      countdownSound.current &&
+      countdownSound.current.paused
+    ) {
 
-  countdownSound.current.currentTime = 0;
+      countdownSound.current.currentTime = 0;
 
-  countdownSound.current.play().catch(() => { });
+      countdownSound.current.play().catch(() => { });
 
-}
+    }
 
     if (timer <= 0) {
       handleTooLate();
@@ -1275,204 +1275,209 @@ if (
 
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
 
-      <div className="relative z-10 w-full max-w-[900px] px-4">
+      <div className="relative z-10 w-full max-w-[900px] xl:max-w-[1200px] px-4">
 
         <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] min-h-[75vh] flex flex-col justify-between">
+          <div className="xl:grid xl:grid-cols-[420px_1fr] xl:gap-10 xl:items-center">
+            <div className="flex justify-center mb-4">
 
-          <div className="flex justify-center mb-4">
+              <motion.div className="relative w-[clamp(230px,46vw,400px)] h-[clamp(230px,46vw,400px)] rounded-full">
 
-            <motion.div className="relative w-[clamp(230px,46vw,400px)] h-[clamp(230px,46vw,400px)] rounded-full">
+                <div className="absolute inset-0 rounded-full border-[5px] border-orange-400" />
 
-              <div className="absolute inset-0 rounded-full border-[5px] border-orange-400" />
+                <div className="absolute inset-[clamp(24px,5vw,40px)] rounded-full bg-black flex items-center justify-center border border-white/10">
 
-              <div className="absolute inset-[clamp(24px,5vw,40px)] rounded-full bg-black flex items-center justify-center border border-white/10">
+                  <div className="text-center">
 
-                <div className="text-center">
+                    <p className="text-orange-400 text-xs font-bold mb-2 tracking-[3px] uppercase">
+                      {text[language].currentLetterLabel}
+                    </p>
 
-                  <p className="text-orange-400 text-xs font-bold mb-2 tracking-[3px] uppercase">
-                    {text[language].currentLetterLabel}
-                  </p>
+                    <motion.h2
+                      key={displayLetter}
+                      initial={{ scale: 0.6, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="text-[clamp(6rem,18vw,11rem)] font-black text-white leading-none"
+                    >
+                      {displayLetter}
+                    </motion.h2>
 
-                  <motion.h2
-                    key={displayLetter}
-                    initial={{ scale: 0.6, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    className="text-[clamp(6rem,18vw,11rem)] font-black text-white leading-none"
-                  >
-                    {displayLetter}
-                  </motion.h2>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            <div className="flex flex-col justify-center h-full">
+
+              <motion.div
+                key={currentCategory}
+
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] mb-8"
+              >
+                <p className="text-orange-400 text-sm font-black tracking-widest mb-3">
+                  {text[language].category}
+                </p>
+
+                <h3 className="text-[clamp(1.3rem,4vw,2.5rem)] font-semibold leading-snug text-white">
+                  {currentCategory}
+                </h3>
+              </motion.div>
+
+              {!chaosMode && (
+
+                <div className="flex justify-between text-xs font-black uppercase tracking-widest mb-3 px-2">
+
+                  <span className="text-red-400/70">
+                    ← Skip
+                  </span>
+
+                  <span className="text-green-400/70">
+                    +1 →
+                  </span>
 
                 </div>
-              </div>
-            </motion.div>
-          </div>
 
-          <motion.div
-            key={currentCategory}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] mb-8"
-          >
-            <p className="text-orange-400 text-sm font-black tracking-widest mb-3">
-              {text[language].category}
-            </p>
+              )}
 
-            <h3 className="text-[clamp(1.3rem,4vw,2.5rem)] font-semibold leading-snug text-white">
-              {currentCategory}
-            </h3>
-          </motion.div>
-
-          {!chaosMode && (
-
-            <div className="flex justify-between text-xs font-black uppercase tracking-widest mb-3 px-2">
-
-              <span className="text-red-400/70">
-                ← Skip
-              </span>
-
-              <span className="text-green-400/70">
-                +1 →
-              </span>
-
-            </div>
-
-          )}
-
-          {feedback && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className={`mb-4 text-center text-2xl font-black py-3 rounded-2xl ${[
-                text[language].correct,
-                text[language].fastest
-              ].includes(feedback)
-                ? "bg-green-500/20 text-green-400"
-                : "bg-red-500/20 text-red-400"
-                }`}
-            >
-              {feedback}
-            </motion.div>
-          )}
-
-          <motion.div
-            drag={!chaosMode ? "x" : false}
-            style={{
-              x,
-              backgroundColor: background,
-            }}
-            dragConstraints={{
-              left: 0,
-              right: 0,
-            }}
-            dragElastic={0.8}
-            whileDrag={{
-              scale: 1.05,
-              rotate: 5,
-            }}
-            onDragEnd={(event, info) => {
-
-              if (!chaosMode && !isRolling && info.offset.x > 100) {
-                setTimeout(() => {
-                  addPoint();
-                }, 50);
-              }
-
-              if (!chaosMode && !isRolling && info.offset.x < -100) {
-                setTimeout(() => {
-                  handleTooLate();
-                }, 50);
-              }
-
-            }}
-            className={`rounded-3xl p-5 border border-white/10 backdrop-blur-xl ${!chaosMode
-              ? "cursor-grab active:cursor-grabbing"
-              : ""
-              }`}
-          >
-
-            <div className="flex items-center justify-between">
+              {feedback && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className={`mb-4 text-center text-2xl font-black py-3 rounded-2xl ${[
+                    text[language].correct,
+                    text[language].fastest
+                  ].includes(feedback)
+                    ? "bg-green-500/20 text-green-400"
+                    : "bg-red-500/20 text-red-400"
+                    }`}
+                >
+                  {feedback}
+                </motion.div>
+              )}
 
               <motion.div
-                key={players[currentPlayer]}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-              >
-
-                {chaosMode ? (
-
-                  <>
-                    <p className="text-gray-300 text-sm uppercase tracking-widest">
-                      {text[language].chaosMode}
-                    </p>
-
-                    <h3 className="text-[clamp(1.2rem,4vw,2.2rem)] font-bold uppercase tracking-[1px] mt-1 text-white">
-                      {text[language].fastestPlayer}
-                    </h3>
-                  </>
-
-                ) : (
-
-                  <>
-                    <p className="text-gray-300 text-sm uppercase tracking-widest">
-                      {text[language].currentPlayer}
-                    </p>
-
-                    <h3 className="text-[clamp(1.5rem,4vw,3rem)] font-bold uppercase tracking-[1px] mt-1 text-white">
-                      {players[currentPlayer]}
-                    </h3>
-                  </>
-
-                )}
-
-              </motion.div>
-
-              <motion.div
-                animate={
-                  isDanger
-                    ? {
-                      scale: [1, 1.08, 1],
-                    }
-                    : {
-                      scale: 1,
-                    }
-                }
-                transition={{
-                  duration: 0.6,
-                  repeat: isDanger ? Infinity : 0,
+                drag={!chaosMode ? "x" : false}
+                style={{
+                  x,
+                  backgroundColor: background,
                 }}
-                className={`shrink-0 w-[clamp(120px,22vw,180px)] h-[clamp(120px,22vw,180px)] rounded-full flex items-center justify-center border-[5px] ${isDanger
-                  ? "bg-red-500/20 border-red-400 shadow-[0_0_40px_rgba(248,113,113,0.8)]"
-                  : "bg-black/40 border-orange-400"
+                dragConstraints={{
+                  left: 0,
+                  right: 0,
+                }}
+                dragElastic={0.8}
+                whileDrag={{
+                  scale: 1.05,
+                  rotate: 5,
+                }}
+                onDragEnd={(event, info) => {
+
+                  if (!chaosMode && !isRolling && info.offset.x > 100) {
+                    setTimeout(() => {
+                      addPoint();
+                    }, 50);
+                  }
+
+                  if (!chaosMode && !isRolling && info.offset.x < -100) {
+                    setTimeout(() => {
+                      handleTooLate();
+                    }, 50);
+                  }
+
+                }}
+                className={`rounded-3xl p-5 border border-white/10 backdrop-blur-xl ${!chaosMode
+                  ? "cursor-grab active:cursor-grabbing"
+                  : ""
                   }`}
               >
-                <span className="text-[clamp(3rem,8vw,5rem)] font-black">
-                  {timer}
-                </span>
+
+                <div className="flex items-center justify-between">
+
+                  <motion.div
+                    key={players[currentPlayer]}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                  >
+
+                    {chaosMode ? (
+
+                      <>
+                        <p className="text-gray-300 text-sm uppercase tracking-widest">
+                          {text[language].chaosMode}
+                        </p>
+
+                        <h3 className="text-[clamp(1.2rem,4vw,2.2rem)] font-bold uppercase tracking-[1px] mt-1 text-white">
+                          {text[language].fastestPlayer}
+                        </h3>
+                      </>
+
+                    ) : (
+
+                      <>
+                        <p className="text-gray-300 text-sm uppercase tracking-widest">
+                          {text[language].currentPlayer}
+                        </p>
+
+                        <h3 className="text-[clamp(1.5rem,4vw,3rem)] font-bold uppercase tracking-[1px] mt-1 text-white">
+                          {players[currentPlayer]}
+                        </h3>
+                      </>
+
+                    )}
+
+                  </motion.div>
+
+                  <motion.div
+                    animate={
+                      isDanger
+                        ? {
+                          scale: [1, 1.08, 1],
+                        }
+                        : {
+                          scale: 1,
+                        }
+                    }
+                    transition={{
+                      duration: 0.6,
+                      repeat: isDanger ? Infinity : 0,
+                    }}
+                    className={`shrink-0 w-[clamp(120px,18vw,160px)] h-[clamp(120px,18vw,160px)] rounded-full flex items-center justify-center border-[5px] ${isDanger
+                      ? "bg-red-500/20 border-red-400 shadow-[0_0_40px_rgba(248,113,113,0.8)]"
+                      : "bg-black/40 border-orange-400"
+                      }`}
+                  >
+                    <span className="text-[clamp(3rem,8vw,5rem)] font-black">
+                      {timer}
+                    </span>
+                  </motion.div>
+
+                </div>
               </motion.div>
+              {chaosMode && (
 
+                <div className="grid grid-cols-2 gap-3 mt-6">
+
+                  {players.map((player, index) => (
+
+                    <button
+                      key={index}
+                      onClick={() => addPoint(index)}
+                      className="bg-purple-500/20 border border-purple-400 rounded-3xl p-5 text-white font-black uppercase tracking-[2px] backdrop-blur-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
+                    >
+                      {player}
+                    </button>
+
+                  ))}
+
+                </div>
+
+              )}
+               </div>
             </div>
-          </motion.div>
-          {chaosMode && (
-
-            <div className="grid grid-cols-2 gap-3 mt-6">
-
-              {players.map((player, index) => (
-
-                <button
-                  key={index}
-                  onClick={() => addPoint(index)}
-                  className="bg-purple-500/20 border border-purple-400 rounded-3xl p-5 text-white font-black uppercase tracking-[2px] backdrop-blur-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
-                >
-                  {player}
-                </button>
-
-              ))}
-
-            </div>
-
-          )}
+          </div >
         </div>
-      </div >
     </main >
   );
 }
