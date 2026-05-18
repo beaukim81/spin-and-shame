@@ -631,7 +631,6 @@ export default function Home() {
   }
 
   function addPoint(playerIndex = currentPlayer) {
-    setIsRolling(true);
 
     setFeedback(
       chaosMode
@@ -681,7 +680,6 @@ export default function Home() {
   }
 
   function handleTooLate() {
-    setIsRolling(true);
 
     setFeedback(
       chaosMode
@@ -714,18 +712,16 @@ export default function Home() {
 
       setFeedback("");
 
-      setTimer(gameTime);
-
-      setIsRolling(false);
-
       spinLetter();
 
     }, 600);
   }
 
   function spinLetter() {
+    setIsRolling(true);
 
-    if (isRolling) return;
+    setTimer(0);
+
     if (!chaosMode) {
 
       setCurrentPlayer((prev) =>
@@ -735,7 +731,6 @@ export default function Home() {
       );
 
     }
-    setIsRolling(true);
 
     const randomCategory =
       categories[
