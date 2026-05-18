@@ -662,7 +662,11 @@ export default function Home() {
 
     }
 
-    if (timer <= 0 && !isRolling) {
+    if (
+      timer <= 0 &&
+      !isRolling &&
+      !feedback
+    ) {
       handleTooLate();
       return;
     }
