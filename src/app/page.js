@@ -149,7 +149,6 @@ export default function Home() {
       "Een spicy woord",
       "Een spicy drankje",
       "Een fantasie",
-      "Een ick",
       "Een weekendactiviteit",
       "Een romantisch gebaar"
     ],
@@ -391,7 +390,6 @@ export default function Home() {
     "Een spicy woord": "A naughty word",
     "Een spicy drankje": "A sexy drink",
     "Een fantasie": "A fantasy",
-    "Een ick": "An ick",
     "Een weekendactiviteit": "A weekend activity",
     "Een romantisch gebaar": "A romantic gesture",
 
