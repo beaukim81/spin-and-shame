@@ -1014,6 +1014,17 @@ export default function Home() {
                   backgroundColor: introBackground,
                 }}
                 dragSnapToOrigin
+                animate={
+                  !introTouched
+                    ? { x: [-6, 6, -6] }
+                    : {}
+                }
+
+                transition={{
+                  duration: 2.4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
 
                 animate={
                   !introTouched
