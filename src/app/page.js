@@ -955,19 +955,17 @@ export default function Home() {
                 onDragEnd={(event, info) => {
 
                   if (info.offset.x > 100) {
+
                     setIntroSwipeDone(true);
+
+                    setTimeout(() => {
+                      setShowIntro(false);
+                    }, 300);
+
                   }
 
                 }}
-                animate={
-                  !introSwipeDone
-                    ? { x: [-20, 20, -20] }
-                    : {}
-                }
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                }}
+
                 className={`mb-6 border rounded-[32px] p-5 backdrop-blur-xl text-center transition-all ${introSwipeDone
                   ? "bg-green-500/20 border-green-400"
                   : "bg-white/5 border-white/10"
@@ -1039,15 +1037,7 @@ export default function Home() {
               </div>
 
             </div>
-
-            <button
-              onClick={() => {
-
-                setShowIntro(false);
-
-              }}
-              className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 px-12 py-5 rounded-3xl text-2xl font-black shadow-[0_0_40px_rgba(236,72,153,0.4)]"
-            >
+            
               {text[language].startGame}
             </button>
 
@@ -1432,7 +1422,7 @@ export default function Home() {
                   rotate: 5,
                 }}
                 onDragEnd={(event, info) => {
-                  
+
                   if (isRolling || feedback) return;
 
                   if (!chaosMode && !isRolling && info.offset.x > 100) {
