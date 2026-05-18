@@ -28,7 +28,6 @@ export default function Home() {
     "N", "N", "N",
     "O", "O", "O",
     "P", "P",
-    "Q",
     "R", "R", "R",
     "S", "S", "S",
     "T", "T", "T",
@@ -36,9 +35,9 @@ export default function Home() {
     "V", "V",
     "W",
     "X",
-    "Y",
-    "Z"
+    "IJ",
   ];
+  const rareLetters = ["Q", "X"];
 
   const categoryModes = {
 
@@ -845,11 +844,6 @@ export default function Home() {
 
     }
 
-    const randomCategory =
-      getUniqueCategory(currentLetter);
-
-    setCurrentCategory(randomCategory);
-
     spinInterval.current = setInterval(() => {
 
       const randomLetter =
@@ -877,10 +871,23 @@ export default function Home() {
         tickSound.current.currentTime = 0;
       }
 
+      const shouldUseRareLetter =
+        Math.random() < 0.05;
+
+      const letterPool =
+        shouldUseRareLetter
+          ? rareLetters
+          : letters;
+
       const finalLetter =
-        letters[
-        Math.floor(Math.random() * letters.length)
+        letterPool[
+        Math.floor(Math.random() * letterPool.length)
         ];
+
+      const randomCategory =
+        getUniqueCategory(finalLetter);
+
+      setCurrentCategory(randomCategory);
 
       setDisplayLetter(finalLetter);
 
