@@ -1131,21 +1131,17 @@ export default function Home() {
                 className="mb-6 border-2 border-orange-400/40 rounded-[32px] p-5 backdrop-blur-xl text-center transition-all shadow-[0_0_45px_rgba(251,146,60,0.35)] bg-white/5 cursor-grab active:cursor-grabbing"
               >
 
-                <p className="text-orange-400 text-xs uppercase tracking-[4px] font-black mb-2">
-                  SWIPE
-                </p>
-
                 <div className="flex justify-center items-center text-2xl font-black text-white mb-2">
 
                   <span>
-                    {text[language].point}
+                    <span>
+                      {language === "nl"
+                        ? "SWIPE OM TE SPELEN →"
+                        : "SWIPE TO PLAY →"}
+                    </span>
                   </span>
 
                 </div>
-
-                <p className="text-white/60">
-                  {text[language].swipeInstruction}
-                </p>
 
               </motion.div>
 
