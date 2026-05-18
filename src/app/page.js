@@ -334,7 +334,7 @@ export default function Home() {
   const text = {
 
     nl: {
-      startGame: "START GAME",
+      startGame: "START SPEL",
       category: "CATEGORIE",
       currentPlayer: "HUIDIGE SPELER",
       chaosMode: "CHAOS MODE",
