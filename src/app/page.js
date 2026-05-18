@@ -631,8 +631,7 @@ export default function Home() {
   }
 
   function addPoint(playerIndex = currentPlayer) {
-
-    setTimer(0);
+    setIsRolling(true);
 
     setFeedback(
       chaosMode
@@ -682,9 +681,8 @@ export default function Home() {
   }
 
   function handleTooLate() {
+    setIsRolling(true);
 
-    setTimer(0);
-    
     setFeedback(
       chaosMode
         ? text[language].tooLate
@@ -715,7 +713,7 @@ export default function Home() {
     setTimeout(() => {
 
       setFeedback("");
-
+      setIsRolling(false);
       spinLetter();
 
     }, 600);
