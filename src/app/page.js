@@ -302,6 +302,7 @@ export default function Home() {
   const [chaosMode, setChaosMode] = useState(false);
   const [language, setLanguage] = useState("nl");
   const [introSwipeDone, setIntroSwipeDone] = useState(false);
+  const [introTouched, setIntroTouched] = useState(false);
 
   const translations = {
 
@@ -951,6 +952,18 @@ export default function Home() {
 
               <motion.div
                 drag="x"
+                dragSnapToOrigin
+
+                animate={
+                  !introTouched
+                    ? { x: [-20, 20, -20] }
+                    : {}
+                }
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                }}
+                onDragStart={() => setIntroTouched(true)}
                 dragConstraints={{ left: 0, right: 0 }}
                 onDragEnd={(event, info) => {
 
