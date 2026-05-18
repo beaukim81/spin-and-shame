@@ -520,7 +520,6 @@ export default function Home() {
       fastest: "SNELST!",
       tooLate: "TE LAAT!",
       swipeInstruction: "Swipe naar rechts om te spelen",
-      point: "+1 PUNT →",
     },
 
     en: {
@@ -561,7 +560,6 @@ export default function Home() {
       fastest: "FASTEST!",
       tooLate: "TOO LATE!",
       swipeInstruction: "Swipe to the right to play",
-      point: "+1 POINT →",
     }
 
   };
@@ -701,13 +699,18 @@ export default function Home() {
         category !== lastCategory
     );
 
+    const fallbackPool =
+      categories.filter(
+        (category) =>
+          category !== lastCategory
+      );
+
     const pool =
       availableCategories.length > 0
         ? availableCategories
-        : categories.filter(
-          (category) =>
-            category !== lastCategory
-        );
+        : fallbackPool.length > 0
+          ? fallbackPool
+          : categories;
 
     const selected =
       pool[
@@ -852,9 +855,16 @@ export default function Home() {
 
     spinInterval.current = setInterval(() => {
 
+      const spinningPool = [
+        ...letters,
+        ...rareLetters
+      ];
+
       const randomLetter =
-        letters[
-        Math.floor(Math.random() * letters.length)
+        spinningPool[
+        Math.floor(
+          Math.random() * spinningPool.length
+        )
         ];
 
       setDisplayLetter(randomLetter);
@@ -907,6 +917,7 @@ export default function Home() {
 
     }, 2000);
   }
+
 
   if (winner) {
     return (
