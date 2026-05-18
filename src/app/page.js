@@ -566,11 +566,18 @@ export default function Home() {
   const countdownSound = useRef(null);
 
   const x = useMotionValue(0);
+  const introX = useMotionValue(0);
 
   const isDanger = timer <= 3 && timer > 0;
 
   const background = useTransform(
     x,
+    [-150, 0, 150],
+    ["#ef4444", "#1A2440", "#22c55e"]
+  );
+
+  const introBackground = useTransform(
+    introX,
     [-150, 0, 150],
     ["#ef4444", "#1A2440", "#22c55e"]
   );
@@ -996,6 +1003,10 @@ export default function Home() {
 
               <motion.div
                 drag="x"
+                style={{
+                  x: introX,
+                  backgroundColor: introBackground,
+                }}
                 dragSnapToOrigin
 
                 animate={
@@ -1009,6 +1020,13 @@ export default function Home() {
                 }}
                 onDragStart={() => setIntroTouched(true)}
                 dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.8}
+
+                whileDrag={{
+                  scale: 1.05,
+                  y: -4,
+                }}
+
                 onDragEnd={(event, info) => {
 
                   if (Math.abs(info.offset.x) > 100) {
@@ -1026,7 +1044,7 @@ export default function Home() {
 
                 className={`mb-6 border-2 rounded-[32px] p-5 backdrop-blur-xl text-center transition-all shadow-[0_0_35px_rgba(251,146,60,0.25)] ${introSwipeDone
                   ? "bg-green-500/20 border-green-400"
-                  : "bg-orange-500/10 border-orange-400 animate-pulse"
+                  : "bg-orange-500/10 border-orange-400"
                   }`}
               >
 
