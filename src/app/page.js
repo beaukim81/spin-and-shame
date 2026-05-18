@@ -958,7 +958,7 @@ export default function Home() {
 
       return (
 
-        <main className="min-h-screen bg-black text-white flex items-center justify-center p-6 overflow-hidden">
+        <main className="min-h-screen bg-black text-white flex items-center justify-center p-6 overflow-y-auto">
 
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
 
@@ -1104,7 +1104,7 @@ export default function Home() {
     }
 
     return (
-      <main className="min-h-screen bg-black text-white flex items-center justify-center p-[clamp(16px,4vw,40px)] overflow-hidden relative">
+      <main className="min-h-screen bg-black text-white flex items-center justify-center p-[clamp(16px,4vw,40px)] overflow-y-auto relative">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
 
         <div className="relative z-10 w-full max-w-2xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] shadow-[0_0_60px_rgba(168,85,247,0.15)]">
@@ -1369,13 +1369,13 @@ export default function Home() {
 
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
 
-      <div className="relative z-10 w-full max-w-[900px] xl:max-w-[1200px] px-4">
+      <div className="relative z-10 w-full max-w-[900px] xl:max-w-[1200px] px-4 mx-auto">
 
-        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] min-h-[75vh] flex flex-col justify-between">
+        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] min-h-[65vh] xl:min-h-[75vh] flex flex-col justify-between">
           <div className="xl:grid xl:grid-cols-[420px_1fr] xl:gap-10 xl:items-center">
             <div className="flex justify-center mb-4">
 
-              <motion.div className="relative w-[clamp(230px,46vw,400px)] h-[clamp(230px,46vw,400px)] rounded-full">
+              <motion.div className="relative w-[clamp(200px,42vw,380px)] h-[clamp(200px,42vw,380px)] rounded-full">
 
                 <div className="absolute inset-0 rounded-full border-[5px] border-orange-400" />
 
@@ -1552,7 +1552,7 @@ export default function Home() {
                       duration: 0.6,
                       repeat: isDanger ? Infinity : 0,
                     }}
-                    className={`shrink-0 w-[clamp(120px,18vw,160px)] h-[clamp(120px,18vw,160px)] rounded-full flex items-center justify-center border-[5px] ${isDanger
+                    className={`shrink-0 w-[clamp(95px,16vw,150px)] h-[clamp(95px,16vw,150px)] rounded-full flex items-center justify-center border-[5px] ${isDanger
                       ? "bg-red-500/20 border-red-400 shadow-[0_0_40px_rgba(248,113,113,0.8)]"
                       : "bg-black/40 border-orange-400"
                       }`}
