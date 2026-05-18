@@ -303,6 +303,7 @@ export default function Home() {
   const [language, setLanguage] = useState("nl");
   const [introSwipeDone, setIntroSwipeDone] = useState(false);
   const [introTouched, setIntroTouched] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   const translations = {
 
@@ -583,11 +584,52 @@ export default function Home() {
 
   useEffect(() => {
 
+    const handleVisibility = () => {
+
+      if (document.hidden) {
+
+        setIsPaused(true);
+
+        if (countdownSound.current) {
+          countdownSound.current.pause();
+        }
+
+        if (tickSound.current) {
+          tickSound.current.pause();
+        }
+
+      } else {
+
+        setIsPaused(false);
+
+      }
+
+    };
+
+    document.addEventListener(
+      "visibilitychange",
+      handleVisibility
+    );
+
+    return () => {
+
+      document.removeEventListener(
+        "visibilitychange",
+        handleVisibility
+      );
+
+    };
+
+  }, []);
+
+  useEffect(() => {
+
     if (
       !gameStarted ||
       winner ||
       showScoreboard ||
-      isRolling
+      isRolling ||
+      isPaused
     ) return;
 
     if (
@@ -972,6 +1014,7 @@ export default function Home() {
                     setIntroSwipeDone(true);
 
                     setTimeout(() => {
+                      setIntroTouched(false);
                       setShowIntro(false);
                     }, 300);
 
@@ -1390,21 +1433,25 @@ export default function Home() {
 
               )}
 
-              {feedback && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className={`mb-4 text-center text-2xl font-black py-3 rounded-2xl ${[
-                    text[language].correct,
-                    text[language].fastest
-                  ].includes(feedback)
-                    ? "bg-green-500/20 text-green-400"
-                    : "bg-red-500/20 text-red-400"
-                    }`}
-                >
-                  {feedback}
-                </motion.div>
-              )}
+              <div className="h-[72px] mb-4">
+
+                {feedback && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className={`text-center text-2xl font-black py-3 rounded-2xl ${[
+                      text[language].correct,
+                      text[language].fastest
+                    ].includes(feedback)
+                      ? "bg-green-500/20 text-green-400"
+                      : "bg-red-500/20 text-red-400"
+                      }`}
+                  >
+                    {feedback}
+                  </motion.div>
+                )}
+
+              </div>
 
               <motion.div
                 animate={
