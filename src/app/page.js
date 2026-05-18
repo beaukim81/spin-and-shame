@@ -577,7 +577,7 @@ export default function Home() {
   const introBackground = useTransform(
     introX,
     [-150, 0, 150],
-    ["#f97316", "#1A2440", "#a855f7"]
+    ["#ea580c", "#111827", "#9333ea"]
   );
 
   useEffect(() => {
@@ -1013,7 +1013,6 @@ export default function Home() {
                   x: introX,
                   backgroundColor: introBackground,
                 }}
-                dragSnapToOrigin
                 animate={
                   !introTouched
                     ? { x: [-6, 6, -6] }
@@ -1039,11 +1038,18 @@ export default function Home() {
 
                   if (Math.abs(info.offset.x) > 100) {
 
+                    introX.set(
+                      info.offset.x > 0 ? 600 : -600
+                    );
+
                     setIntroSwipeDone(true);
 
                     setTimeout(() => {
+
                       setIntroTouched(false);
+
                       setShowIntro(false);
+
                     }, 300);
 
                   }
