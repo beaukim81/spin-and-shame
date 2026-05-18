@@ -311,6 +311,7 @@ export default function Home() {
   const spinInterval = useRef(null);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [usedCombinations, setUsedCombinations] = useState([]);
+  const [showPointAnimation, setShowPointAnimation] = useState(false);
 
   const translations = {
 
@@ -742,7 +743,7 @@ export default function Home() {
   }
 
   function addPoint(playerIndex = currentPlayer) {
-
+    setShowPointAnimation(true);
     setFeedback(
       chaosMode
         ? text[language].fastest
@@ -785,7 +786,7 @@ export default function Home() {
     setTimeout(() => {
 
       setFeedback("");
-
+      setShowPointAnimation(false);
       spinLetter();
 
     }, 600);
@@ -1073,7 +1074,14 @@ export default function Home() {
                 }}
                 animate={
                   !introTouched
-                    ? { x: [-6, 6, -6] }
+                    ? {
+                      x: [-6, 6, -6],
+                      boxShadow: [
+                        "0 0 25px rgba(251,146,60,0.15)",
+                        "0 0 45px rgba(251,146,60,0.35)",
+                        "0 0 25px rgba(251,146,60,0.15)",
+                      ],
+                    }
                     : {}
                 }
 
@@ -1419,6 +1427,35 @@ export default function Home() {
       <div className="relative z-10 w-full max-w-[900px] xl:max-w-[1200px] px-4 mx-auto">
 
         <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] min-h-[65vh] xl:min-h-[75vh] flex flex-col justify-between">
+          {showPointAnimation && !chaosMode && (
+
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: 0.5,
+                y: 40,
+              }}
+              animate={{
+                opacity: [0, 1, 1, 0],
+                scale: [0.5, 1.3, 1.2],
+                y: [40, -40, -90],
+              }}
+              transition={{
+                duration: 0.9,
+                ease: "easeOut",
+              }}
+              className="absolute inset-0 flex items-center justify-center pointer-events-none z-50"
+            >
+
+              <div className="text-[clamp(5rem,18vw,10rem)] font-black text-green-400 drop-shadow-[0_0_35px_rgba(74,222,128,0.9)]">
+
+                +1
+
+              </div>
+
+            </motion.div>
+
+          )}
           <div className="xl:grid xl:grid-cols-[420px_1fr] xl:gap-10 xl:items-center">
             <div className="flex justify-center mb-4">
 
