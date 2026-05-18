@@ -1504,17 +1504,34 @@ export default function Home() {
                 scale: 1.05,
                 y: -4,
               }}
+
               onDragEnd={(event, info) => {
 
                 if (isRolling || feedback) return;
 
+                if (info.offset.x < 0) {
+
+                  animate(x, 0, {
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 25,
+                  });
+
+                  return;
+                }
+
                 if (!chaosMode && !isRolling && info.offset.x > 100) {
+
                   setTimeout(() => {
+
                     addPoint();
+
                   }, 50);
+
                 }
 
               }}
+              
               className={`rounded-3xl p-5 border border-white/10 backdrop-blur-xl ${!chaosMode
                 ? "cursor-grab active:cursor-grabbing"
                 : ""
