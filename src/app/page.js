@@ -632,6 +632,8 @@ export default function Home() {
 
   function addPoint(playerIndex = currentPlayer) {
 
+    setTimer(0);
+
     setFeedback(
       chaosMode
         ? text[language].fastest
@@ -681,6 +683,8 @@ export default function Home() {
 
   function handleTooLate() {
 
+    setTimer(0);
+    
     setFeedback(
       chaosMode
         ? text[language].tooLate
