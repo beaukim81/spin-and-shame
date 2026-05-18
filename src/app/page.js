@@ -1026,15 +1026,6 @@ export default function Home() {
                   ease: "easeInOut",
                 }}
 
-                animate={
-                  !introTouched
-                    ? { x: [[-10, 10, -10]] }
-                    : {}
-                }
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                }}
                 onDragStart={() => setIntroTouched(true)}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.8}
@@ -1073,7 +1064,7 @@ export default function Home() {
                   </span>
 
                   <span>
-                    +1 CORRECT →
+                    +1 PUNT →
                   </span>
 
                 </div>
