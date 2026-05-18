@@ -1426,7 +1426,7 @@ export default function Home() {
 
       <div className="relative z-10 w-full max-w-[900px] xl:max-w-[1200px] px-4 mx-auto">
 
-        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] min-h-[65vh] xl:min-h-[75vh] flex flex-col justify-between">
+        <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] min-h-[65vh] xl:min-h-[75vh] flex flex-col justify-between">
           {showPointAnimation && !chaosMode && (
 
             <motion.div
