@@ -580,7 +580,7 @@ export default function Home() {
   const background = useTransform(
     x,
     [-150, 0, 150],
-    ["#ef4444", "#1A2440", "#22c55e"]
+    ["#1A2440", "#1A2440", "#22c55e"]
   );
 
   const introBackground = useTransform(
@@ -1531,7 +1531,7 @@ export default function Home() {
                 }
 
               }}
-              
+
               className={`rounded-3xl p-5 border border-white/10 backdrop-blur-xl ${!chaosMode
                 ? "cursor-grab active:cursor-grabbing"
                 : ""
