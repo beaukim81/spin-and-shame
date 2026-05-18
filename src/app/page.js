@@ -1468,10 +1468,14 @@ export default function Home() {
 
               {!chaosMode && (
 
-                <div className="flex justify-center text-xs font-black uppercase tracking-widest mb-3 px-2">
+                <div className="flex justify-center mb-3">
 
-                  <span className="text-green-400/70">
-                    +1 →
+                  <span className="text-orange-400 text-xs uppercase tracking-[4px] font-black">
+
+                    {language === "nl"
+                      ? "SWIPE VOOR 1 PUNT →"
+                      : "SWIPE FOR 1 POINT →"}
+
                   </span>
 
                 </div>
