@@ -1120,7 +1120,7 @@ export default function Home() {
 
                 }}
 
-                className="mb-6 border border-white/10 rounded-[32px] p-5 backdrop-blur-xl text-center transition-all shadow-[0_0_35px_rgba(251,146,60,0.25)] cursor-grab active:cursor-grabbing"
+                className="mb-6 border-2 border-orange-400/40 rounded-[32px] p-5 backdrop-blur-xl text-center transition-all shadow-[0_0_45px_rgba(251,146,60,0.35)] bg-white/5 cursor-grab active:cursor-grabbing"
               >
 
                 <p className="text-orange-400 text-xs uppercase tracking-[4px] font-black mb-2">
