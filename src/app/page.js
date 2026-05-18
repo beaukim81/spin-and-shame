@@ -994,7 +994,7 @@ export default function Home() {
 
       return (
 
-        <main className="min-h-screen bg-black text-white flex items-center justify-center p-6 overflow-y-auto">
+        <main className="min-h-screen bg-black text-white select-none touch-manipulation flex items-center justify-center p-6 overflow-y-auto">
 
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
 
@@ -1155,7 +1155,7 @@ export default function Home() {
     }
 
     return (
-      <main className="min-h-screen bg-black text-white flex items-center justify-center p-[clamp(16px,4vw,40px)] overflow-y-auto relative">
+      <main className="min-h-screen bg-black text-white select-none touch-manipulation flex items-center justify-center p-[clamp(16px,4vw,40px)] overflow-y-auto relative">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
 
         <div className="relative z-10 w-full max-w-2xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] shadow-[0_0_60px_rgba(168,85,247,0.15)]">
@@ -1416,7 +1416,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-3 relative overflow-y-auto">
+    <main className="min-h-screen bg-black text-white select-none touch-manipulation flex flex-col items-center justify-center p-3 relative overflow-y-auto">
 
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
 
