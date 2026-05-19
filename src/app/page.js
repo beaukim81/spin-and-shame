@@ -1123,7 +1123,7 @@ export default function Home() {
 
                 onDragEnd={(event, info) => {
 
-                  if (info.offset.x > 100) {
+                  if (info.offset.x > 70) {
 
                     animate(
                       introX,
@@ -1245,6 +1245,21 @@ export default function Home() {
           </div>
 
           <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
+            <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
+
+              <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-2">
+                {language === "nl"
+                  ? "WIN CONDITIE"
+                  : "WIN CONDITION"}
+              </p>
+
+              <h3 className="text-white font-black text-xl">
+                {language === "nl"
+                  ? "Eerste speler met 10 punten wint"
+                  : "First player to 10 points wins"}
+              </h3>
+
+            </div>
 
             <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
               {text[language].timer}
@@ -1553,7 +1568,7 @@ export default function Home() {
               }}
               dragConstraints={{
                 left: 0,
-                right: 0,
+                right: 220,
               }}
               dragElastic={0.18}
               whileDrag={{
