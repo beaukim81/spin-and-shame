@@ -790,11 +790,12 @@ export default function Home() {
       return;
     }
 
+    spinLetter();
+
     setTimeout(() => {
 
       setFeedback("");
       setShowPointAnimation(false);
-      spinLetter();
 
     }, 600);
   }
@@ -828,11 +829,11 @@ export default function Home() {
       setScores(updatedScores);
     }
 
+    spinLetter();
+
     setTimeout(() => {
 
       setFeedback("");
-
-      spinLetter();
 
     }, 600);
   }
