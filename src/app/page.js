@@ -1463,13 +1463,13 @@ export default function Home() {
       <div className="relative z-10 w-full max-w-[900px] xl:max-w-[1200px] px-4 mx-auto">
 
         <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] min-h-[65vh] xl:min-h-[75vh] flex flex-col justify-between">
-          <div className="absolute top-4 right-4 z-40">
+          <div className="fixed top-5 right-5 z-50">
 
             <button
               onClick={() =>
                 setShowLiveScore(true)
               }
-              className="bg-white/10 border border-white/10 backdrop-blur-xl rounded-2xl px-4 py-2 text-white/80 text-sm font-black tracking-[2px] hover:bg-white/15 transition-all"
+              className="bg-white/10 border border-white/10 backdrop-blur-xl rounded-xl px-3 py-1.5 text-white/80 text-xs font-black tracking-[2px] hover:bg-white/15 transition-all"
             >
               🏆 SCORE
             </button>
