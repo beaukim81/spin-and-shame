@@ -309,7 +309,7 @@ export default function Home() {
   const [usedCombinations, setUsedCombinations] = useState([]);
   const [lastCategory, setLastCategory] = useState("");
   const [showPointAnimation, setShowPointAnimation] = useState(false);
-  const [showLiveScore, setShowLiveScore] = useState(false);
+  const [showRoundScore, setShowRoundScore] = useState(false);
 
   const translations = {
 
@@ -733,917 +733,410 @@ export default function Home() {
 
     if (nextPlayer >= players.length) {
 
-      setShowScoreboard(true);
+      setShowRoundScore(true);
 
-    } else {
+      setTimeout(() => {
 
-      setCurrentCategory(randomCategory);
+        setShowRoundScore(false);
 
-      setCurrentPlayer(nextPlayer);
+        setCurrentPlayer(0);
 
-      setTimer(gameTime);
+        setTimer(0);
 
-      x.set(0);
+        spinLetter();
 
-    }
-
-  }
-
-  function addPoint(playerIndex = currentPlayer) {
-    setShowPointAnimation(true);
-    setFeedback(
-      chaosMode
-        ? text[language].fastest
-        : text[language].correct
-    );
-
-    if (countdownSound.current) {
-      countdownSound.current.pause();
-      countdownSound.current.currentTime = 0;
-    }
-
-    if (soundEnabled && correctSound.current) {
-
-      correctSound.current.currentTime = 0;
-
-      correctSound.current.play().catch(() => { });
-
-    }
-
-    const updatedScores = [...scores];
-
-    updatedScores[playerIndex] += 1;
-
-    setScores(updatedScores);
-
-    if (updatedScores[playerIndex] >= 10) {
-
-      if (soundEnabled && winSound.current) {
-
-        winSound.current.currentTime = 0;
-
-        winSound.current.play().catch(() => { });
-      }
-
-      setWinner(players[playerIndex]);
+      }, 2000);
 
       return;
-    }
-    animate(x, 0, {
-      type: "spring",
-      stiffness: 400,
-      damping: 28,
-    });
-    spinLetter();
-
-    setTimeout(() => {
-
-      setFeedback("");
-      setShowPointAnimation(false);
-
-    }, 600);
-  }
-
-  function handleTooLate() {
-
-    setFeedback(
-      chaosMode
-        ? text[language].tooLate
-        : text[language].skip
-    );
-
-    if (countdownSound.current) {
-      countdownSound.current.pause();
-      countdownSound.current.currentTime = 0;
-    }
-
-    if (soundEnabled && wrongSound.current) {
-
-      wrongSound.current.currentTime = 0;
-
-      wrongSound.current.play().catch(() => { });
-    }
-
-    if (competitiveMode) {
-
-      const updatedScores = [...scores];
-
-      updatedScores[currentPlayer] -= 1;
-
-      setScores(updatedScores);
-    }
-    animate(x, 0, {
-      type: "spring",
-      stiffness: 400,
-      damping: 28,
-    });
-    spinLetter();
-
-    setTimeout(() => {
-
-      setFeedback("");
-
-    }, 600);
-  }
-
-  function spinLetter() {
-    setIsRolling(true);
-
-    setTimer(0);
-
-    if (!chaosMode) {
-
-      setCurrentPlayer((prev) =>
-        prev + 1 >= players.filter(player => player.trim() !== "").length
-          ? 0
-          : prev + 1
-      );
 
     }
-
-    spinInterval.current = setInterval(() => {
-
-      const spinningPool = [
-        ...letters,
-        ...rareLetters
-      ];
-
-      const randomLetter =
-        spinningPool[
-        Math.floor(
-          Math.random() * spinningPool.length
-        )
-        ];
-
-      setDisplayLetter(randomLetter);
-      if (
-        soundEnabled &&
-        tickSound.current &&
-        tickSound.current.paused
-      ) {
-        tickSound.current.play().catch(() => { });
-      }
-
-    }, 160);
-    const shouldUseRareLetter =
-      Math.random() < 0.05;
-
-    const letterPool =
-      shouldUseRareLetter
-        ? rareLetters
-        : letters;
-
-    const finalLetter =
-      letterPool[
-      Math.floor(Math.random() * letterPool.length)
-      ];
-
-    const randomCategory =
-      getUniqueCategory(finalLetter);
 
     setCurrentCategory(randomCategory);
 
-    setTimeout(() => {
+    setCurrentPlayer(nextPlayer);
 
-      clearInterval(spinInterval.current);
+    setTimer(gameTime);
 
-      if (tickSound.current) {
-        tickSound.current.pause();
-        tickSound.current.currentTime = 0;
-      }
+    x.set(0);
 
-      setDisplayLetter(finalLetter);
-
-      setCurrentLetter(finalLetter);
-
-      setTimer(gameTime);
-
-      x.set(0);
-
-      setIsRolling(false);
-
-    }, 2000);
   }
 
+function addPoint(playerIndex = currentPlayer) {
+  setShowPointAnimation(true);
+  setFeedback(
+    chaosMode
+      ? text[language].fastest
+      : text[language].correct
+  );
 
-  if (winner) {
-    return (
-      <>
-        <Confetti
-          recycle={false}
-          numberOfPieces={400}
-        />
-
-        <main className="min-h-screen bg-[#0B1020] overflow-y-auto text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
-
-          <div className="w-full max-w-2xl bg-white/5 backdrop-blur-xl rounded-[32px] p-8 shadow-2xl border border-pink-500/30 text-center">
-
-            <p className="text-6xl mb-4">🏆</p>
-
-            <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
-
-              <p className="text-orange-400 text-xs uppercase tracking-[4px] font-black mb-3">
-                {text[language].winner}
-              </p>
-
-              <motion.h1
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: "spring", stiffness: 120 }}
-                className="text-[clamp(2.2rem,6vw,4.5rem)] font-black leading-tight text-white"
-              >
-                {winner}
-                <br />
-                {text[language].hasWon}
-              </motion.h1>
-
-            </div>
-
-            <button
-              onClick={() => window.location.reload()}
-              className="w-full bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-2xl"
-            >
-              {text[language].playAgain}
-            </button>
-
-          </div>
-
-        </main>
-      </>
-    );
+  if (countdownSound.current) {
+    countdownSound.current.pause();
+    countdownSound.current.currentTime = 0;
   }
 
-  if (showScoreboard) {
+  if (soundEnabled && correctSound.current) {
 
-    return (
-      <main className="min-h-screen overflow-y-auto bg-black text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
+    correctSound.current.currentTime = 0;
 
-        <div className="relative z-10 w-full max-w-2xl backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-6">
+    correctSound.current.play().catch(() => { });
 
-          <div className="space-y-3">
-            {players.map((player, index) => (
-              <div
-                key={player}
-                className="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-[clamp(16px,4vw,40px)]"
-              >
-                <h2 className="text-xl font-semibold uppercase text-white">
-                  {player}
-                </h2>
-
-                <div className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-pink-500 text-transparent bg-clip-text">
-                  {scores[index]}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <button
-            onClick={() => {
-
-              setShowScoreboard(false);
-
-              setCurrentPlayer(0);
-
-              setTimer(0);
-
-              spinLetter();
-
-            }}
-            className="w-full mt-6 bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 text-white font-black text-xl py-4 rounded-2xl"
-          >
-            {text[language].nextRound}
-          </button>
-
-        </div>
-      </main>
-    );
   }
 
-  if (!gameStarted) {
+  const updatedScores = [...scores];
 
-    if (showIntro) {
+  updatedScores[playerIndex] += 1;
 
-      return (
+  setScores(updatedScores);
 
-        <main className="min-h-screen bg-black text-white select-none touch-manipulation flex items-center justify-center p-6 overflow-y-auto">
+  if (updatedScores[playerIndex] >= 10) {
 
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
+    if (soundEnabled && winSound.current) {
 
-          <div className="relative z-10 w-full max-w-2xl text-center">
+      winSound.current.currentTime = 0;
 
-            <div className="flex justify-center items-center gap-3 mb-6">
-
-              <button
-                onClick={() => setLanguage("nl")}
-                className={`px-4 py-2 rounded-2xl font-black border transition-all ${language === "nl"
-                  ? "bg-orange-500/20 border-orange-400 text-white"
-                  : "bg-white/5 border-white/10 text-white/70"
-                  }`}
-              >
-                NL
-              </button>
-
-              <button
-                onClick={() => setLanguage("en")}
-                className={`px-4 py-2 rounded-2xl font-black border transition-all ${language === "en"
-                  ? "bg-orange-500/20 border-orange-400 text-white"
-                  : "bg-white/5 border-white/10 text-white/70"
-                  }`}
-              >
-                EN
-              </button>
-
-              <button
-                onClick={() => setSoundEnabled(!soundEnabled)}
-                className={`px-4 h-12 rounded-2xl border backdrop-blur-xl flex items-center gap-2 text-sm font-black tracking-[1px] transition-all ${soundEnabled
-                  ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_20px_rgba(251,146,60,0.25)]"
-                  : "bg-white/5 border-white/10 text-white/50"
-                  }`}
-              >
-                <span>
-                  {soundEnabled ? "🔊" : "🔇"}
-                </span>
-
-                <span>
-                  SOUND
-                </span>
-              </button>
-
-            </div>
-
-            <div className="flex justify-center mb-6">
-
-              <Image
-                src="/logo.png"
-                width={420}
-                height={220}
-                alt="Spin & Shame"
-                priority
-              />
-
-            </div>
-
-            <div className="space-y-5 mb-6">
-
-              <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl">
-
-                <p className="text-orange-400 text-xs uppercase tracking-[4px] font-black mb-3">
-                  {text[language].howItWorks}
-                </p>
-
-                <h2 className="text-[clamp(1.8rem,5vw,3.2rem)] font-black leading-tight text-white">
-                  {text[language].introTitle}
-                </h2>
-
-              </div>
-
-              <motion.div
-                drag="x"
-                style={{
-                  x: introX,
-                  backgroundColor: introBackground,
-                }}
-                animate={
-                  !introTouched
-                    ? {
-                      x: [-6, 6, -6],
-                      boxShadow: [
-                        "0 0 25px rgba(251,146,60,0.15)",
-                        "0 0 45px rgba(251,146,60,0.35)",
-                        "0 0 25px rgba(251,146,60,0.15)",
-                      ],
-                    }
-                    : {}
-                }
-
-                transition={{
-                  duration: 2.4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-
-                onDragStart={() => setIntroTouched(true)}
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.8}
-
-                whileDrag={{
-                  scale: 1.05,
-                  y: -4,
-                }}
-
-                onDragEnd={(event, info) => {
-
-                  if (info.offset.x > 70) {
-
-                    animate(
-                      introX,
-                      600,
-                      {
-                        type: "spring",
-                        stiffness: 120,
-                        damping: 18,
-                      }
-                    );
-
-                    setIntroSwipeDone(true);
-
-                    setTimeout(() => {
-
-                      setIntroTouched(false);
-
-                      setShowIntro(false);
-
-                    }, 300);
-
-                  }
-
-                }}
-
-                className="mb-6 border-2 border-orange-400/40 rounded-[32px] p-5 backdrop-blur-xl text-center transition-all shadow-[0_0_45px_rgba(251,146,60,0.35)] bg-white/5 cursor-grab active:cursor-grabbing"
-              >
-
-                <div className="flex justify-center items-center text-orange-400 text-xs uppercase tracking-[2px] font-black">
-
-                  <span>
-                    <span>
-                      {language === "nl"
-                        ? "SWIPE OM TE SPELEN ➜"
-                        : "SWIPE TO PLAY ➜"}
-                    </span>
-                  </span>
-
-                </div>
-
-              </motion.div>
-
-            </div>
-
-          </div>
-
-        </main >
-
-      );
+      winSound.current.play().catch(() => { });
     }
 
-    return (
-      <main className="min-h-screen bg-black text-white select-none touch-manipulation flex items-center justify-center p-[clamp(16px,4vw,40px)] overflow-y-auto relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
+    setWinner(players[playerIndex]);
 
-        <div className="relative z-10 w-full max-w-2xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] shadow-[0_0_60px_rgba(168,85,247,0.15)]">
+    return;
+  }
+  animate(x, 0, {
+    type: "spring",
+    stiffness: 400,
+    damping: 28,
+  });
+  spinLetter();
 
-          <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
-            {text[language].gameMode}
-          </p>
+  setTimeout(() => {
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+    setFeedback("");
+    setShowPointAnimation(false);
 
-            <button
-              onClick={() => setSelectedMode("family")}
-              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "family"
-                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                : "bg-white/5 border-white/10 text-white/70 hover:text-white"
-                }`}
-            >
-              {text[language].familyMode}
-            </button>
+  }, 600);
+}
 
-            <button
-              onClick={() => setSelectedMode("kids")}
-              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "kids"
-                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
-            >
-              {text[language].kidsMode}
-            </button>
+function handleTooLate() {
 
-            <button
-              onClick={() => setSelectedMode("couples")}
-              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "couples"
-                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
-            >
-              {text[language].couplesMode}
-            </button>
+  setFeedback(
+    chaosMode
+      ? text[language].tooLate
+      : text[language].skip
+  );
 
-            <button
-              onClick={() => setSelectedMode("adult")}
-              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "adult"
-                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
-            >
-              {text[language].adultMode}
-            </button>
+  if (countdownSound.current) {
+    countdownSound.current.pause();
+    countdownSound.current.currentTime = 0;
+  }
 
-            <button
-              onClick={() => setSelectedMode("genz")}
-              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "genz"
-                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
-            >
-              {text[language].genzMode}
-            </button>
+  if (soundEnabled && wrongSound.current) {
 
-            <button
-              onClick={() => setSelectedMode("popculture")}
-              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "popculture"
-                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
-            >
-              {text[language].popcultureMode}
-            </button>
+    wrongSound.current.currentTime = 0;
 
-          </div>
+    wrongSound.current.play().catch(() => { });
+  }
+
+  if (competitiveMode) {
+
+    const updatedScores = [...scores];
+
+    updatedScores[currentPlayer] -= 1;
+
+    setScores(updatedScores);
+  }
+  animate(x, 0, {
+    type: "spring",
+    stiffness: 400,
+    damping: 28,
+  });
+  spinLetter();
+
+  setTimeout(() => {
+
+    setFeedback("");
+
+  }, 600);
+}
+
+function spinLetter() {
+  setIsRolling(true);
+
+  setTimer(0);
+
+  if (!chaosMode) {
+
+    setCurrentPlayer((prev) =>
+      prev + 1 >= players.filter(player => player.trim() !== "").length
+        ? 0
+        : prev + 1
+    );
+
+  }
+
+  spinInterval.current = setInterval(() => {
+
+    const spinningPool = [
+      ...letters,
+      ...rareLetters
+    ];
+
+    const randomLetter =
+      spinningPool[
+      Math.floor(
+        Math.random() * spinningPool.length
+      )
+      ];
+
+    setDisplayLetter(randomLetter);
+    if (
+      soundEnabled &&
+      tickSound.current &&
+      tickSound.current.paused
+    ) {
+      tickSound.current.play().catch(() => { });
+    }
+
+  }, 160);
+  const shouldUseRareLetter =
+    Math.random() < 0.05;
+
+  const letterPool =
+    shouldUseRareLetter
+      ? rareLetters
+      : letters;
+
+  const finalLetter =
+    letterPool[
+    Math.floor(Math.random() * letterPool.length)
+    ];
+
+  const randomCategory =
+    getUniqueCategory(finalLetter);
+
+  setCurrentCategory(randomCategory);
+
+  setTimeout(() => {
+
+    clearInterval(spinInterval.current);
+
+    if (tickSound.current) {
+      tickSound.current.pause();
+      tickSound.current.currentTime = 0;
+    }
+
+    setDisplayLetter(finalLetter);
+
+    setCurrentLetter(finalLetter);
+
+    setTimer(gameTime);
+
+    x.set(0);
+
+    setIsRolling(false);
+
+  }, 2000);
+}
+
+
+if (winner) {
+  return (
+    <>
+      <Confetti
+        recycle={false}
+        numberOfPieces={400}
+      />
+
+      <main className="min-h-screen bg-[#0B1020] overflow-y-auto text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
+
+        <div className="w-full max-w-2xl bg-white/5 backdrop-blur-xl rounded-[32px] p-8 shadow-2xl border border-pink-500/30 text-center">
+
+          <p className="text-6xl mb-4">🏆</p>
 
           <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
-            <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
-              <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-2">
-                {language === "nl"
-                  ? "WIN CONDITIE"
-                  : "WIN CONDITION"}
-              </p>
-
-              <h3 className="text-white/70 font-medium text-base">
-                {language === "nl"
-                  ? "Eerste speler met 10 punten wint"
-                  : "First player to 10 points wins"}
-              </h3>
-
-            </div>
-
-            <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
-              {text[language].timer}
+            <p className="text-orange-400 text-xs uppercase tracking-[4px] font-black mb-3">
+              {text[language].winner}
             </p>
 
-            <div className="grid grid-cols-4 gap-3">
-
-              {[5, 10, 15, 20].map((time) => (
-
-                <button
-                  key={time}
-                  onClick={() => setGameTime(time)}
-                  className={`rounded-3xl p-3 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${gameTime === time
-                    ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                    : "bg-white/5 border-white/10 text-white/70 hover:text-white"
-                    }`}
-                >
-                  {time}s
-                </button>
-
-              ))}
-
-            </div>
-
-          </div>
-
-          <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
-
-            <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
-              {text[language].extraMode}
-            </p>
-
-            <button
-              onClick={() => {
-
-                setCompetitiveMode(!competitiveMode);
-
-                if (!competitiveMode) {
-                  setChaosMode(false);
-                }
-
-              }}
-              className={`w-full rounded-3xl p-5 border transition-all text-left ${competitiveMode
-                ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
-                : "bg-white/5 border-white/10"
-                }`}
+            <motion.h1
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 120 }}
+              className="text-[clamp(2.2rem,6vw,4.5rem)] font-black leading-tight text-white"
             >
-
-              <div className="flex items-center justify-between">
-
-                <div>
-
-                  <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
-                    {text[language].hardcoreMode}
-                  </h3>
-
-                  <p className="text-white/60 mt-1">
-                    {text[language].hardcoreDescription}
-                  </p>
-
-                </div>
-
-                <div
-                  className={`w-5 h-5 rounded-full ${competitiveMode
-                    ? "bg-purple-400"
-                    : "bg-white/20"
-                    }`}
-                />
-
-              </div>
-
-            </button>
-
-            <button
-              onClick={() => {
-
-                setChaosMode(!chaosMode);
-
-                if (!chaosMode) {
-                  setCompetitiveMode(false);
-                }
-
-              }}
-              className={`w-full rounded-3xl p-5 border transition-all text-left mt-4 ${chaosMode
-                ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
-                : "bg-white/5 border-white/10"
-                }`}
-            >
-
-              <div className="flex items-center justify-between">
-
-                <div>
-
-                  <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
-                    {text[language].chaosMode}
-                  </h3>
-
-                  <p className="text-white/60 mt-1">
-                    {text[language].chaosDescription}
-                  </p>
-
-                </div>
-
-                <div
-                  className={`w-5 h-5 rounded-full ${chaosMode
-                    ? "bg-purple-400"
-                    : "bg-white/20"
-                    }`}
-                />
-
-              </div>
-
-            </button>
+              {winner}
+              <br />
+              {text[language].hasWon}
+            </motion.h1>
 
           </div>
-          <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
-
-            <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
-              {text[language].players}
-            </p>
-
-            <div className="space-y-4">
-              {players.map((player, index) => (
-                <input
-                  key={index}
-                  value={player}
-                  placeholder={`${text[language].player} ${index + 1}`}
-                  onChange={(e) => {
-
-                    const updatedPlayers = [...players];
-
-                    updatedPlayers[index] = e.target.value;
-
-                    if (
-                      index === players.length - 1 &&
-                      e.target.value.trim() !== "" &&
-                      updatedPlayers.filter(
-                        p => p.trim() !== ""
-                      ).length < 8
-                    ) {
-                      updatedPlayers.push("");
-                    }
-
-                    setPlayers(updatedPlayers);
-
-                  }}
-                  className="w-full bg-orange-500/10 border border-orange-400/20 rounded-3xl px-4 py-3 text-white placeholder:text-white/30"
-                />
-              ))}
-            </div>
-            <p className="text-sm text-white/40 mt-4 leading-relaxed">
-              {text[language].maxPlayers}
-            </p>
-          </div>
-
 
           <button
-            disabled={
-              players.filter(player => player.trim() !== "").length === 0
-            }
-            onClick={() => {
-
-              const filteredPlayers = players.filter(
-                (player) => player.trim() !== ""
-              );
-
-              setPlayers(filteredPlayers);
-
-              setScores(
-                new Array(filteredPlayers.length).fill(0)
-              );
-
-              setTimer(0);
-
-              setGameStarted(true);
-
-              if (!chaosMode) {
-                setCurrentPlayer(-1);
-              }
-
-              spinLetter();
-
-            }}
-            className="w-full mt-8 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-3xl disabled:opacity-40 disabled:cursor-not-allowed"
+            onClick={() => window.location.reload()}
+            className="w-full bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-2xl"
           >
-            {text[language].startGame}
+            {text[language].playAgain}
           </button>
 
         </div>
+
       </main>
-    );
-  }
+    </>
+  );
+}
+
+if (showScoreboard) {
 
   return (
-    <main className="min-h-screen bg-black text-white select-none touch-manipulation flex flex-col items-center justify-center p-3 relative overflow-y-auto">
+    <main className="min-h-screen overflow-y-auto bg-black text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
-      <div className="fixed top-5 right-5 z-50">
+      <div className="relative z-10 w-full max-w-2xl backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-6">
+
+        <div className="space-y-3">
+          {players.map((player, index) => (
+            <div
+              key={player}
+              className="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-[clamp(16px,4vw,40px)]"
+            >
+              <h2 className="text-xl font-semibold uppercase text-white">
+                {player}
+              </h2>
+
+              <div className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-pink-500 text-transparent bg-clip-text">
+                {scores[index]}
+              </div>
+            </div>
+          ))}
+        </div>
 
         <button
-          onClick={() =>
-            setShowLiveScore(true)
-          }
-          className="..."
+          onClick={() => {
+
+            setShowScoreboard(false);
+
+            setCurrentPlayer(0);
+
+            setTimer(0);
+
+            spinLetter();
+
+          }}
+          className="w-full mt-6 bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 text-white font-black text-xl py-4 rounded-2xl"
         >
-          🏆 SCORE
+          {text[language].nextRound}
         </button>
 
       </div>
-      <div className="relative z-10 w-full max-w-[900px] xl:max-w-[1200px] px-4 mx-auto">
+    </main>
+  );
+}
 
-        <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] min-h-[65vh] xl:min-h-[75vh] flex flex-col justify-between">
+if (!gameStarted) {
 
-          {showLiveScore && (
+  if (showIntro) {
 
-            <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md rounded-[36px]">
+    return (
 
-              <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-[32px] p-6">
+      <main className="min-h-screen bg-black text-white select-none touch-manipulation flex items-center justify-center p-6 overflow-y-auto">
 
-                <div className="flex items-center justify-between mb-6">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
 
-                  <h2 className="text-white text-2xl font-black">
-                    🏆 SCORE
-                  </h2>
+        <div className="relative z-10 w-full max-w-2xl text-center">
 
-                  <button
-                    onClick={() =>
-                      setShowLiveScore(false)
-                    }
-                    className="text-white/50 text-xl"
-                  >
-                    ✕
-                  </button>
+          <div className="flex justify-center items-center gap-3 mb-6">
 
-                </div>
+            <button
+              onClick={() => setLanguage("nl")}
+              className={`px-4 py-2 rounded-2xl font-black border transition-all ${language === "nl"
+                ? "bg-orange-500/20 border-orange-400 text-white"
+                : "bg-white/5 border-white/10 text-white/70"
+                }`}
+            >
+              NL
+            </button>
 
-                <div className="space-y-3">
+            <button
+              onClick={() => setLanguage("en")}
+              className={`px-4 py-2 rounded-2xl font-black border transition-all ${language === "en"
+                ? "bg-orange-500/20 border-orange-400 text-white"
+                : "bg-white/5 border-white/10 text-white/70"
+                }`}
+            >
+              EN
+            </button>
 
-                  {players.map((player, index) => (
+            <button
+              onClick={() => setSoundEnabled(!soundEnabled)}
+              className={`px-4 h-12 rounded-2xl border backdrop-blur-xl flex items-center gap-2 text-sm font-black tracking-[1px] transition-all ${soundEnabled
+                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_20px_rgba(251,146,60,0.25)]"
+                : "bg-white/5 border-white/10 text-white/50"
+                }`}
+            >
+              <span>
+                {soundEnabled ? "🔊" : "🔇"}
+              </span>
 
-                    <div
-                      key={index}
-                      className="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-4"
-                    >
+              <span>
+                SOUND
+              </span>
+            </button>
 
-                      <span className="text-white font-bold uppercase">
-                        {player}
-                      </span>
+          </div>
 
-                      <span className="text-orange-400 text-2xl font-black">
-                        {scores[index]}
-                      </span>
+          <div className="flex justify-center mb-6">
 
-                    </div>
+            <Image
+              src="/logo.png"
+              width={420}
+              height={220}
+              alt="Spin & Shame"
+              priority
+            />
 
-                  ))}
+          </div>
 
-                </div>
+          <div className="space-y-5 mb-6">
 
-              </div>
+            <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl">
+
+              <p className="text-orange-400 text-xs uppercase tracking-[4px] font-black mb-3">
+                {text[language].howItWorks}
+              </p>
+
+              <h2 className="text-[clamp(1.8rem,5vw,3.2rem)] font-black leading-tight text-white">
+                {text[language].introTitle}
+              </h2>
 
             </div>
 
-          )}
-          {showPointAnimation && (
-
             <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0.5,
-                y: 40,
+              drag="x"
+              style={{
+                x: introX,
+                backgroundColor: introBackground,
               }}
               animate={{
-                opacity: [0, 1, 1, 0],
-                scale: [0.5, 1.3, 1.2],
-                y: [40, -40, -90],
+                boxShadow: [
+                  "0 0 25px rgba(251,146,60,0.15)",
+                  "0 0 45px rgba(251,146,60,0.35)",
+                  "0 0 25px rgba(251,146,60,0.15)",
+                ],
               }}
+
               transition={{
-                duration: 0.9,
-                ease: "easeOut",
-              }}
-              className="absolute inset-0 flex items-center justify-center pointer-events-none z-50"
-            >
-
-              <div className="text-[clamp(5rem,18vw,10rem)] font-black text-green-400 drop-shadow-[0_0_35px_rgba(74,222,128,0.9)]">
-
-                +1
-
-              </div>
-
-            </motion.div>
-
-          )}
-          <div className="xl:grid xl:grid-cols-[420px_1fr] xl:gap-10 xl:items-center">
-            <div className="flex justify-center mb-4">
-
-              <motion.div className="relative w-[clamp(200px,42vw,380px)] h-[clamp(200px,42vw,380px)] rounded-full">
-
-                <div className="absolute inset-0 rounded-full border-[5px] border-orange-400" />
-
-                <div className="absolute inset-[clamp(24px,5vw,40px)] rounded-full bg-black flex items-center justify-center border border-white/10">
-
-                  <div className="text-center">
-
-                    <p className="text-orange-400 text-xs font-bold mb-2 tracking-[3px] uppercase">
-                      {text[language].currentLetterLabel}
-                    </p>
-
-                    <motion.h2
-                      key={displayLetter}
-                      initial={{ scale: 0.6, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      className="text-[clamp(6rem,18vw,11rem)] font-black text-white leading-none"
-                    >
-                      {displayLetter}
-                    </motion.h2>
-
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            <div className="flex flex-col justify-center h-full">
-
-              <motion.div
-                key={currentCategory}
-
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] mb-8"
-              >
-                <p className="text-orange-400 text-sm font-black tracking-widest mb-3">
-                  {text[language].category}
-                </p>
-
-                <h3 className="text-[clamp(1.3rem,4vw,2.5rem)] font-semibold leading-snug text-white">
-                  {currentCategory}
-                </h3>
-              </motion.div>
-
-              {!chaosMode && (
-
-                <div className="flex justify-center mb-3">
-
-                  <span className="text-orange-400 text-xs uppercase tracking-[4px] font-black">
-
-                    {language === "nl"
-                      ? "SWIPE VOOR 1 PUNT ➜"
-                      : "SWIPE FOR 1 POINT ➜"}
-
-                  </span>
-
-                </div>
-
-              )}
-
-            </div>
-
-            <motion.div
-              animate={{}}
-              transition={{
-                duration: 2,
+                duration: 2.4,
                 repeat: Infinity,
+                ease: "easeInOut",
               }}
-              drag={!chaosMode && !isRolling ? "x" : false}
-              style={{
-                x,
-                backgroundColor: background,
-              }}
+
+              onDragStart={() => setIntroTouched(true)}
               dragConstraints={{
                 left: 0,
                 right: 220,
               }}
+
               dragElastic={0.18}
+
               whileDrag={{
                 scale: 1.05,
                 y: -4,
@@ -1651,127 +1144,621 @@ export default function Home() {
 
               onDragEnd={(event, info) => {
 
-                if (isRolling || feedback) return;
+                if (info.offset.x > 70) {
 
-                if (info.offset.x < 0) {
+                  animate(
+                    introX,
+                    600,
+                    {
+                      type: "spring",
+                      stiffness: 120,
+                      damping: 18,
+                    }
+                  );
 
-                  animate(x, 0, {
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 25,
-                  });
-
-                  return;
-                }
-
-                if (!chaosMode && !isRolling && info.offset.x > 100) {
+                  setIntroSwipeDone(true);
 
                   setTimeout(() => {
 
-                    addPoint();
+                    setIntroTouched(false);
 
-                  }, 50);
+                    setShowIntro(false);
+
+                  }, 300);
 
                 }
 
               }}
 
-              className={`rounded-3xl p-5 border border-white/10 backdrop-blur-xl ${!chaosMode
-                ? "cursor-grab active:cursor-grabbing"
-                : ""
-                }`}
+              className="mb-6 border-2 border-orange-400/40 rounded-[32px] p-5 backdrop-blur-xl text-center transition-all shadow-[0_0_45px_rgba(251,146,60,0.35)] bg-white/5 cursor-grab active:cursor-grabbing"
             >
 
-              <div className="flex items-center justify-between">
+              <div className="flex justify-center items-center text-orange-400 text-xs uppercase tracking-[2px] font-black">
 
-                <motion.div
-                  key={players[currentPlayer]}
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                >
-
-                  {chaosMode ? (
-
-                    <>
-                      <p className="text-gray-300 text-sm uppercase tracking-widest">
-                        {text[language].chaosMode}
-                      </p>
-
-                      <h3 className="text-[clamp(1.2rem,4vw,2.2rem)] font-bold uppercase tracking-[1px] mt-1 text-white">
-                        {text[language].fastestPlayer}
-                      </h3>
-                    </>
-
-                  ) : (
-
-                    <>
-                      <p className="text-gray-300 text-sm uppercase tracking-widest">
-                        {text[language].currentPlayer}
-                      </p>
-
-                      <h3 className="text-[clamp(1.5rem,4vw,3rem)] font-bold uppercase tracking-[1px] mt-1 text-white">
-                        {players[currentPlayer]}
-                      </h3>
-                    </>
-
-                  )}
-
-                </motion.div>
-
-                <motion.div
-                  animate={
-                    isDanger
-                      ? {
-                        scale: [1, 1.08, 1],
-                      }
-                      : {
-                        scale: 1,
-                      }
-                  }
-                  transition={{
-                    duration: 0.6,
-                    repeat: isDanger ? Infinity : 0,
-                  }}
-                  className={`shrink-0 w-[clamp(95px,16vw,150px)] h-[clamp(95px,16vw,150px)] rounded-full flex items-center justify-center border-[5px] ${isDanger
-                    ? "bg-red-500/20 border-red-400 shadow-[0_0_40px_rgba(248,113,113,0.8)]"
-                    : "bg-black/40 border-orange-400"
-                    }`}
-                >
-                  <span className="text-[clamp(3rem,8vw,5rem)] font-black">
-                    {timer}
+                <span>
+                  <span>
+                    {language === "nl"
+                      ? "SWIPE OM TE SPELEN ➜"
+                      : "SWIPE TO PLAY ➜"}
                   </span>
-                </motion.div>
+                </span>
 
               </div>
-            </motion.div>
-            {chaosMode && (
 
-              <div className="grid grid-cols-2 gap-3 mt-6">
+            </motion.div>
+
+          </div>
+
+        </div>
+
+      </main >
+
+    );
+  }
+
+  return (
+    <main className="min-h-screen bg-black text-white select-none touch-manipulation flex items-center justify-center p-[clamp(16px,4vw,40px)] overflow-y-auto relative">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
+
+      <div className="relative z-10 w-full max-w-2xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] shadow-[0_0_60px_rgba(168,85,247,0.15)]">
+
+        <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
+          {text[language].gameMode}
+        </p>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+
+          <button
+            onClick={() => setSelectedMode("family")}
+            className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "family"
+              ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
+              : "bg-white/5 border-white/10 text-white/70 hover:text-white"
+              }`}
+          >
+            {text[language].familyMode}
+          </button>
+
+          <button
+            onClick={() => setSelectedMode("kids")}
+            className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "kids"
+              ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
+              : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
+          >
+            {text[language].kidsMode}
+          </button>
+
+          <button
+            onClick={() => setSelectedMode("couples")}
+            className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "couples"
+              ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
+              : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
+          >
+            {text[language].couplesMode}
+          </button>
+
+          <button
+            onClick={() => setSelectedMode("adult")}
+            className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "adult"
+              ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
+              : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
+          >
+            {text[language].adultMode}
+          </button>
+
+          <button
+            onClick={() => setSelectedMode("genz")}
+            className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "genz"
+              ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
+              : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
+          >
+            {text[language].genzMode}
+          </button>
+
+          <button
+            onClick={() => setSelectedMode("popculture")}
+            className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "popculture"
+              ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
+              : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
+          >
+            {text[language].popcultureMode}
+          </button>
+
+        </div>
+
+        <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
+          <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
+
+            <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-2">
+              {language === "nl"
+                ? "WIN CONDITIE"
+                : "WIN CONDITION"}
+            </p>
+
+            <h3 className="text-white/70 font-medium text-base">
+              {language === "nl"
+                ? "Eerste speler met 10 punten wint"
+                : "First player to 10 points wins"}
+            </h3>
+
+          </div>
+
+          <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
+            {text[language].timer}
+          </p>
+
+          <div className="grid grid-cols-4 gap-3">
+
+            {[5, 10, 15, 20].map((time) => (
+
+              <button
+                key={time}
+                onClick={() => setGameTime(time)}
+                className={`rounded-3xl p-3 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${gameTime === time
+                  ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
+                  : "bg-white/5 border-white/10 text-white/70 hover:text-white"
+                  }`}
+              >
+                {time}s
+              </button>
+
+            ))}
+
+          </div>
+
+        </div>
+
+        <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
+
+          <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
+            {text[language].extraMode}
+          </p>
+
+          <button
+            onClick={() => {
+
+              setCompetitiveMode(!competitiveMode);
+
+              if (!competitiveMode) {
+                setChaosMode(false);
+              }
+
+            }}
+            className={`w-full rounded-3xl p-5 border transition-all text-left ${competitiveMode
+              ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+              : "bg-white/5 border-white/10"
+              }`}
+          >
+
+            <div className="flex items-center justify-between">
+
+              <div>
+
+                <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
+                  {text[language].hardcoreMode}
+                </h3>
+
+                <p className="text-white/60 mt-1">
+                  {text[language].hardcoreDescription}
+                </p>
+
+              </div>
+
+              <div
+                className={`w-5 h-5 rounded-full ${competitiveMode
+                  ? "bg-purple-400"
+                  : "bg-white/20"
+                  }`}
+              />
+
+            </div>
+
+          </button>
+
+          <button
+            onClick={() => {
+
+              setChaosMode(!chaosMode);
+
+              if (!chaosMode) {
+                setCompetitiveMode(false);
+              }
+
+            }}
+            className={`w-full rounded-3xl p-5 border transition-all text-left mt-4 ${chaosMode
+              ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+              : "bg-white/5 border-white/10"
+              }`}
+          >
+
+            <div className="flex items-center justify-between">
+
+              <div>
+
+                <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
+                  {text[language].chaosMode}
+                </h3>
+
+                <p className="text-white/60 mt-1">
+                  {text[language].chaosDescription}
+                </p>
+
+              </div>
+
+              <div
+                className={`w-5 h-5 rounded-full ${chaosMode
+                  ? "bg-purple-400"
+                  : "bg-white/20"
+                  }`}
+              />
+
+            </div>
+
+          </button>
+
+        </div>
+        <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
+
+          <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
+            {text[language].players}
+          </p>
+
+          <div className="space-y-4">
+            {players.map((player, index) => (
+              <input
+                key={index}
+                value={player}
+                placeholder={`${text[language].player} ${index + 1}`}
+                onChange={(e) => {
+
+                  const updatedPlayers = [...players];
+
+                  updatedPlayers[index] = e.target.value;
+
+                  if (
+                    index === players.length - 1 &&
+                    e.target.value.trim() !== "" &&
+                    updatedPlayers.filter(
+                      p => p.trim() !== ""
+                    ).length < 8
+                  ) {
+                    updatedPlayers.push("");
+                  }
+
+                  setPlayers(updatedPlayers);
+
+                }}
+                className="w-full bg-orange-500/10 border border-orange-400/20 rounded-3xl px-4 py-3 text-white placeholder:text-white/30"
+              />
+            ))}
+          </div>
+          <p className="text-sm text-white/40 mt-4 leading-relaxed">
+            {text[language].maxPlayers}
+          </p>
+        </div>
+
+
+        <button
+          disabled={
+            players.filter(player => player.trim() !== "").length === 0
+          }
+          onClick={() => {
+
+            const filteredPlayers = players.filter(
+              (player) => player.trim() !== ""
+            );
+
+            setPlayers(filteredPlayers);
+
+            setScores(
+              new Array(filteredPlayers.length).fill(0)
+            );
+
+            setTimer(0);
+
+            setGameStarted(true);
+
+            if (!chaosMode) {
+              setCurrentPlayer(-1);
+            }
+
+            spinLetter();
+
+          }}
+          className="w-full mt-8 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-3xl disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          {text[language].startGame}
+        </button>
+
+      </div>
+    </main>
+  );
+}
+
+return (
+  <main className="min-h-screen bg-black text-white select-none touch-manipulation flex flex-col items-center justify-center p-3 relative overflow-y-auto">
+
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
+
+    <div className="relative z-10 w-full max-w-[900px] xl:max-w-[1200px] px-4 mx-auto">
+
+      <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] min-h-[65vh] xl:min-h-[75vh] flex flex-col justify-between">
+
+        {showRoundScore && (
+
+          <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md rounded-[36px]">
+
+            <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-[32px] p-6">
+
+              <h2 className="text-white text-2xl font-black mb-6 text-center">
+                🏆 TUSSENSTAND
+              </h2>
+
+              <div className="space-y-3">
 
                 {players.map((player, index) => (
 
-                  <button
+                  <div
                     key={index}
-                    onClick={() => {
-
-                      if (feedback || isRolling) return;
-
-                      addPoint(index);
-
-                    }}
-                    className="bg-purple-500/20 border border-purple-400 rounded-3xl p-5 text-white font-black uppercase tracking-[2px] backdrop-blur-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
+                    className="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-4"
                   >
-                    {player}
-                  </button>
+
+                    <span className="text-white font-bold uppercase">
+                      {player}
+                    </span>
+
+                    <span className="text-orange-400 text-2xl font-black">
+                      {scores[index]}
+                    </span>
+
+                  </div>
 
                 ))}
 
               </div>
 
-            )}
+            </div>
+
           </div>
+
+        )}
+        {showPointAnimation && (
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              scale: 0.5,
+              y: 40,
+            }}
+            animate={{
+              opacity: [0, 1, 1, 0],
+              scale: [0.5, 1.3, 1.2],
+              y: [40, -40, -90],
+            }}
+            transition={{
+              duration: 0.9,
+              ease: "easeOut",
+            }}
+            className="absolute inset-0 flex items-center justify-center pointer-events-none z-50"
+          >
+
+            <div className="text-[clamp(5rem,18vw,10rem)] font-black text-green-400 drop-shadow-[0_0_35px_rgba(74,222,128,0.9)]">
+
+              +1
+
+            </div>
+
+          </motion.div>
+
+        )}
+        <div className="xl:grid xl:grid-cols-[420px_1fr] xl:gap-10 xl:items-center">
+          <div className="flex justify-center mb-4">
+
+            <motion.div className="relative w-[clamp(200px,42vw,380px)] h-[clamp(200px,42vw,380px)] rounded-full">
+
+              <div className="absolute inset-0 rounded-full border-[5px] border-orange-400" />
+
+              <div className="absolute inset-[clamp(24px,5vw,40px)] rounded-full bg-black flex items-center justify-center border border-white/10">
+
+                <div className="text-center">
+
+                  <p className="text-orange-400 text-xs font-bold mb-2 tracking-[3px] uppercase">
+                    {text[language].currentLetterLabel}
+                  </p>
+
+                  <motion.h2
+                    key={displayLetter}
+                    initial={{ scale: 0.6, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="text-[clamp(6rem,18vw,11rem)] font-black text-white leading-none"
+                  >
+                    {displayLetter}
+                  </motion.h2>
+
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="flex flex-col justify-center h-full">
+
+            <motion.div
+              key={currentCategory}
+
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] mb-8"
+            >
+              <p className="text-orange-400 text-sm font-black tracking-widest mb-3">
+                {text[language].category}
+              </p>
+
+              <h3 className="text-[clamp(1.3rem,4vw,2.5rem)] font-semibold leading-snug text-white">
+                {currentCategory}
+              </h3>
+            </motion.div>
+
+            {!chaosMode && (
+
+              <div className="flex justify-center mb-3">
+
+                <span className="text-orange-400 text-xs uppercase tracking-[4px] font-black">
+
+                  {language === "nl"
+                    ? "SWIPE VOOR 1 PUNT ➜"
+                    : "SWIPE FOR 1 POINT ➜"}
+
+                </span>
+
+              </div>
+
+            )}
+
+          </div>
+
+          <motion.div
+            animate={{}}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+            }}
+            drag={!chaosMode && !isRolling ? "x" : false}
+            style={{
+              x,
+              backgroundColor: background,
+            }}
+            dragConstraints={{
+              left: 0,
+              right: 220,
+            }}
+            dragElastic={0.18}
+            whileDrag={{
+              scale: 1.05,
+              y: -4,
+            }}
+
+            onDragEnd={(event, info) => {
+
+              if (isRolling || feedback) return;
+
+              if (info.offset.x < 0) {
+
+                animate(x, 0, {
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 25,
+                });
+
+                return;
+              }
+
+              if (!chaosMode && !isRolling && info.offset.x > 100) {
+
+                setTimeout(() => {
+
+                  addPoint();
+
+                }, 50);
+
+              }
+
+            }}
+
+            className={`rounded-3xl p-5 border border-white/10 backdrop-blur-xl ${!chaosMode
+              ? "cursor-grab active:cursor-grabbing"
+              : ""
+              }`}
+          >
+
+            <div className="flex items-center justify-between">
+
+              <motion.div
+                key={players[currentPlayer]}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+              >
+
+                {chaosMode ? (
+
+                  <>
+                    <p className="text-gray-300 text-sm uppercase tracking-widest">
+                      {text[language].chaosMode}
+                    </p>
+
+                    <h3 className="text-[clamp(1.2rem,4vw,2.2rem)] font-bold uppercase tracking-[1px] mt-1 text-white">
+                      {text[language].fastestPlayer}
+                    </h3>
+                  </>
+
+                ) : (
+
+                  <>
+                    <p className="text-gray-300 text-sm uppercase tracking-widest">
+                      {text[language].currentPlayer}
+                    </p>
+
+                    <h3 className="text-[clamp(1.5rem,4vw,3rem)] font-bold uppercase tracking-[1px] mt-1 text-white">
+                      {players[currentPlayer]}
+                    </h3>
+                  </>
+
+                )}
+
+              </motion.div>
+
+              <motion.div
+                animate={
+                  isDanger
+                    ? {
+                      scale: [1, 1.08, 1],
+                    }
+                    : {
+                      scale: 1,
+                    }
+                }
+                transition={{
+                  duration: 0.6,
+                  repeat: isDanger ? Infinity : 0,
+                }}
+                className={`shrink-0 w-[clamp(95px,16vw,150px)] h-[clamp(95px,16vw,150px)] rounded-full flex items-center justify-center border-[5px] ${isDanger
+                  ? "bg-red-500/20 border-red-400 shadow-[0_0_40px_rgba(248,113,113,0.8)]"
+                  : "bg-black/40 border-orange-400"
+                  }`}
+              >
+                <span className="text-[clamp(3rem,8vw,5rem)] font-black">
+                  {timer}
+                </span>
+              </motion.div>
+
+            </div>
+          </motion.div>
+          {chaosMode && (
+
+            <div className="grid grid-cols-2 gap-3 mt-6">
+
+              {players.map((player, index) => (
+
+                <button
+                  key={index}
+                  onClick={() => {
+
+                    if (feedback || isRolling) return;
+
+                    addPoint(index);
+
+                  }}
+                  className="bg-purple-500/20 border border-purple-400 rounded-3xl p-5 text-white font-black uppercase tracking-[2px] backdrop-blur-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
+                >
+                  {player}
+                </button>
+
+              ))}
+
+            </div>
+
+          )}
         </div>
-      </div >
-    </main >
-  );
+      </div>
+    </div >
+  </main >
+);
 }
