@@ -309,6 +309,7 @@ export default function Home() {
   const [usedCombinations, setUsedCombinations] = useState([]);
   const [lastCategory, setLastCategory] = useState("");
   const [showPointAnimation, setShowPointAnimation] = useState(false);
+  const [showLiveScore, setShowLiveScore] = useState(false);
 
   const translations = {
 
@@ -1461,6 +1462,69 @@ export default function Home() {
       <div className="relative z-10 w-full max-w-[900px] xl:max-w-[1200px] px-4 mx-auto">
 
         <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] min-h-[65vh] xl:min-h-[75vh] flex flex-col justify-between">
+          <div className="absolute top-4 right-4 z-40">
+
+            <button
+              onClick={() =>
+                setShowLiveScore(true)
+              }
+              className="bg-white/10 border border-white/10 backdrop-blur-xl rounded-2xl px-4 py-2 text-white/80 text-sm font-black tracking-[2px] hover:bg-white/15 transition-all"
+            >
+              🏆 SCORE
+            </button>
+
+          </div>
+          {showLiveScore && (
+
+            <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md rounded-[36px]">
+
+              <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-[32px] p-6">
+
+                <div className="flex items-center justify-between mb-6">
+
+                  <h2 className="text-white text-2xl font-black">
+                    🏆 SCORE
+                  </h2>
+
+                  <button
+                    onClick={() =>
+                      setShowLiveScore(false)
+                    }
+                    className="text-white/50 text-xl"
+                  >
+                    ✕
+                  </button>
+
+                </div>
+
+                <div className="space-y-3">
+
+                  {players.map((player, index) => (
+
+                    <div
+                      key={index}
+                      className="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-4"
+                    >
+
+                      <span className="text-white font-bold uppercase">
+                        {player}
+                      </span>
+
+                      <span className="text-orange-400 text-2xl font-black">
+                        {scores[index]}
+                      </span>
+
+                    </div>
+
+                  ))}
+
+                </div>
+
+              </div>
+
+            </div>
+
+          )}
           {showPointAnimation && (
 
             <motion.div
