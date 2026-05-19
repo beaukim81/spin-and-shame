@@ -789,7 +789,11 @@ export default function Home() {
 
       return;
     }
-
+    animate(x, 0, {
+      type: "spring",
+      stiffness: 400,
+      damping: 28,
+    });
     spinLetter();
 
     setTimeout(() => {
@@ -828,7 +832,11 @@ export default function Home() {
 
       setScores(updatedScores);
     }
-
+    animate(x, 0, {
+      type: "spring",
+      stiffness: 400,
+      damping: 28,
+    });
     spinLetter();
 
     setTimeout(() => {
