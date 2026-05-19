@@ -1541,11 +1541,7 @@ export default function Home() {
             </div>
 
             <motion.div
-              animate={
-                !chaosMode && !feedback
-                  ? { x: [-20, 20, -20] }
-                  : {}
-              }
+              animate={{}}
               transition={{
                 duration: 2,
                 repeat: Infinity,
@@ -1559,7 +1555,7 @@ export default function Home() {
                 left: 0,
                 right: 0,
               }}
-              dragElastic={0.8}
+              dragElastic={0.18}
               whileDrag={{
                 scale: 1.05,
                 y: -4,
