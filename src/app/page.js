@@ -1253,7 +1253,7 @@ export default function Home() {
                   : "WIN CONDITION"}
               </p>
 
-              <h3 className="text-white font-black text-xl">
+              <h3 className="text-white/70 font-medium text-base">
                 {language === "nl"
                   ? "Eerste speler met 10 punten wint"
                   : "First player to 10 points wins"}
