@@ -1467,22 +1467,22 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white select-none touch-manipulation flex flex-col items-center justify-center p-3 relative overflow-y-auto">
 
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
+      <div className="fixed top-5 right-5 z-50">
 
+        <button
+          onClick={() =>
+            setShowLiveScore(true)
+          }
+          className="..."
+        >
+          🏆 SCORE
+        </button>
+
+      </div>
       <div className="relative z-10 w-full max-w-[900px] xl:max-w-[1200px] px-4 mx-auto">
 
         <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-[clamp(20px,4vw,40px)] min-h-[65vh] xl:min-h-[75vh] flex flex-col justify-between">
-          <div className="fixed top-5 right-5 z-50">
 
-            <button
-              onClick={() =>
-                setShowLiveScore(true)
-              }
-              className="bg-white/10 border border-white/10 backdrop-blur-xl rounded-xl px-3 py-1.5 text-white/80 text-xs font-black tracking-[2px] hover:bg-white/15 transition-all"
-            >
-              🏆 SCORE
-            </button>
-
-          </div>
           {showLiveScore && (
 
             <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md rounded-[36px]">
