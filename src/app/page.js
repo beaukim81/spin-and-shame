@@ -66,7 +66,7 @@ export default function Home() {
   const [showRoundScore, setShowRoundScore] = useState(false);
 
   const categories =
-    (categoryModes[selectedMode] || []).map(
+    (categoryModes[selectedMode]?.categories || []).map(
       (category) =>
         language === "en"
           ? translations[category] || category
