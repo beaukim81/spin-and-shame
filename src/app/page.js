@@ -1257,26 +1257,30 @@ export default function Home() {
 
           </div>
 
-          <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
-            {text[language].timer}
-          </p>
+          <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
-          <div className="grid grid-cols-4 gap-3">
+            <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
+              {text[language].timer}
+            </p>
 
-            {[5, 10, 15, 20].map((time) => (
+            <div className="grid grid-cols-4 gap-3">
 
-              <button
-                key={time}
-                onClick={() => setGameTime(time)}
-                className={`rounded-3xl p-3 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${gameTime === time
-                  ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                  : "bg-white/5 border-white/10 text-white/70 hover:text-white"
-                  }`}
-              >
-                {time}s
-              </button>
+              {[5, 10, 15, 20].map((time) => (
 
-            ))}
+                <button
+                  key={time}
+                  onClick={() => setGameTime(time)}
+                  className={`rounded-3xl p-3 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${gameTime === time
+                    ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
+                    : "bg-white/5 border-white/10 text-white/70 hover:text-white"
+                    }`}
+                >
+                  {time}s
+                </button>
+
+              ))}
+
+            </div>
 
           </div>
 
