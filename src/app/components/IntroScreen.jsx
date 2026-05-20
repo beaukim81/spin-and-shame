@@ -26,33 +26,30 @@ export default function IntroScreen({
 
           <button
             onClick={() => setLanguage("nl")}
-            className={`px-4 py-2 rounded-2xl font-black border transition-all ${
-              language === "nl"
-                ? "bg-orange-500/20 border-orange-400 text-white"
-                : "bg-white/5 border-white/10 text-white/70"
-            }`}
+            className={`px-4 py-2 rounded-2xl font-black border transition-all ${language === "nl"
+              ? "bg-orange-500/20 border-orange-400 text-white"
+              : "bg-white/5 border-white/10 text-white/70"
+              }`}
           >
             NL
           </button>
 
           <button
             onClick={() => setLanguage("en")}
-            className={`px-4 py-2 rounded-2xl font-black border transition-all ${
-              language === "en"
-                ? "bg-orange-500/20 border-orange-400 text-white"
-                : "bg-white/5 border-white/10 text-white/70"
-            }`}
+            className={`px-4 py-2 rounded-2xl font-black border transition-all ${language === "en"
+              ? "bg-orange-500/20 border-orange-400 text-white"
+              : "bg-white/5 border-white/10 text-white/70"
+              }`}
           >
             EN
           </button>
 
           <button
             onClick={() => setSoundEnabled(!soundEnabled)}
-            className={`px-4 h-12 rounded-2xl border backdrop-blur-xl flex items-center gap-2 text-sm font-black tracking-[1px] transition-all ${
-              soundEnabled
-                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_20px_rgba(251,146,60,0.25)]"
-                : "bg-white/5 border-white/10 text-white/50"
-            }`}
+            className={`px-4 h-12 rounded-2xl border backdrop-blur-xl flex items-center gap-2 text-sm font-black tracking-[1px] transition-all ${soundEnabled
+              ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_20px_rgba(251,146,60,0.25)]"
+              : "bg-white/5 border-white/10 text-white/50"
+              }`}
           >
             <span>
               {soundEnabled ? "🔊" : "🔇"}
@@ -155,10 +152,34 @@ export default function IntroScreen({
 
             }}
 
-            className="mb-6 border-2 border-orange-400/40 rounded-[32px] p-5 backdrop-blur-xl text-center transition-all shadow-[0_0_45px_rgba(251,146,60,0.35)] bg-white/5 cursor-grab active:cursor-grabbing"
+            className="
+mb-8
+border-2
+border-orange-300/70
+rounded-[38px]
+p-7
+backdrop-blur-xl
+text-center
+transition-all
+shadow-[0_0_70px_rgba(251,146,60,0.55)]
+bg-gradient-to-r
+from-orange-500/20
+to-pink-500/20
+cursor-grab
+active:cursor-grabbing
+"
           >
 
-            <div className="flex justify-center items-center text-orange-400 text-xs uppercase tracking-[2px] font-black">
+            <div className="
+flex
+justify-center
+items-center
+text-orange-300
+text-sm
+uppercase
+tracking-[4px]
+font-black
+">
 
               <span>
                 {language === "nl"
