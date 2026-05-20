@@ -1289,7 +1289,11 @@ export default function Home() {
 
                     setSelectedChaosPlayer(index);
 
-                    addPoint(index);
+                    setTimeout(() => {
+
+                      addPoint(index);
+
+                    }, 350);
 
                   }}
 
