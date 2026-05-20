@@ -791,16 +791,14 @@ export default function Home() {
         0
       );
 
-    const someoneNearWin =
-      updatedScores.some(
-        (score) => score === 8
-      );
+    const someoneReachedNearWin =
+      updatedScores[playerIndex] === 8;
 
     const shouldShowChaosOverlay =
       chaosMode &&
       (
         totalScore % 5 === 0 ||
-        someoneNearWin
+        someoneReachedNearWin
       );
 
     const isLastPlayer =
