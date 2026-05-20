@@ -228,7 +228,6 @@ export default function Home() {
   const [chaosMode, setChaosMode] = useState(false);
   const [language, setLanguage] = useState("nl");
   const [isPaused, setIsPaused] = useState(false);
-  const spinInterval = useRef(null);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [usedCombinations, setUsedCombinations] = useState([]);
   const [lastCategory, setLastCategory] = useState("");
@@ -488,6 +487,8 @@ export default function Home() {
   const winSound = useRef(null);
   const tickSound = useRef(null);
   const countdownSound = useRef(null);
+  const spinInterval = useRef(null);
+  const spinTimeout = useRef(null);
 
   const x = useMotionValue(0);
   const introX = useMotionValue(0);
@@ -581,7 +582,8 @@ export default function Home() {
     }
 
     if (
-      timer <= 0 &&
+      gameStarted &&
+      timer < 1 &&
       !isRolling &&
       !feedback
     ) {
@@ -819,12 +821,15 @@ export default function Home() {
   }
 
   function spinLetter() {
-    
+
     if (isRolling) return;
+
+    clearInterval(spinInterval.current);
+    clearTimeout(spinTimeout.current);
 
     setIsRolling(true);
 
-    setTimer(0);
+    setTimer(gameTime);
 
     spinInterval.current = setInterval(() => {
 
@@ -868,7 +873,7 @@ export default function Home() {
 
     setCurrentCategory(randomCategory);
 
-    setTimeout(() => {
+    spinTimeout.current = setTimeout(() => {
 
       clearInterval(spinInterval.current);
 
@@ -1330,7 +1335,7 @@ export default function Home() {
                 new Array(filteredPlayers.length).fill(0)
               );
 
-              setTimer(0);
+              setTimer(gameTime);
 
               setGameStarted(true);
 
@@ -1590,13 +1595,6 @@ export default function Home() {
             </motion.div>
 
           </div>
-
-          <ScoreBoard
-            players={players}
-            scores={scores}
-            currentPlayer={currentPlayer}
-            chaosMode={chaosMode}
-          />
 
           {chaosMode && (
 
