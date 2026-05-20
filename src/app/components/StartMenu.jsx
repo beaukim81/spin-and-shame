@@ -63,14 +63,14 @@ export default function StartMenu({
 
                     <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-2">
                         {language === "nl"
-                            ? "WIN CONDITIE"
-                            : "WIN CONDITION"}
+                            ? "HOE WINNEN"
+                            : "HOW TO WIN"}
                     </p>
 
                     <h3 className="text-white/70 font-medium text-base">
                         {language === "nl"
-                            ? "Eerste speler met 10 punten wint"
-                            : "First player to 10 points wins"}
+                            ? "De eerste speler met 10 punten wint"
+                            : "The first player with 10 points wins"}
                     </h3>
 
                 </div>
