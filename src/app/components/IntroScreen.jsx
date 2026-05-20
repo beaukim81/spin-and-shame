@@ -92,7 +92,6 @@ export default function IntroScreen({
             drag="x"
             style={{
               x: introX,
-              backgroundColor: introBackground,
             }}
             animate={{
               boxShadow: [
@@ -116,13 +115,12 @@ export default function IntroScreen({
             dragElastic={0.18}
 
             whileDrag={{
-              scale: 1.05,
-              y: -4,
+              scale: 1.02,
             }}
 
             onDragEnd={(event, info) => {
 
-              if (info.offset.x > 70) {
+              if (info.offset.x > 45) {
 
                 animate(
                   introX,
@@ -158,10 +156,10 @@ border-2
 border-orange-300/70
 rounded-[38px]
 p-7
-backdrop-blur-xl
+backdrop-blur-sm
 text-center
 transition-all
-shadow-[0_0_70px_rgba(251,146,60,0.55)]
+shadow-[0_0_35px_rgba(251,146,60,0.35)]
 bg-gradient-to-r
 from-orange-500/20
 to-pink-500/20
