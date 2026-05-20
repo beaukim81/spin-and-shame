@@ -36,25 +36,25 @@ export default function StartMenu({
                     <button
                         onClick={() => setSelectedMode("family")}
                         className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "family"
-                                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                                : "bg-white/5 border-white/10 text-white/70 hover:text-white"
+                            ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
+                            : "bg-white/5 border-white/10 text-white/70 hover:text-white"
                             }`}
                     >
                         {language === "nl"
-                            ? "Familie / Gezin"
-                            : "Family / Household"}
+                            ? "Familie"
+                            : "Family"}
                     </button>
 
                     <button
                         onClick={() => setSelectedMode("friends")}
                         className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "friends"
-                                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                                : "bg-white/5 border-white/10 text-white/70 hover:text-white"
+                            ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
+                            : "bg-white/5 border-white/10 text-white/70 hover:text-white"
                             }`}
                     >
                         {language === "nl"
-                            ? "Vrienden / Collega's"
-                            : "Friends / Coworkers"}
+                            ? "Vrienden"
+                            : "Friends"}
                     </button>
 
                 </div>
@@ -89,8 +89,8 @@ export default function StartMenu({
                                 key={time}
                                 onClick={() => setGameTime(time)}
                                 className={`rounded-3xl p-3 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${gameTime === time
-                                        ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                                        : "bg-white/5 border-white/10 text-white/70 hover:text-white"
+                                    ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
+                                    : "bg-white/5 border-white/10 text-white/70 hover:text-white"
                                     }`}
                             >
                                 {time}s
@@ -119,8 +119,8 @@ export default function StartMenu({
 
                         }}
                         className={`w-full rounded-3xl p-5 border transition-all text-left ${competitiveMode
-                                ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
-                                : "bg-white/5 border-white/10"
+                            ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+                            : "bg-white/5 border-white/10"
                             }`}
                     >
 
@@ -140,8 +140,8 @@ export default function StartMenu({
 
                             <div
                                 className={`w-5 h-5 rounded-full ${competitiveMode
-                                        ? "bg-purple-400"
-                                        : "bg-white/20"
+                                    ? "bg-purple-400"
+                                    : "bg-white/20"
                                     }`}
                             />
 
@@ -160,8 +160,8 @@ export default function StartMenu({
 
                         }}
                         className={`w-full rounded-3xl p-5 border transition-all text-left mt-4 ${chaosMode
-                                ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
-                                : "bg-white/5 border-white/10"
+                            ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+                            : "bg-white/5 border-white/10"
                             }`}
                     >
 
@@ -181,8 +181,8 @@ export default function StartMenu({
 
                             <div
                                 className={`w-5 h-5 rounded-full ${chaosMode
-                                        ? "bg-purple-400"
-                                        : "bg-white/20"
+                                    ? "bg-purple-400"
+                                    : "bg-white/20"
                                     }`}
                             />
 
