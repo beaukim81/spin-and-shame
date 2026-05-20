@@ -431,9 +431,14 @@ export default function Home() {
 
       setFeedback("");
       setShowPointAnimation(false);
-      setSelectedChaosPlayer(null);
 
     }, 600);
+
+    setTimeout(() => {
+
+      setSelectedChaosPlayer(null);
+
+    }, 250);
   }
 
   function handleTooLate() {
