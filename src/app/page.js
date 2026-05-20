@@ -732,13 +732,13 @@ export default function Home() {
         ? shouldShowChaosOverlay
         : nextPlayer === 0;
 
-    goToNextPlayer();
-
     if (isLastPlayer) {
 
       setShowRoundScore(true);
 
     } else {
+
+      goToNextPlayer();
 
       spinLetter();
 
@@ -799,13 +799,13 @@ export default function Home() {
       !chaosMode &&
       nextPlayer === 0;
 
-    goToNextPlayer();
-
     if (isLastPlayer) {
 
       setShowRoundScore(true);
 
     } else {
+
+      goToNextPlayer();
 
       spinLetter();
 
