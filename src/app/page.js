@@ -777,9 +777,14 @@ export default function Home() {
       damping: 28,
     });
 
+    const nextPlayer =
+      currentPlayer + 1 >= players.length
+        ? 0
+        : currentPlayer + 1;
+
     const isLastPlayer =
       !chaosMode &&
-      currentPlayer + 1 >= players.length;
+      nextPlayer === 0;
 
     if (isLastPlayer) {
 
@@ -833,9 +838,14 @@ export default function Home() {
       damping: 28,
     });
 
+    const nextPlayer =
+      currentPlayer + 1 >= players.length
+        ? 0
+        : currentPlayer + 1;
+
     const isLastPlayer =
       !chaosMode &&
-      currentPlayer + 1 >= players.length;
+      nextPlayer === 0;
 
     if (isLastPlayer) {
 
@@ -1244,171 +1254,171 @@ export default function Home() {
 
           </div>
 
-        <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
+          <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
-          <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
-            {text[language].extraMode}
-          </p>
+            <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
+              {text[language].extraMode}
+            </p>
 
-          <button
-            onClick={() => {
+            <button
+              onClick={() => {
 
-              setCompetitiveMode(!competitiveMode);
+                setCompetitiveMode(!competitiveMode);
 
-              if (!competitiveMode) {
-                setChaosMode(false);
-              }
+                if (!competitiveMode) {
+                  setChaosMode(false);
+                }
 
-            }}
-            className={`w-full rounded-3xl p-5 border transition-all text-left ${competitiveMode
-              ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
-              : "bg-white/5 border-white/10"
-              }`}
-          >
+              }}
+              className={`w-full rounded-3xl p-5 border transition-all text-left ${competitiveMode
+                ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+                : "bg-white/5 border-white/10"
+                }`}
+            >
 
-            <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between">
 
-              <div>
+                <div>
 
-                <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
-                  {text[language].hardcoreMode}
-                </h3>
+                  <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
+                    {text[language].hardcoreMode}
+                  </h3>
 
-                <p className="text-white/60 mt-1">
-                  {text[language].hardcoreDescription}
-                </p>
+                  <p className="text-white/60 mt-1">
+                    {text[language].hardcoreDescription}
+                  </p>
+
+                </div>
+
+                <div
+                  className={`w-5 h-5 rounded-full ${competitiveMode
+                    ? "bg-purple-400"
+                    : "bg-white/20"
+                    }`}
+                />
 
               </div>
 
-              <div
-                className={`w-5 h-5 rounded-full ${competitiveMode
-                  ? "bg-purple-400"
-                  : "bg-white/20"
-                  }`}
-              />
+            </button>
 
+            <button
+              onClick={() => {
+
+                setChaosMode(!chaosMode);
+
+                if (!chaosMode) {
+                  setCompetitiveMode(false);
+                }
+
+              }}
+              className={`w-full rounded-3xl p-5 border transition-all text-left mt-4 ${chaosMode
+                ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+                : "bg-white/5 border-white/10"
+                }`}
+            >
+
+              <div className="flex items-center justify-between">
+
+                <div>
+
+                  <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
+                    {text[language].chaosMode}
+                  </h3>
+
+                  <p className="text-white/60 mt-1">
+                    {text[language].chaosDescription}
+                  </p>
+
+                </div>
+
+                <div
+                  className={`w-5 h-5 rounded-full ${chaosMode
+                    ? "bg-purple-400"
+                    : "bg-white/20"
+                    }`}
+                />
+
+              </div>
+
+            </button>
+
+          </div>
+          <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
+
+            <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
+              {text[language].players}
+            </p>
+
+            <div className="space-y-4">
+              {players.map((player, index) => (
+                <input
+                  key={index}
+                  value={player}
+                  placeholder={`${text[language].player} ${index + 1}`}
+                  onChange={(e) => {
+
+                    const updatedPlayers = [...players];
+
+                    updatedPlayers[index] = e.target.value;
+
+                    if (
+                      index === players.length - 1 &&
+                      e.target.value.trim() !== "" &&
+                      updatedPlayers.filter(
+                        p => p.trim() !== ""
+                      ).length < 8
+                    ) {
+                      updatedPlayers.push("");
+                    }
+
+                    setPlayers(updatedPlayers);
+
+                  }}
+                  className="w-full bg-orange-500/10 border border-orange-400/20 rounded-3xl px-4 py-3 text-white placeholder:text-white/30"
+                />
+              ))}
             </div>
+            <p className="text-sm text-white/40 mt-4 leading-relaxed">
+              {text[language].maxPlayers}
+            </p>
+          </div>
 
-          </button>
 
           <button
+            disabled={
+              players.filter(player => player.trim() !== "").length === 0
+            }
             onClick={() => {
 
-              setChaosMode(!chaosMode);
+              const filteredPlayers = players.filter(
+                (player) => player.trim() !== ""
+              );
+
+              setPlayers(filteredPlayers);
+
+              setScores(
+                new Array(filteredPlayers.length).fill(0)
+              );
+
+              setTimer(0);
+
+              setGameStarted(true);
 
               if (!chaosMode) {
-                setCompetitiveMode(false);
+                setCurrentPlayer(-1);
               }
 
+              spinLetter();
+
             }}
-            className={`w-full rounded-3xl p-5 border transition-all text-left mt-4 ${chaosMode
-              ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
-              : "bg-white/5 border-white/10"
-              }`}
+            className="w-full mt-8 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-3xl disabled:opacity-40 disabled:cursor-not-allowed"
           >
-
-            <div className="flex items-center justify-between">
-
-              <div>
-
-                <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
-                  {text[language].chaosMode}
-                </h3>
-
-                <p className="text-white/60 mt-1">
-                  {text[language].chaosDescription}
-                </p>
-
-              </div>
-
-              <div
-                className={`w-5 h-5 rounded-full ${chaosMode
-                  ? "bg-purple-400"
-                  : "bg-white/20"
-                  }`}
-              />
-
-            </div>
-
+            {text[language].startGame}
           </button>
 
         </div>
-        <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
-
-          <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
-            {text[language].players}
-          </p>
-
-          <div className="space-y-4">
-            {players.map((player, index) => (
-              <input
-                key={index}
-                value={player}
-                placeholder={`${text[language].player} ${index + 1}`}
-                onChange={(e) => {
-
-                  const updatedPlayers = [...players];
-
-                  updatedPlayers[index] = e.target.value;
-
-                  if (
-                    index === players.length - 1 &&
-                    e.target.value.trim() !== "" &&
-                    updatedPlayers.filter(
-                      p => p.trim() !== ""
-                    ).length < 8
-                  ) {
-                    updatedPlayers.push("");
-                  }
-
-                  setPlayers(updatedPlayers);
-
-                }}
-                className="w-full bg-orange-500/10 border border-orange-400/20 rounded-3xl px-4 py-3 text-white placeholder:text-white/30"
-              />
-            ))}
-          </div>
-          <p className="text-sm text-white/40 mt-4 leading-relaxed">
-            {text[language].maxPlayers}
-          </p>
-        </div>
-
-
-        <button
-          disabled={
-            players.filter(player => player.trim() !== "").length === 0
-          }
-          onClick={() => {
-
-            const filteredPlayers = players.filter(
-              (player) => player.trim() !== ""
-            );
-
-            setPlayers(filteredPlayers);
-
-            setScores(
-              new Array(filteredPlayers.length).fill(0)
-            );
-
-            setTimer(0);
-
-            setGameStarted(true);
-
-            if (!chaosMode) {
-              setCurrentPlayer(-1);
-            }
-
-            spinLetter();
-
-          }}
-          className="w-full mt-8 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-3xl disabled:opacity-40 disabled:cursor-not-allowed"
-        >
-          {text[language].startGame}
-        </button>
-
-      </div>
-    </main >
-  );
+      </main >
+    );
   }
 
   return (
