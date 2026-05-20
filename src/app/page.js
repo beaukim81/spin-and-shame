@@ -1,4 +1,5 @@
 "use client";
+import ScoreOverlay from "./components/ScoreOverlay";
 import Confetti from "react-confetti";
 import { useEffect, useState, useRef } from "react";
 import {
@@ -307,7 +308,6 @@ export default function Home() {
   const [lastCategory, setLastCategory] = useState("");
   const [showPointAnimation, setShowPointAnimation] = useState(false);
   const [showRoundScore, setShowRoundScore] = useState(false);
-  const [roundTurns, setRoundTurns] = useState(0);
 
   const translations = {
 
@@ -785,14 +785,29 @@ export default function Home() {
         ? 0
         : currentPlayer + 1;
 
+    const totalScore =
+      updatedScores.reduce(
+        (sum, score) => sum + score,
+        0
+      );
+
+    const someoneNearWin =
+      updatedScores.some(
+        (score) => score >= 8
+      );
+
+    const shouldShowChaosOverlay =
+      chaosMode &&
+      (
+        totalScore % 5 === 0 ||
+        someoneNearWin
+      );
+
     const isLastPlayer =
       chaosMode
-        ? roundTurns + 1 >= players.length
+        ? shouldShowChaosOverlay
         : nextPlayer === 0;
 
-    if (chaosMode) {
-      setRoundTurns((prev) => prev + 1);
-    }
     goToNextPlayer();
 
     if (isLastPlayer) {
@@ -853,13 +868,9 @@ export default function Home() {
         : currentPlayer + 1;
 
     const isLastPlayer =
-      chaosMode
-        ? roundTurns + 1 >= players.length
-        : nextPlayer === 0;
+      !chaosMode &&
+      nextPlayer === 0;
 
-    if (chaosMode) {
-      setRoundTurns((prev) => prev + 1);
-    }
     goToNextPlayer();
 
     if (isLastPlayer) {
@@ -1445,62 +1456,14 @@ export default function Home() {
 
           {showRoundScore && (
 
-            <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md rounded-[36px]">
-
-              <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-[32px] p-6">
-
-                <h2 className="text-white text-2xl font-black mb-6 text-center">
-                  🏆 TUSSENSTAND
-                </h2>
-
-                <div className="space-y-3">
-
-                  {players.map((player, index) => {
-
-                    if (!player.trim()) return null;
-
-                    return (
-                      <div
-                        key={index}
-                        className="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-4"
-                      >
-
-                        <span className="text-white font-bold uppercase">
-                          {player}
-                        </span>
-
-                        <span className="text-orange-400 text-2xl font-black">
-                          {scores[index]}
-                        </span>
-
-                      </div>
-
-                    );
-
-                  })}
-
-                </div>
-
-                <button
-                  onClick={() => {
-
-                    setShowRoundScore(false);
-
-                    setRoundTurns(0);
-
-                    spinLetter();
-
-                  }}
-                  className="w-full mt-6 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-lg py-4 rounded-2xl"
-                >
-                  {language === "nl"
-                    ? "GA VERDER"
-                    : "CONTINUE"}
-                </button>
-
-              </div>
-
-            </div>
+            <ScoreOverlay
+              chaosMode={chaosMode}
+              players={players}
+              scores={scores}
+              language={language}
+              setShowRoundScore={setShowRoundScore}
+              spinLetter={spinLetter}
+            />
 
           )}
 
