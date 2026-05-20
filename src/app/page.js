@@ -1,4 +1,5 @@
 "use client";
+import ScoreBoard from "./components/ScoreBoard";
 import ScoreOverlay from "./components/ScoreOverlay";
 import Confetti from "react-confetti";
 import { useEffect, useState, useRef } from "react";
@@ -42,246 +43,171 @@ export default function Home() {
   const categoryModes = {
 
     family: [
-      "Een dier",
-      "Een snack",
-      "Een drankje",
-      "Een vrucht",
-      "Een groente",
-      "Een fastfoodketen",
-      "Een film",
-      "Een serie",
-      "Een beroep",
-      "Een voertuig",
-      "Een kledingmerk",
-      "Een schoolvak",
-      "Een schoolartikel",
-      "Een sport",
-      "Een hobby",
-      "Een muziekinstrument",
-      "Een kleur",
-      "Een land",
-      "Een stad",
-      "Een supermarkt",
-      "Een winkel",
-      "Een meubel",
-      "Iets uit de keuken",
-      "Een badkameritem",
-      "Een speelgoed",
-      "Een chips smaak",
-      "Een ijssmaak",
-      "Snoep",
-      "Een Disney karakter",
-      "Een superheld",
-      "Een lichaamsdeel",
-      "Een bloem",
-      "Een boom",
-      "Een insect",
-      "Een vogel",
-      "Een zeedier"
-    ],
-
-    kids: [
-      "Een superheld",
-      "Een dier",
-      "Een kleur",
-      "Speelgoed",
-      "Een snack",
-      "Een game",
-      "Een tekenfilm karakter",
-      "Een Pokémon",
-      "Een Disney karakter",
-      "Een Mario karakter",
-      "Fruit",
-      "Groente",
-      "Snoep",
-      "Een sport",
-      "Een ijssmaak",
-      "Een beroep",
-      "Een voertuig",
-      "Een muziekinstrument",
-      "Een app",
-      "Een film",
-      "Een serie",
-      "Een liedje",
-      "Een schoolvak",
-      "Een schoolartikel",
+      "Een keukenhulpje",
+      "Een schoonmaakmiddel",
+      "Een tuingereedschap",
+      "Een badkamerartikel",
+      "Een meubelstuk",
       "Een kledingstuk",
-      "Een emoji",
-      "Een drankje",
-      "Een dierentuin dier",
-      "Een zeedier",
-      "Een insect",
-      "Een vogel",
-      "Een lichaamsdeel",
-      "Een land",
-      "Een stad",
-      "Een Minecraft item",
-      "Een chips smaak"
-    ],
-
-    couples: [
-      "Een red flag",
-      "Een green flag",
-      "Een turn-on",
-      "Een turn-off",
-      "Een date idee",
-      "Een celebrity crush",
-      "Een relatieprobleem",
-      "Een irritatie",
+      "Een schoensoort",
+      "Een wereldwijde winkelketen",
+      "Een huishoudelijk apparaat",
+      "Een keukenapparaat",
+      "Een serviesonderdeel",
+      "Een bestekdeel",
+      "Een poetsdoekje",
+      "Iets uit een verhuisdoos",
+      "Een basisgereedschap",
+      "Een klusmateriaal",
+      "Iets uit de prullenbak",
+      "Een kamerplant",
+      "Een tuinbloem",
+      "Een tuingroente",
+      "Een beddengoed-item",
+      "Een lichtbron",
+      "Een vloermateriaal",
+      "Een raamdecoratie",
+      "Een jassenzak-item",
+      "Een creatieve hobby",
+      "Een strijktool",
+      "Een was-item",
+      "Een babyartikel",
+      "Een EHBO-item",
+      "Een fruitsoort",
+      "Een groente",
+      "Een kaassoort",
+      "Een kruid of specerij",
+      "Een frisdrankmerk",
+      "Een ijssmaak",
+      "Een chipssmaak",
+      "Een snoepmerk",
+      "Een supermarktketen",
+      "Een fastfoodketen",
+      "Een avondgerecht",
+      "Een ontbijtproduct",
+      "Een broodbeleg",
+      "Een vleessoort",
+      "Een vissoort",
+      "Een bakingrediënt",
+      "Een pastavorm",
+      "Een soepvariant",
+      "Een sauzenmerk",
+      "Een zuivelproduct",
+      "Een diepvriesproduct",
+      "Een koekjesmerk",
+      "Een notenvariant",
+      "Een spread",
+      "Een bakolie",
+      "Een bordspel",
+      "Een speelgoedmerk",
+      "Een schoolvak",
+      "Een schoolartikel",
+      "Een vervoersmiddel",
+      "Een vakantieland",
+      "Een hoofdstad",
       "Een huisdiernaam",
-      "Een bijnaam",
-      "Een compliment",
-      "Een guilty pleasure",
-      "Een slechte gewoonte",
-      "Een romantische film",
-      "Een lief gebaar",
-      "Een cadeau",
-      "Een vakantiebestemming",
+      "Een babynaam",
+      "Een hondenras",
+      "Een kattenras",
+      "Een vogelsoort",
+      "Een boomsoort",
+      "Een bloemtype",
+      "Een bekend insect",
+      "Een Disney-figuur",
+      "Een sprookjesfiguur",
+      "Een pretpark",
+      "Een kinderzender",
+      "Iets uit een binnenspeeltuin",
+      "Een kinderboek",
+      "Een cartoonheld",
+      "Een knuffeldier",
+      "Een zwembad-item",
+      "Een dierentuindier"
+    ],
+
+    friends: [
+      "Een kantoorterm",
+      "Een kantoorartikel",
+      "Een functietitel",
+      "Een computermerk",
+      "Een softwareprogramma",
+      "Een kantoorsnack",
+      "Een energiedrankje",
+      "Een koffievariant",
+      "Een laptoponderdeel",
+      "Een bureau-item",
+      "Een kantoorapparaat",
+      "Een vergaderterm",
+      "Een financiële term",
+      "Een bedrijfsrol",
+      "Een kantoorplant",
+      "Een toetsenbordtoets",
+      "Een e-mailterm",
+      "Een kalendermaand",
+      "Een sollicitatie-woord",
+      "Een kledingvoorschrift",
+      "Een zakelijke website",
+      "Een techbedrijf",
+      "Een app-functie",
+      "Een bedrijfsstatistiek",
+      "Een projectfase",
+      "Een borrelhapje",
+      "Een biermerk",
+      "Een shotje",
+      "Een muziekfestival",
+      "Een uitgaansstad",
+      "Een late-night snack",
       "Een cocktail",
-      "Een ruzie onderwerp",
-      "Een afknapper",
-      "Titel van een romantisch liedje",
-      "Een serie",
-      "Een snack",
-      "Een droomdate",
-      "Een outfit",
-      "Een eerste indruk",
-      "Een toxic eigenschap",
-      "Een plek voor een date",
-      "Een romantische plek",
-      "Een slechte date",
-      "Een spicy woord",
-      "Een spicy drankje",
-      "Een fantasie",
-      "Een weekendactiviteit",
-      "Een romantisch gebaar"
-    ],
-
-    adult: [
-      "Een turn-off",
-      "Een guilty pleasure",
-      "Een red flag",
-      "Een green flag",
-      "Een slechte gewoonte",
-      "Een cocktail",
-      "Een fetish",
-      "Een grappige bijnaam",
-      "Een verslaving",
-      "Een celebrity crush",
-      "Een toxic eigenschap",
-      "Een spicy woord",
-      "Een spicy plek",
-      "Een fantasie",
-      "Een afknapper",
-      "Een irritatie",
-      "Een relatieprobleem",
-      "Een lelijke gewoonte",
-      "Een slechte beslissing",
-      "Een dronken actie",
-      "Een foute aankoop",
-      "Een slechte eigenschap",
-      "Een awkward hobby",
-      "Een spicy drankje",
-      "Een vreemd talent",
-      "Een rare verzameling",
-      "Een rapper",
-      "Een liedje",
-      "Een artiest",
-      "Een sport",
-      "Een festival",
-      "Een uitgaansplek",
-      "Een outfit",
-      "Een vakantieplek",
+      "Een wijntype",
+      "Een sterkedrank-type",
+      "Een frisdrank",
+      "Een kroegitem",
+      "Een concertzaal",
+      "Een club-outfit",
+      "Een kater-remedie",
+      "Een club-kenmerk",
+      "Een officiële feestdag",
+      "Een muziekgenre",
+      "Een dansstijl",
+      "Een barman-tool",
+      "Een biertap-onderdeel",
+      "Een feestattribuut",
+      "Een muziekinstrument",
+      "Een ticketwebsite",
+      "Een podiumeffect",
+      "Een club-dj",
       "Een kledingmerk",
-      "Een chips smaak",
-      "Een trend",
-      "Een club",
-      "Een supermarkt",
-      "Een hobby",
-      "Een voertuig",
-      "Een droomauto",
-      "Een parfum",
-      "Een luxe merk"
-    ],
-
-    genz: [
-      "Een influencer",
-      "Een TikTok trend",
-      "Een meme",
-      "Een emoji",
-      "Een hashtag",
-      "Een app",
-      "Een social media app",
-      "Een YouTuber",
-      "Een TikTokker",
-      "Een celebrity",
-      "Een rapper",
-      "Een artiest",
-      "Een liedje",
-      "Een album",
-      "Een Netflix serie",
-      "Een realityster",
-      "Een slang woord",
-      "Een red flag",
-      "Een green flag",
-      "Een flex",
-      "Een cringe woord",
-      "Een AI tool",
-      "Een challenge",
-      "Een trend",
-      "Een kledingstijl",
-      "Een fastfoodketen",
-      "Een drankje",
-      "Een snack",
-      "Een game",
-      "Een game karakter",
-      "Een Minecraft item",
-      "Een emoji gezicht",
-      "Een festival",
-      "Een concert",
-      "Een realityprogramma",
-      "Een merk",
-      "Een telefoonmerk",
-      "Een app functie",
-    ],
-
-    popculture: [
-      "Een film",
-      "Een serie",
-      "Een cartoon karakter",
-      "Een superheld",
-      "Een acteur",
-      "Een actrice",
-      "Een zanger",
-      "Een rapper",
-      "Een band",
-      "Een DJ",
-      "Een liedje",
-      "Een artiest",
-      "Een bekend persoon",
-      "Een internettrend",
-      "Een concert of festival",
-      "Een merk",
-      "Een kledingmerk",
-      "Een fastfoodketen",
-      "Een sporter",
-      "Een voetbalclub",
-      "Een bekende presentator",
-      "Een game",
-      "Een musical",
-      "Een droomberoep",
-      "Een luxe merk",
-      "Een snack",
-      "Een parfummerk",
       "Een automerk",
+      "Een parfummerk",
       "Een telefoonmerk",
-      "Een supermarkt",
-      "Een hobby",
-      "Een populaire sport",
-      "Een chips smaak",
-      "Een bucketlist ding",
-      "Een populaire naam"
+      "Een luxemerk",
+      "Een supercar",
+      "Een rapper",
+      "Een bekende dj",
+      "Een bandnaam",
+      "Een sportmerk",
+      "Een populaire website",
+      "Een sociale app",
+      "Een munteenheid",
+      "Een cryptomunt",
+      "Een horlogemerk",
+      "Een sneakermerk",
+      "Een zonnebrilmerk",
+      "Een scheerapparaatmerk",
+      "Een motormerk",
+      "Een fitnessapparaat",
+      "Een sportclub",
+      "Een stadion",
+      "Een streamingdienst",
+      "Een tech-gadget",
+      "Een herenblad",
+      "Een automodel",
+      "Een haargelmerk",
+      "Een deodorantmerk",
+      "Een herenparfum",
+      "Een vakantie-eiland"
     ],
+
   };
 
   const [players, setPlayers] = useState(["", "", "", ""]);
@@ -312,161 +238,168 @@ export default function Home() {
   const translations = {
 
     // FAMILY
-    "Een dier": "An animal",
-    "Een snack": "A snack",
-    "Een drankje": "A drink",
-    "Een vrucht": "A fruit",
+    "Een keukenhulpje": "A kitchen tool",
+    "Een schoonmaakmiddel": "A cleaning product",
+    "Een tuingereedschap": "A garden tool",
+    "Een badkamerartikel": "A bathroom item",
+    "Een meubelstuk": "A furniture piece",
+    "Een kledingstuk": "A clothing item",
+    "Een schoensoort": "A shoe type",
+    "Een wereldwijde winkelketen": "A global retail chain",
+    "Een huishoudelijk apparaat": "A home appliance",
+    "Een keukenapparaat": "A kitchen appliance",
+    "Een serviesonderdeel": "A tableware item",
+    "Een bestekdeel": "A cutlery piece",
+    "Een poetsdoekje": "A cleaning cloth",
+    "Iets uit een verhuisdoos": "A moving box item",
+    "Een basisgereedschap": "A basic tool",
+    "Een klusmateriaal": "A DIY material",
+    "Iets uit de prullenbak": "A trash can item",
+    "Een kamerplant": "A houseplant",
+    "Een tuinbloem": "A garden flower",
+    "Een tuingroente": "A garden vegetable",
+    "Een beddengoed-item": "A bedding item",
+    "Een lichtbron": "A light source",
+    "Een vloermateriaal": "A flooring material",
+    "Een raamdecoratie": "A window covering",
+    "Een jassenzak-item": "A jacket pocket item",
+    "Een creatieve hobby": "A craft hobby",
+    "Een strijktool": "An ironing tool",
+    "Een was-item": "A laundry item",
+    "Een babyartikel": "A baby product",
+    "Een EHBO-item": "A first-aid item",
+    "Een fruitsoort": "A fruit type",
     "Een groente": "A vegetable",
-    "Een fastfoodketen": "A fast food chain",
-    "Een film": "A movie",
-    "Een serie": "A TV series",
-    "Een beroep": "A profession",
-    "Een voertuig": "A vehicle",
-    "Een kledingmerk": "A clothing brand",
-    "Een schoolvak": "A school subject",
-    "Een schoolartikel": "A school item",
-    "Een sport": "A sport",
-    "Een hobby": "A hobby",
-    "Een muziekinstrument": "A musical instrument",
-    "Een kleur": "A color",
-    "Een land": "A country",
-    "Een stad": "A city",
-    "Een supermarkt": "A supermarket",
-    "Een winkel": "A store",
-    "Een meubel": "A piece of furniture",
-    "Iets uit de keuken": "Something from the kitchen",
-    "Een badkameritem": "A bathroom item",
-    "Een speelgoed": "A toy",
-    "Een chips smaak": "A chip flavor",
+    "Een kaassoort": "A cheese type",
+    "Een kruid of specerij": "A herb or spice",
+    "Een frisdrankmerk": "A soda brand",
     "Een ijssmaak": "An ice cream flavor",
-    "Snoep": "Candy",
-    "Een Disney karakter": "A Disney character",
-    "Een superheld": "A superhero",
-    "Een lichaamsdeel": "A body part",
-    "Een bloem": "A flower",
-    "Een boom": "A tree",
-    "Een insect": "An insect",
-    "Een vogel": "A bird",
-    "Een zeedier": "A sea animal",
-
-    // KIDS
-    "Speelgoed": "Toys",
-    "Een game": "A game",
-    "Een tekenfilm karakter": "A cartoon character",
-    "Een Pokémon": "A Pokémon",
-    "Een Mario karakter": "A Mario character",
-    "Fruit": "Fruit",
-    "Groente": "Vegetables",
-    "Een kledingstuk": "A piece of clothing",
-    "Een emoji": "An emoji",
-    "Een dierentuin dier": "A zoo animal",
-    "Een Minecraft item": "A Minecraft item",
-
-    // COUPLES
-    "Een red flag": "A red flag",
-    "Een green flag": "A green flag",
-    "Een turn-on": "A turn-on",
-    "Een turn-off": "A turn-off",
-    "Een date idee": "A date idea",
-    "Een celebrity crush": "A celebrity crush",
-    "Een relatieprobleem": "A relationship problem",
-    "Een irritatie": "An annoyance",
+    "Een chipssmaak": "A potato chip flavor",
+    "Een snoepmerk": "A candy brand",
+    "Een supermarktketen": "A supermarket chain",
+    "Een fastfoodketen": "A fast-food chain",
+    "Een avondgerecht": "A dinner dish",
+    "Een ontbijtproduct": "A breakfast item",
+    "Een broodbeleg": "A sandwich topping",
+    "Een vleessoort": "A meat type",
+    "Een vissoort": "A fish type",
+    "Een bakingrediënt": "A baking ingredient",
+    "Een pastavorm": "A pasta shape",
+    "Een soepvariant": "A soup variety",
+    "Een sauzenmerk": "A sauce brand",
+    "Een zuivelproduct": "A dairy product",
+    "Een diepvriesproduct": "A frozen food",
+    "Een koekjesmerk": "A cookie brand",
+    "Een notenvariant": "A nut variety",
+    "Een spread": "A sandwich spread",
+    "Een bakolie": "A cooking oil",
+    "Een bordspel": "A board game",
+    "Een speelgoedmerk": "A toy brand",
+    "Een schoolvak": "A school subject",
+    "Een schoolartikel": "A stationery item",
+    "Een vervoersmiddel": "A transport vehicle",
+    "Een vakantieland": "A vacation country",
+    "Een hoofdstad": "A capital city",
     "Een huisdiernaam": "A pet name",
-    "Een bijnaam": "A nickname",
-    "Een compliment": "A compliment",
-    "Een guilty pleasure": "A guilty pleasure",
-    "Een slechte gewoonte": "A bad habit",
-    "Een romantische film": "A romantic movie",
-    "Een lief gebaar": "A sweet gesture",
-    "Een cadeau": "A gift",
-    "Een vakantiebestemming": "A vacation destination",
+    "Een babynaam": "A baby name",
+    "Een hondenras": "A dog breed",
+    "Een kattenras": "A cat breed",
+    "Een vogelsoort": "A bird species",
+    "Een boomsoort": "A tree species",
+    "Een bloemtype": "A flower type",
+    "Een bekend insect": "A common insect",
+    "Een Disney-figuur": "A Disney character",
+    "Een sprookjesfiguur": "A fairy tale character",
+    "Een pretpark": "A theme park",
+    "Een kinderzender": "A kid's TV channel",
+    "Iets uit een binnenspeeltuin": "An indoor playground item",
+    "Een kinderboek": "A children's book",
+    "Een cartoonheld": "A cartoon hero",
+    "Een knuffeldier": "A plush toy",
+    "Een zwembad-item": "A swimming prop",
+    "Een dierentuindier": "A zoo animal",
+
+    // FRIENDS
+    "Een kantoorterm": "An office buzzword",
+    "Een kantoorartikel": "An office supply",
+    "Een functietitel": "A job title",
+    "Een computermerk": "A computer brand",
+    "Een softwareprogramma": "A software program",
+    "Een kantoorsnack": "An office snack",
+    "Een energiedrankje": "An energy drink",
+    "Een koffievariant": "A coffee style",
+    "Een laptoponderdeel": "A laptop part",
+    "Een bureau-item": "A desk item",
+    "Een kantoorapparaat": "An office appliance",
+    "Een vergaderterm": "A meeting term",
+    "Een financiële term": "A finance term",
+    "Een bedrijfsrol": "A corporate role",
+    "Een kantoorplant": "An office plant",
+    "Een toetsenbordtoets": "A keyboard key",
+    "Een e-mailterm": "An email term",
+    "Een kalendermaand": "A calendar month",
+    "Een sollicitatie-woord": "An interview word",
+    "Een kledingvoorschrift": "A work dress-code",
+    "Een zakelijke website": "A professional website",
+    "Een techbedrijf": "A tech company",
+    "Een app-functie": "An app feature",
+    "Een bedrijfsstatistiek": "A business metric",
+    "Een projectfase": "A project phase",
+    "Een borrelhapje": "A bar snack",
+    "Een biermerk": "A beer brand",
+    "Een shotje": "A party shot",
+    "Een muziekfestival": "A music festival",
+    "Een uitgaansstad": "A party city",
+    "Een late-night snack": "A midnight snack",
     "Een cocktail": "A cocktail",
-    "Een ruzie onderwerp": "An argument topic",
-    "Een afknapper": "A dealbreaker",
-    "Titel van een romantisch liedje": "Title of a romantic song",
-    "Een droomdate": "A dream date",
-    "Een outfit": "An outfit",
-    "Een eerste indruk": "A first impression",
-    "Een toxic eigenschap": "A toxic trait",
-    "Een plek voor een date": "A date location",
-    "Een romantische plek": "A romantic place",
-    "Een slechte date": "A bad date",
-    "Een spicy woord": "A naughty word",
-    "Een spicy drankje": "A sexy drink",
-    "Een fantasie": "A fantasy",
-    "Een weekendactiviteit": "A weekend activity",
-    "Een romantisch gebaar": "A romantic gesture",
-
-    // ADULT
-    "Een fetish": "A fetish",
-    "Een grappige bijnaam": "A funny nickname",
-    "Een verslaving": "An addiction",
-    "Een spicy plek": "A spicy place",
-    "Een lelijke gewoonte": "An ugly habit",
-    "Een slechte beslissing": "A bad decision",
-    "Een dronken actie": "A drunk action",
-    "Een foute aankoop": "A bad purchase",
-    "Een slechte eigenschap": "A bad personality trait",
-    "Een awkward hobby": "An awkward hobby",
-    "Een vreemd talent": "A weird talent",
-    "Een rare verzameling": "A weird collection",
-    "Een rapper": "A rapper",
-    "Een artiest": "An artist",
-    "Een festival": "A festival",
-    "Een uitgaansplek": "A nightlife spot",
-    "Een vakantieplek": "A vacation spot",
-    "Een trend": "A trend",
-    "Een club": "A club",
-    "Een droomauto": "A dream car",
-    "Een parfum": "A perfume",
-    "Een luxe merk": "A luxury brand",
-
-    // GEN Z
-    "Een influencer": "An influencer",
-    "Een TikTok trend": "A TikTok trend",
-    "Een meme": "A meme",
-    "Een hashtag": "A hashtag",
-    "Een social media app": "A social media app",
-    "Een YouTuber": "A YouTuber",
-    "Een TikTokker": "A TikToker",
-    "Een celebrity": "A celebrity",
-    "Een album": "An album",
-    "Een Netflix serie": "A Netflix series",
-    "Een realityster": "A reality star",
-    "Een slang woord": "A slang word",
-    "Een flex": "A flex",
-    "Een cringe woord": "A cringe word",
-    "Een AI tool": "An AI tool",
-    "Een challenge": "A challenge",
-    "Een kledingstijl": "A fashion style",
-    "Een game karakter": "A game character",
-    "Een emoji gezicht": "An emoji face",
-    "Een concert": "A concert",
-    "Een realityprogramma": "A reality show",
-    "Een merk": "A brand",
-    "Een telefoonmerk": "A phone brand",
-    "Een app functie": "An app feature",
-
-    // POP CULTURE
-    "Een cartoon karakter": "A cartoon character",
-    "Een acteur": "An actor",
-    "Een actrice": "An actress",
-    "Een zanger": "A singer",
-    "Een band": "A band",
-    "Een DJ": "A DJ",
-    "Een bekend persoon": "A famous person",
-    "Een internettrend": "An internet trend",
-    "Een concert of festival": "A concert or festival",
-    "Een sporter": "An athlete",
-    "Een voetbalclub": "A football club",
-    "Een bekende presentator": "A famous TV host",
-    "Een musical": "A musical",
-    "Een droomberoep": "A dream job",
-    "Een parfummerk": "A perfume brand",
+    "Een wijntype": "A wine variety",
+    "Een sterkedrank-type": "A spirit type",
+    "Een frisdrank": "A soft drink",
+    "Een kroegitem": "A pub item",
+    "Een concertzaal": "A concert venue",
+    "Een club-outfit": "A club outfit",
+    "Een kater-remedie": "A hangover cure",
+    "Een club-kenmerk": "A nightclub feature",
+    "Een officiële feestdag": "A public holiday",
+    "Een muziekgenre": "A music genre",
+    "Een dansstijl": "A dance style",
+    "Een barman-tool": "A bartender tool",
+    "Een biertap-onderdeel": "A beer tap part",
+    "Een feestattribuut": "A party prop",
+    "Een muziekinstrument": "A music instrument",
+    "Een ticketwebsite": "A concert ticket site",
+    "Een podiumeffect": "A stage effect",
+    "Een club-dj": "A club DJ",
+    "Een kledingmerk": "A clothing brand",
     "Een automerk": "A car brand",
-    "Een populaire sport": "A popular sport",
-    "Een bucketlist ding": "A bucket list item",
-    "Een populaire naam": "A popular name",
+    "Een parfummerk": "A perfume brand",
+    "Een telefoonmerk": "A phone brand",
+    "Een luxemerk": "A luxury brand",
+    "Een supercar": "A supercar",
+    "Een rapper": "A rap artist",
+    "Een bekende dj": "A famous DJ",
+    "Een bandnaam": "A band name",
+    "Een sportmerk": "A sports brand",
+    "Een populaire website": "A popular website",
+    "Een sociale app": "A social app",
+    "Een munteenheid": "A currency",
+    "Een cryptomunt": "A cryptocurrency",
+    "Een horlogemerk": "A watch brand",
+    "Een sneakermerk": "A sneaker brand",
+    "Een zonnebrilmerk": "A sunglasses brand",
+    "Een scheerapparaatmerk": "A razor brand",
+    "Een motormerk": "A motorcycle brand",
+    "Een fitnessapparaat": "A gym machine",
+    "Een sportclub": "A sports club",
+    "Een stadion": "A stadium",
+    "Een streamingdienst": "A streaming service",
+    "Een tech-gadget": "A tech gadget",
+    "Een herenblad": "A men's magazine",
+    "Een automodel": "A car model",
+    "Een haargelmerk": "A hair gel brand",
+    "Een deodorantmerk": "A deodorant brand",
+    "Een herenparfum": "A cologne brand",
+    "Een vakantie-eiland": "A holiday island",
 
   };
 
@@ -500,12 +433,6 @@ export default function Home() {
       hasWon: "heeft gewonnen!",
       playAgain: "SPEEL OPNIEUW",
       nextRound: "VOLGENDE RONDE",
-      familyMode: "Familie",
-      kidsMode: "Kinderen",
-      couplesMode: "Koppels",
-      adultMode: "Friends",
-      genzMode: "Gen-Z",
-      popcultureMode: "Popcultuur",
       hardcoreMode: "HARDCORE MODE",
       hardcoreDescription: "Verlies een punt bij skip of een fout antwoord",
       maxPlayers: "Voeg spelers toe — maximaal 8 spelers",
@@ -540,12 +467,6 @@ export default function Home() {
       hasWon: "has won!",
       playAgain: "PLAY AGAIN",
       nextRound: "NEXT ROUND",
-      familyMode: "Family",
-      kidsMode: "Kids",
-      couplesMode: "Couples",
-      adultMode: "Friends",
-      genzMode: "Gen-Z",
-      popcultureMode: "Pop Culture",
       hardcoreMode: "HARDCORE MODE",
       hardcoreDescription: "Lose a point for a skip or wrong answer",
       maxPlayers: "Add players — maximum 8 players",
@@ -850,7 +771,11 @@ export default function Home() {
 
       const updatedScores = [...scores];
 
-      updatedScores[currentPlayer] -= 1;
+      updatedScores[currentPlayer] =
+        Math.max(
+          0,
+          updatedScores[currentPlayer] - 1
+        );
 
       setScores(updatedScores);
     }
@@ -1180,7 +1105,7 @@ export default function Home() {
             {text[language].gameMode}
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+          <div className="grid grid-cols-2 gap-3 mb-6">
 
             <button
               onClick={() => setSelectedMode("family")}
@@ -1189,52 +1114,21 @@ export default function Home() {
                 : "bg-white/5 border-white/10 text-white/70 hover:text-white"
                 }`}
             >
-              {text[language].familyMode}
+              {language === "nl"
+                ? "Familie / Gezin"
+                : "Family / Household"}
             </button>
 
             <button
-              onClick={() => setSelectedMode("kids")}
-              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "kids"
+              onClick={() => setSelectedMode("friends")}
+              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "friends"
                 ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
+                : "bg-white/5 border-white/10 text-white/70 hover:text-white"
+                }`}
             >
-              {text[language].kidsMode}
-            </button>
-
-            <button
-              onClick={() => setSelectedMode("couples")}
-              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "couples"
-                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
-            >
-              {text[language].couplesMode}
-            </button>
-
-            <button
-              onClick={() => setSelectedMode("adult")}
-              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "adult"
-                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
-            >
-              {text[language].adultMode}
-            </button>
-
-            <button
-              onClick={() => setSelectedMode("genz")}
-              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "genz"
-                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
-            >
-              {text[language].genzMode}
-            </button>
-
-            <button
-              onClick={() => setSelectedMode("popculture")}
-              className={`rounded-3xl py-5 px-4 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${selectedMode === "popculture"
-                ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                : "bg-white/5 border-white/10 text-white/70 hover:text-white"}`}
-            >
-              {text[language].popcultureMode}
+              {language === "nl"
+                ? "Vrienden / Collega's"
+                : "Friends / Coworkers"}
             </button>
 
           </div>
@@ -1683,35 +1577,44 @@ export default function Home() {
 
               </div>
             </motion.div>
-            {chaosMode && (
-
-              <div className="grid grid-cols-2 gap-3 mt-6">
-
-                {players.map((player, index) => (
-
-                  <button
-                    key={index}
-                    onClick={() => {
-
-                      if (feedback || isRolling) return;
-
-                      addPoint(index);
-
-                    }}
-                    className="bg-purple-500/20 border border-purple-400 rounded-3xl p-5 text-white font-black uppercase tracking-[2px] backdrop-blur-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
-                  >
-                    {player}
-                  </button>
-
-                ))}
-
-              </div>
-
-            )}
 
           </div>
+
+          <ScoreBoard
+            players={players}
+            scores={scores}
+            currentPlayer={currentPlayer}
+            chaosMode={chaosMode}
+          />
+
+          {chaosMode && (
+
+            <div className="grid grid-cols-2 gap-3 mt-6">
+
+              {players.map((player, index) => (
+
+                <button
+                  key={index}
+                  onClick={() => {
+
+                    if (feedback || isRolling) return;
+
+                    addPoint(index);
+
+                  }}
+                  className="bg-purple-500/20 border border-purple-400 rounded-3xl p-5 text-white font-black uppercase tracking-[2px] backdrop-blur-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
+                >
+                  {player}
+                </button>
+
+              ))}
+
+            </div>
+
+          )}
+
         </div>
       </div>
-    </main>
+    </main >
   );
 }
