@@ -1,41 +1,37 @@
 "use client";
 
 export default function ChaosMode({
-  chaosMode,
-  players,
-  feedback,
-  isRolling,
-  selectedChaosPlayer,
-  setSelectedChaosPlayer,
-  addPoint,
+    chaosMode,
+    players,
+    feedback,
+    isRolling,
+    selectedChaosPlayer,
+    setSelectedChaosPlayer,
+    addPoint,
 }) {
 
-  if (!chaosMode) return null;
+    if (!chaosMode) return null;
 
-  return (
+    return (
 
-    <div className="grid grid-cols-2 gap-3 mt-6">
+        <div className="grid grid-cols-2 gap-3 mt-6">
 
-      {players.map((player, index) => (
+            {players.map((player, index) => (
 
-        <button
-          key={index}
+                <button
+                    key={index}
 
-          onClick={() => {
+                    onClick={() => {
 
-            if (feedback || isRolling) return;
+                        if (feedback || isRolling) return;
 
-            setSelectedChaosPlayer(index);
+                        setSelectedChaosPlayer(index);
 
-            setTimeout(() => {
+                        addPoint(index);
 
-              addPoint(index);
+                    }}
 
-            }, 350);
-
-          }}
-
-          className={`
+                    className={`
             rounded-3xl
             p-5
             text-white
@@ -47,20 +43,19 @@ export default function ChaosMode({
             hover:scale-[1.02]
             active:scale-[0.98]
             border
-            ${
-              selectedChaosPlayer === index
-                ? "bg-green-500/40 border-green-300 shadow-[0_0_30px_rgba(74,222,128,0.8)] scale-[1.03]"
-                : "bg-purple-500/20 border-purple-400"
-            }
+            ${selectedChaosPlayer === index
+                            ? "bg-green-500/40 border-green-300 shadow-[0_0_30px_rgba(74,222,128,0.8)] scale-[1.03]"
+                            : "bg-purple-500/20 border-purple-400"
+                        }
           `}
-        >
-          {player}
-        </button>
+                >
+                    {player}
+                </button>
 
-      ))}
+            ))}
 
-    </div>
+        </div>
 
-  );
+    );
 
 }
