@@ -634,7 +634,7 @@ export default function Home() {
     if (pool.length === 0) {
       return "";
     }
-    
+
     const selected =
       pool[
       Math.floor(Math.random() * pool.length)
@@ -1366,6 +1366,7 @@ export default function Home() {
               language={language}
               setShowRoundScore={setShowRoundScore}
               spinLetter={spinLetter}
+              goToNextPlayer={goToNextPlayer}
             />
 
           )}
