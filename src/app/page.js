@@ -307,6 +307,7 @@ export default function Home() {
   const [lastCategory, setLastCategory] = useState("");
   const [showPointAnimation, setShowPointAnimation] = useState(false);
   const [showRoundScore, setShowRoundScore] = useState(false);
+  const [roundTurns, setRoundTurns] = useState(0);
 
   const translations = {
 
@@ -785,9 +786,13 @@ export default function Home() {
         : currentPlayer + 1;
 
     const isLastPlayer =
-      !chaosMode &&
-      nextPlayer === 0;
+      chaosMode
+        ? roundTurns + 1 >= players.length
+        : nextPlayer === 0;
 
+    if (chaosMode) {
+      setRoundTurns((prev) => prev + 1);
+    }
     goToNextPlayer();
 
     if (isLastPlayer) {
@@ -848,9 +853,13 @@ export default function Home() {
         : currentPlayer + 1;
 
     const isLastPlayer =
-      !chaosMode &&
-      nextPlayer === 0;
+      chaosMode
+        ? roundTurns + 1 >= players.length
+        : nextPlayer === 0;
 
+    if (chaosMode) {
+      setRoundTurns((prev) => prev + 1);
+    }
     goToNextPlayer();
 
     if (isLastPlayer) {
@@ -1476,6 +1485,8 @@ export default function Home() {
                   onClick={() => {
 
                     setShowRoundScore(false);
+
+                    setRoundTurns(0);
 
                     spinLetter();
 
