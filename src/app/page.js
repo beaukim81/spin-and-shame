@@ -905,13 +905,19 @@ export default function Home() {
 
       setCurrentLetter(finalLetter);
 
-      setTimer(gameTime);
-
       x.set(0);
       setIsRolling(false);
 
       if (
-        !chaosMode &&
+        chaosMode ||
+        currentPlayer + 1 < players.length
+      ) {
+
+        setTimer(gameTime);
+
+      }
+
+      if (
         currentPlayer + 1 >= players.length
       ) {
 
@@ -920,6 +926,8 @@ export default function Home() {
         setTimeout(() => {
 
           setShowRoundScore(false);
+
+          setTimer(gameTime);
 
         }, 2000);
 
