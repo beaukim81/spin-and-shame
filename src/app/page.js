@@ -638,7 +638,8 @@ export default function Home() {
       !gameStarted ||
       winner ||
       isRolling ||
-      isPaused
+      isPaused ||
+      showRoundScore
     ) return;
 
     if (
@@ -677,6 +678,7 @@ export default function Home() {
     winner,
     isRolling,
     isPaused,
+    showRoundScore,
     feedback,
     soundEnabled
   ]);
