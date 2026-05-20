@@ -1,4 +1,5 @@
 "use client";
+import IntroScreen from "./components/IntroScreen";
 import { categoryModes } from "./data/categories";
 import { translations } from "./data/translations";
 import ScoreOverlay from "./components/ScoreOverlay";
@@ -621,171 +622,24 @@ export default function Home() {
     );
   }
 
-  if (!gameStarted) {
+  if (!gameStarted && showIntro) {
 
-    if (showIntro) {
+  return (
+    <IntroScreen
+      language={language}
+      setLanguage={setLanguage}
+      soundEnabled={soundEnabled}
+      setSoundEnabled={setSoundEnabled}
+      setShowIntro={setShowIntro}
+      introX={introX}
+      introBackground={introBackground}
+      text={text}
+    />
+  );
 
-      return (
+}
 
-        <main className="min-h-screen bg-black text-white select-none touch-manipulation flex items-center justify-center p-6 overflow-y-auto">
-
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#3b0764_0%,#000000_45%)] opacity-90" />
-
-          <div className="relative z-10 w-full max-w-2xl text-center">
-
-            <div className="flex justify-center items-center gap-3 mb-6">
-
-              <button
-                onClick={() => setLanguage("nl")}
-                className={`px-4 py-2 rounded-2xl font-black border transition-all ${language === "nl"
-                  ? "bg-orange-500/20 border-orange-400 text-white"
-                  : "bg-white/5 border-white/10 text-white/70"
-                  }`}
-              >
-                NL
-              </button>
-
-              <button
-                onClick={() => setLanguage("en")}
-                className={`px-4 py-2 rounded-2xl font-black border transition-all ${language === "en"
-                  ? "bg-orange-500/20 border-orange-400 text-white"
-                  : "bg-white/5 border-white/10 text-white/70"
-                  }`}
-              >
-                EN
-              </button>
-
-              <button
-                onClick={() => setSoundEnabled(!soundEnabled)}
-                className={`px-4 h-12 rounded-2xl border backdrop-blur-xl flex items-center gap-2 text-sm font-black tracking-[1px] transition-all ${soundEnabled
-                  ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_20px_rgba(251,146,60,0.25)]"
-                  : "bg-white/5 border-white/10 text-white/50"
-                  }`}
-              >
-                <span>
-                  {soundEnabled ? "🔊" : "🔇"}
-                </span>
-
-                <span>
-                  SOUND
-                </span>
-              </button>
-
-            </div>
-
-            <div className="flex justify-center mb-6">
-
-              <Image
-                src="/logo.png"
-                width={420}
-                height={220}
-                alt="Spin & Shame"
-                priority
-              />
-
-            </div>
-
-            <div className="space-y-5 mb-6">
-
-              <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl">
-
-                <p className="text-orange-400 text-xs uppercase tracking-[4px] font-black mb-3">
-                  {text[language].howItWorks}
-                </p>
-
-                <h2 className="text-[clamp(1.8rem,5vw,3.2rem)] font-black leading-tight text-white">
-                  {text[language].introTitle}
-                </h2>
-
-              </div>
-
-              <motion.div
-                drag="x"
-                style={{
-                  x: introX,
-                  backgroundColor: introBackground,
-                }}
-                animate={{
-                  boxShadow: [
-                    "0 0 25px rgba(251,146,60,0.15)",
-                    "0 0 45px rgba(251,146,60,0.35)",
-                    "0 0 25px rgba(251,146,60,0.15)",
-                  ],
-                }}
-
-                transition={{
-                  duration: 2.4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-
-                dragConstraints={{
-                  left: 0,
-                  right: 220,
-                }}
-
-                dragElastic={0.18}
-
-                whileDrag={{
-                  scale: 1.05,
-                  y: -4,
-                }}
-
-                onDragEnd={(event, info) => {
-
-                  if (info.offset.x > 70) {
-
-                    animate(
-                      introX,
-                      260,
-                      {
-                        type: "spring",
-                        stiffness: 120,
-                        damping: 18,
-                      }
-                    );
-
-                    setTimeout(() => {
-
-                      setShowIntro(false);
-
-                    }, 300);
-
-                    return;
-
-                  }
-                  animate(introX, 0, {
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 25,
-                  });
-                }}
-
-                className="mb-6 border-2 border-orange-400/40 rounded-[32px] p-5 backdrop-blur-xl text-center transition-all shadow-[0_0_45px_rgba(251,146,60,0.35)] bg-white/5 cursor-grab active:cursor-grabbing"
-              >
-
-                <div className="flex justify-center items-center text-orange-400 text-xs uppercase tracking-[2px] font-black">
-
-                  <span>
-                    <span>
-                      {language === "nl"
-                        ? "SWIPE OM TE SPELEN ➜"
-                        : "SWIPE TO PLAY ➜"}
-                    </span>
-                  </span>
-
-                </div>
-
-              </motion.div>
-
-            </div>
-
-          </div>
-
-        </main >
-
-      );
-    }
+if (!gameStarted) {
 
     return (
       <main className="min-h-screen bg-black text-white select-none touch-manipulation flex items-center justify-center p-[clamp(16px,4vw,40px)] overflow-y-auto relative">
