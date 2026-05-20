@@ -421,8 +421,6 @@ export default function Home() {
 
       goToNextPlayer();
 
-      setSelectedChaosPlayer(null);
-
       spinLetter();
 
     }
