@@ -793,7 +793,7 @@ export default function Home() {
 
     const someoneNearWin =
       updatedScores.some(
-        (score) => score >= 8
+        (score) => score === 8
       );
 
     const shouldShowChaosOverlay =
