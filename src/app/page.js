@@ -786,12 +786,14 @@ export default function Home() {
       !chaosMode &&
       nextPlayer === 0;
 
+    goToNextPlayer();
+
     if (isLastPlayer) {
 
       setShowRoundScore(true);
 
     } else {
-      goToNextPlayer();
+
       spinLetter();
 
     }
@@ -847,12 +849,14 @@ export default function Home() {
       !chaosMode &&
       nextPlayer === 0;
 
+    goToNextPlayer();
+
     if (isLastPlayer) {
 
       setShowRoundScore(true);
 
     } else {
-      goToNextPlayer();
+
       spinLetter();
 
     }
@@ -1404,9 +1408,7 @@ export default function Home() {
 
               setGameStarted(true);
 
-              if (!chaosMode) {
-                setCurrentPlayer(-1);
-              }
+              setCurrentPlayer(0);
 
               spinLetter();
 
@@ -1472,8 +1474,6 @@ export default function Home() {
                   onClick={() => {
 
                     setShowRoundScore(false);
-
-                    goToNextPlayer();
 
                     spinLetter();
 
