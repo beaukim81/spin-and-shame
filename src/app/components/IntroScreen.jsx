@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, animate } from "framer-motion";
+import Image from "next/image";
 
 export default function IntroScreen({
   language,
@@ -58,6 +59,18 @@ export default function IntroScreen({
               SOUND
             </span>
           </button>
+
+        </div>
+
+        <div className="flex justify-center mb-6">
+
+          <Image
+            src="/logo.png"
+            width={420}
+            height={220}
+            alt="Spin & Shame"
+            loading="eager"
+          />
 
         </div>
 
