@@ -1,4 +1,5 @@
 "use client";
+import ChaosMode from "./components/ChaosMode";
 import StartMenu from "./components/StartMenu";
 import IntroScreen from "./components/IntroScreen";
 import { categoryModes } from "./data/categories";
@@ -625,46 +626,46 @@ export default function Home() {
 
   if (!gameStarted && showIntro) {
 
-  return (
-    <IntroScreen
-      language={language}
-      setLanguage={setLanguage}
-      soundEnabled={soundEnabled}
-      setSoundEnabled={setSoundEnabled}
-      setShowIntro={setShowIntro}
-      introX={introX}
-      introBackground={introBackground}
-      text={text}
-    />
-  );
+    return (
+      <IntroScreen
+        language={language}
+        setLanguage={setLanguage}
+        soundEnabled={soundEnabled}
+        setSoundEnabled={setSoundEnabled}
+        setShowIntro={setShowIntro}
+        introX={introX}
+        introBackground={introBackground}
+        text={text}
+      />
+    );
 
-}
+  }
 
-if (!gameStarted) {
+  if (!gameStarted) {
 
-  return (
-    <StartMenu
-      language={language}
-      text={text}
-      selectedMode={selectedMode}
-      setSelectedMode={setSelectedMode}
-      gameTime={gameTime}
-      setGameTime={setGameTime}
-      competitiveMode={competitiveMode}
-      setCompetitiveMode={setCompetitiveMode}
-      chaosMode={chaosMode}
-      setChaosMode={setChaosMode}
-      players={players}
-      setPlayers={setPlayers}
-      setScores={setScores}
-      setGameStarted={setGameStarted}
-      setCurrentPlayer={setCurrentPlayer}
-      spinLetter={spinLetter}
-      setTimer={setTimer}
-    />
-  );
+    return (
+      <StartMenu
+        language={language}
+        text={text}
+        selectedMode={selectedMode}
+        setSelectedMode={setSelectedMode}
+        gameTime={gameTime}
+        setGameTime={setGameTime}
+        competitiveMode={competitiveMode}
+        setCompetitiveMode={setCompetitiveMode}
+        chaosMode={chaosMode}
+        setChaosMode={setChaosMode}
+        players={players}
+        setPlayers={setPlayers}
+        setScores={setScores}
+        setGameStarted={setGameStarted}
+        setCurrentPlayer={setCurrentPlayer}
+        spinLetter={spinLetter}
+        setTimer={setTimer}
+      />
+    );
 
-}
+  }
 
   return (
     <main className="min-h-screen bg-black text-white select-none touch-manipulation flex flex-col items-center justify-center p-3 relative overflow-y-auto">
@@ -906,54 +907,15 @@ if (!gameStarted) {
 
           </div>
 
-          {chaosMode && (
-
-            <div className="grid grid-cols-2 gap-3 mt-6">
-
-              {players.map((player, index) => (
-
-                <button
-                  key={index}
-                  onClick={() => {
-
-                    if (feedback || isRolling) return;
-
-                    setSelectedChaosPlayer(index);
-
-                    setTimeout(() => {
-
-                      addPoint(index);
-
-                    }, 350);
-
-                  }}
-
-                  className={`
-  rounded-3xl
-  p-5
-  text-white
-  font-black
-  uppercase
-  tracking-[2px]
-  backdrop-blur-xl
-  transition-all
-  hover:scale-[1.02]
-  active:scale-[0.98]
-  border
-  ${selectedChaosPlayer === index
-                      ? "bg-green-500/40 border-green-300 shadow-[0_0_30px_rgba(74,222,128,0.8)] scale-[1.03]"
-                      : "bg-purple-500/20 border-purple-400"
-                    }
-`}
-                >
-                  {player}
-                </button>
-
-              ))}
-
-            </div>
-
-          )}
+          <ChaosMode
+            chaosMode={chaosMode}
+            players={players}
+            feedback={feedback}
+            isRolling={isRolling}
+            selectedChaosPlayer={selectedChaosPlayer}
+            setSelectedChaosPlayer={setSelectedChaosPlayer}
+            addPoint={addPoint}
+          />
 
         </div>
       </div>
