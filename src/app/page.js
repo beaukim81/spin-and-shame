@@ -293,7 +293,6 @@ export default function Home() {
   const [gameStarted, setGameStarted] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
   const [winner, setWinner] = useState(null);
-  const [showScoreboard, setShowScoreboard] = useState(false);
   const [feedback, setFeedback] = useState("");
   const [isRolling, setIsRolling] = useState(false);
   const [competitiveMode, setCompetitiveMode] = useState(false);
@@ -301,8 +300,6 @@ export default function Home() {
   const [gameTime, setGameTime] = useState(10);
   const [chaosMode, setChaosMode] = useState(false);
   const [language, setLanguage] = useState("nl");
-  const [introSwipeDone, setIntroSwipeDone] = useState(false);
-  const [introTouched, setIntroTouched] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const spinInterval = useRef(null);
   const [soundEnabled, setSoundEnabled] = useState(true);
@@ -640,7 +637,6 @@ export default function Home() {
     if (
       !gameStarted ||
       winner ||
-      showScoreboard ||
       isRolling ||
       isPaused
     ) return;
@@ -679,7 +675,6 @@ export default function Home() {
     timer,
     gameStarted,
     winner,
-    showScoreboard,
     isRolling,
     isPaused,
     feedback,
@@ -722,6 +717,18 @@ export default function Home() {
     ]);
     setLastCategory(selected);
     return selected;
+  }
+
+  function goToNextPlayer() {
+
+    if (chaosMode) return;
+
+    setCurrentPlayer((prev) =>
+      prev + 1 >= players.length
+        ? 0
+        : prev + 1
+    );
+
   }
 
   function addPoint(playerIndex = currentPlayer) {
@@ -769,7 +776,20 @@ export default function Home() {
       stiffness: 400,
       damping: 28,
     });
-    spinLetter();
+
+    const isLastPlayer =
+      !chaosMode &&
+      currentPlayer + 1 >= players.length;
+
+    if (isLastPlayer) {
+
+      setShowRoundScore(true);
+
+    } else {
+      goToNextPlayer();
+      spinLetter();
+
+    }
 
     setTimeout(() => {
 
@@ -812,7 +832,20 @@ export default function Home() {
       stiffness: 400,
       damping: 28,
     });
-    spinLetter();
+
+    const isLastPlayer =
+      !chaosMode &&
+      currentPlayer + 1 >= players.length;
+
+    if (isLastPlayer) {
+
+      setShowRoundScore(true);
+
+    } else {
+      goToNextPlayer();
+      spinLetter();
+
+    }
 
     setTimeout(() => {
 
@@ -825,30 +858,6 @@ export default function Home() {
     setIsRolling(true);
 
     setTimer(0);
-
-    if (!chaosMode) {
-
-      setCurrentPlayer((prev) => {
-
-        const totalPlayers =
-          players.filter(
-            player => player.trim() !== ""
-          ).length;
-
-        const next =
-          prev + 1 >= totalPlayers
-            ? 0
-            : prev + 1;
-
-        if (next === 0 && prev !== -1) {
-
-        }
-
-        return next;
-
-      });
-
-    }
 
     spinInterval.current = setInterval(() => {
 
@@ -908,30 +917,8 @@ export default function Home() {
       x.set(0);
       setIsRolling(false);
 
-      if (
-        chaosMode ||
-        currentPlayer + 1 < players.length
-      ) {
+      setTimer(gameTime);
 
-        setTimer(gameTime);
-
-      }
-
-      if (
-        currentPlayer + 1 >= players.length
-      ) {
-
-        setShowRoundScore(true);
-
-        setTimeout(() => {
-
-          setShowRoundScore(false);
-
-          setTimer(gameTime);
-
-        }, 2000);
-
-      }
     }, 2000);
 
   }
@@ -980,52 +967,6 @@ export default function Home() {
 
         </main>
       </>
-    );
-  }
-
-  if (showScoreboard) {
-
-    return (
-      <main className="min-h-screen overflow-y-auto bg-black text-white flex items-center justify-center p-[clamp(16px,4vw,40px)]">
-
-        <div className="relative z-10 w-full max-w-2xl backdrop-blur-xl bg-white/5 border border-white/10 rounded-[36px] p-6">
-
-          <div className="space-y-3">
-            {players.map((player, index) => (
-              <div
-                key={player}
-                className="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-[clamp(16px,4vw,40px)]"
-              >
-                <h2 className="text-xl font-semibold uppercase text-white">
-                  {player}
-                </h2>
-
-                <div className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-pink-500 text-transparent bg-clip-text">
-                  {scores[index]}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <button
-            onClick={() => {
-
-              setShowScoreboard(false);
-
-              setCurrentPlayer(0);
-
-              setTimer(0);
-
-              spinLetter();
-
-            }}
-            className="w-full mt-6 bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 text-white font-black text-xl py-4 rounded-2xl"
-          >
-            {text[language].nextRound}
-          </button>
-
-        </div>
-      </main>
     );
   }
 
@@ -1127,7 +1068,6 @@ export default function Home() {
                   ease: "easeInOut",
                 }}
 
-                onDragStart={() => setIntroTouched(true)}
                 dragConstraints={{
                   left: 0,
                   right: 220,
@@ -1154,18 +1094,16 @@ export default function Home() {
                       }
                     );
 
-                    setIntroSwipeDone(true);
-
                     setTimeout(() => {
-
-                      setIntroTouched(false);
 
                       setShowIntro(false);
 
                     }, 300);
 
+                    return;
+
                   }
-                  animate(x, 0, {
+                  animate(introX, 0, {
                     type: "spring",
                     stiffness: 400,
                     damping: 25,
@@ -1268,212 +1206,211 @@ export default function Home() {
           </div>
 
           <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
-            <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
-              <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-2">
-                {language === "nl"
-                  ? "WIN CONDITIE"
-                  : "WIN CONDITION"}
-              </p>
-
-              <h3 className="text-white/70 font-medium text-base">
-                {language === "nl"
-                  ? "Eerste speler met 10 punten wint"
-                  : "First player to 10 points wins"}
-              </h3>
-
-            </div>
-
-            <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
-              {text[language].timer}
+            <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-2">
+              {language === "nl"
+                ? "WIN CONDITIE"
+                : "WIN CONDITION"}
             </p>
 
-            <div className="grid grid-cols-4 gap-3">
-
-              {[5, 10, 15, 20].map((time) => (
-
-                <button
-                  key={time}
-                  onClick={() => setGameTime(time)}
-                  className={`rounded-3xl p-3 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${gameTime === time
-                    ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
-                    : "bg-white/5 border-white/10 text-white/70 hover:text-white"
-                    }`}
-                >
-                  {time}s
-                </button>
-
-              ))}
-
-            </div>
+            <h3 className="text-white/70 font-medium text-base">
+              {language === "nl"
+                ? "Eerste speler met 10 punten wint"
+                : "First player to 10 points wins"}
+            </h3>
 
           </div>
 
-          <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
+          <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
+            {text[language].timer}
+          </p>
 
-            <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
-              {text[language].extraMode}
-            </p>
+          <div className="grid grid-cols-4 gap-3">
 
-            <button
-              onClick={() => {
+            {[5, 10, 15, 20].map((time) => (
 
-                setCompetitiveMode(!competitiveMode);
+              <button
+                key={time}
+                onClick={() => setGameTime(time)}
+                className={`rounded-3xl p-3 border backdrop-blur-xl transition-all duration-200 text-sm font-black tracking-[2px] uppercase hover:scale-[1.02] active:scale-[0.98] ${gameTime === time
+                  ? "bg-orange-500/20 border-orange-400 text-white shadow-[0_0_30px_rgba(251,146,60,0.25)]"
+                  : "bg-white/5 border-white/10 text-white/70 hover:text-white"
+                  }`}
+              >
+                {time}s
+              </button>
 
-                if (!competitiveMode) {
-                  setChaosMode(false);
-                }
-
-              }}
-              className={`w-full rounded-3xl p-5 border transition-all text-left ${competitiveMode
-                ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
-                : "bg-white/5 border-white/10"
-                }`}
-            >
-
-              <div className="flex items-center justify-between">
-
-                <div>
-
-                  <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
-                    {text[language].hardcoreMode}
-                  </h3>
-
-                  <p className="text-white/60 mt-1">
-                    {text[language].hardcoreDescription}
-                  </p>
-
-                </div>
-
-                <div
-                  className={`w-5 h-5 rounded-full ${competitiveMode
-                    ? "bg-purple-400"
-                    : "bg-white/20"
-                    }`}
-                />
-
-              </div>
-
-            </button>
-
-            <button
-              onClick={() => {
-
-                setChaosMode(!chaosMode);
-
-                if (!chaosMode) {
-                  setCompetitiveMode(false);
-                }
-
-              }}
-              className={`w-full rounded-3xl p-5 border transition-all text-left mt-4 ${chaosMode
-                ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
-                : "bg-white/5 border-white/10"
-                }`}
-            >
-
-              <div className="flex items-center justify-between">
-
-                <div>
-
-                  <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
-                    {text[language].chaosMode}
-                  </h3>
-
-                  <p className="text-white/60 mt-1">
-                    {text[language].chaosDescription}
-                  </p>
-
-                </div>
-
-                <div
-                  className={`w-5 h-5 rounded-full ${chaosMode
-                    ? "bg-purple-400"
-                    : "bg-white/20"
-                    }`}
-                />
-
-              </div>
-
-            </button>
+            ))}
 
           </div>
-          <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
-            <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
-              {text[language].players}
-            </p>
+        </div>
 
-            <div className="space-y-4">
-              {players.map((player, index) => (
-                <input
-                  key={index}
-                  value={player}
-                  placeholder={`${text[language].player} ${index + 1}`}
-                  onChange={(e) => {
+        <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
-                    const updatedPlayers = [...players];
-
-                    updatedPlayers[index] = e.target.value;
-
-                    if (
-                      index === players.length - 1 &&
-                      e.target.value.trim() !== "" &&
-                      updatedPlayers.filter(
-                        p => p.trim() !== ""
-                      ).length < 8
-                    ) {
-                      updatedPlayers.push("");
-                    }
-
-                    setPlayers(updatedPlayers);
-
-                  }}
-                  className="w-full bg-orange-500/10 border border-orange-400/20 rounded-3xl px-4 py-3 text-white placeholder:text-white/30"
-                />
-              ))}
-            </div>
-            <p className="text-sm text-white/40 mt-4 leading-relaxed">
-              {text[language].maxPlayers}
-            </p>
-          </div>
-
+          <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
+            {text[language].extraMode}
+          </p>
 
           <button
-            disabled={
-              players.filter(player => player.trim() !== "").length === 0
-            }
             onClick={() => {
 
-              const filteredPlayers = players.filter(
-                (player) => player.trim() !== ""
-              );
+              setCompetitiveMode(!competitiveMode);
 
-              setPlayers(filteredPlayers);
-
-              setScores(
-                new Array(filteredPlayers.length).fill(0)
-              );
-
-              setTimer(0);
-
-              setGameStarted(true);
-
-              if (!chaosMode) {
-                setCurrentPlayer(-1);
+              if (!competitiveMode) {
+                setChaosMode(false);
               }
 
-              spinLetter();
+            }}
+            className={`w-full rounded-3xl p-5 border transition-all text-left ${competitiveMode
+              ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+              : "bg-white/5 border-white/10"
+              }`}
+          >
+
+            <div className="flex items-center justify-between">
+
+              <div>
+
+                <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
+                  {text[language].hardcoreMode}
+                </h3>
+
+                <p className="text-white/60 mt-1">
+                  {text[language].hardcoreDescription}
+                </p>
+
+              </div>
+
+              <div
+                className={`w-5 h-5 rounded-full ${competitiveMode
+                  ? "bg-purple-400"
+                  : "bg-white/20"
+                  }`}
+              />
+
+            </div>
+
+          </button>
+
+          <button
+            onClick={() => {
+
+              setChaosMode(!chaosMode);
+
+              if (!chaosMode) {
+                setCompetitiveMode(false);
+              }
 
             }}
-            className="w-full mt-8 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-3xl disabled:opacity-40 disabled:cursor-not-allowed"
+            className={`w-full rounded-3xl p-5 border transition-all text-left mt-4 ${chaosMode
+              ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+              : "bg-white/5 border-white/10"
+              }`}
           >
-            {text[language].startGame}
+
+            <div className="flex items-center justify-between">
+
+              <div>
+
+                <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
+                  {text[language].chaosMode}
+                </h3>
+
+                <p className="text-white/60 mt-1">
+                  {text[language].chaosDescription}
+                </p>
+
+              </div>
+
+              <div
+                className={`w-5 h-5 rounded-full ${chaosMode
+                  ? "bg-purple-400"
+                  : "bg-white/20"
+                  }`}
+              />
+
+            </div>
+
           </button>
 
         </div>
-      </main>
-    );
+        <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
+
+          <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
+            {text[language].players}
+          </p>
+
+          <div className="space-y-4">
+            {players.map((player, index) => (
+              <input
+                key={index}
+                value={player}
+                placeholder={`${text[language].player} ${index + 1}`}
+                onChange={(e) => {
+
+                  const updatedPlayers = [...players];
+
+                  updatedPlayers[index] = e.target.value;
+
+                  if (
+                    index === players.length - 1 &&
+                    e.target.value.trim() !== "" &&
+                    updatedPlayers.filter(
+                      p => p.trim() !== ""
+                    ).length < 8
+                  ) {
+                    updatedPlayers.push("");
+                  }
+
+                  setPlayers(updatedPlayers);
+
+                }}
+                className="w-full bg-orange-500/10 border border-orange-400/20 rounded-3xl px-4 py-3 text-white placeholder:text-white/30"
+              />
+            ))}
+          </div>
+          <p className="text-sm text-white/40 mt-4 leading-relaxed">
+            {text[language].maxPlayers}
+          </p>
+        </div>
+
+
+        <button
+          disabled={
+            players.filter(player => player.trim() !== "").length === 0
+          }
+          onClick={() => {
+
+            const filteredPlayers = players.filter(
+              (player) => player.trim() !== ""
+            );
+
+            setPlayers(filteredPlayers);
+
+            setScores(
+              new Array(filteredPlayers.length).fill(0)
+            );
+
+            setTimer(0);
+
+            setGameStarted(true);
+
+            if (!chaosMode) {
+              setCurrentPlayer(-1);
+            }
+
+            spinLetter();
+
+          }}
+          className="w-full mt-8 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-3xl disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          {text[language].startGame}
+        </button>
+
+      </div>
+    </main >
+  );
   }
 
   return (
@@ -1497,32 +1434,55 @@ export default function Home() {
 
                 <div className="space-y-3">
 
-                  {players.map((player, index) => (
+                  {players.map((player, index) => {
 
-                    <div
-                      key={index}
-                      className="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-4"
-                    >
+                    if (!player.trim()) return null;
 
-                      <span className="text-white font-bold uppercase">
-                        {player}
-                      </span>
+                    return (
+                      <div
+                        key={index}
+                        className="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-4"
+                      >
 
-                      <span className="text-orange-400 text-2xl font-black">
-                        {scores[index]}
-                      </span>
+                        <span className="text-white font-bold uppercase">
+                          {player}
+                        </span>
 
-                    </div>
+                        <span className="text-orange-400 text-2xl font-black">
+                          {scores[index]}
+                        </span>
 
-                  ))}
+                      </div>
+
+                    );
+
+                  })}
 
                 </div>
+
+                <button
+                  onClick={() => {
+
+                    setShowRoundScore(false);
+
+                    goToNextPlayer();
+
+                    spinLetter();
+
+                  }}
+                  className="w-full mt-6 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-lg py-4 rounded-2xl"
+                >
+                  {language === "nl"
+                    ? "GA VERDER"
+                    : "CONTINUE"}
+                </button>
 
               </div>
 
             </div>
 
           )}
+
           {showPointAnimation && (
 
             <motion.div
@@ -1630,7 +1590,7 @@ export default function Home() {
               }}
               dragConstraints={{
                 left: 0,
-                right: 220,
+                right: 180,
               }}
               dragElastic={0.18}
               whileDrag={{
@@ -1762,9 +1722,10 @@ export default function Home() {
               </div>
 
             )}
+
           </div>
         </div>
-      </div >
-    </main >
+      </div>
+    </main>
   );
 }
