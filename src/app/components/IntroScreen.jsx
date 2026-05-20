@@ -65,11 +65,11 @@ export default function IntroScreen({
         <div className="flex justify-center mb-6">
 
           <Image
-            src="/logo.png"
+            src="/logo.webp"
             width={420}
             height={220}
             alt="Spin & Shame"
-            priority
+            loading="lazy"
           />
 
         </div>
