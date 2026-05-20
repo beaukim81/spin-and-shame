@@ -64,6 +64,7 @@ export default function Home() {
   const [lastCategory, setLastCategory] = useState("");
   const [showPointAnimation, setShowPointAnimation] = useState(false);
   const [showRoundScore, setShowRoundScore] = useState(false);
+  const [selectedChaosPlayer, setSelectedChaosPlayer] = useState(null);
 
   const categories =
     (categoryModes[selectedMode] || []).map(
@@ -425,6 +426,7 @@ export default function Home() {
 
       setFeedback("");
       setShowPointAnimation(false);
+      setSelectedChaosPlayer(null);
 
     }, 600);
   }
@@ -1283,10 +1285,21 @@ export default function Home() {
 
                     if (feedback || isRolling) return;
 
+                    setSelectedChaosPlayer(index);
+
                     addPoint(index);
 
                   }}
-                  className="bg-purple-500/20 border border-purple-400 rounded-3xl p-5 text-white font-black uppercase tracking-[2px] backdrop-blur-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
+                  className={`
+  rounded-3xl p-5 text-white font-black uppercase tracking-[2px]
+  backdrop-blur-xl transition-all
+  hover:scale-[1.02] active:scale-[0.98]
+  border
+  ${selectedChaosPlayer === index
+                      ? "bg-green-500/40 border-green-300 shadow-[0_0_30px_rgba(74,222,128,0.8)] scale-[1.03]"
+                      : "bg-purple-500/20 border-purple-400"
+                    }
+`}
                 >
                   {player}
                 </button>
