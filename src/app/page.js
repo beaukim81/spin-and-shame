@@ -403,12 +403,13 @@ export default function Home() {
 
   };
 
-  const categories = categoryModes[selectedMode].map(
-    (category) =>
-      language === "en"
-        ? translations[category] || category
-        : category
-  );
+  const categories =
+    (categoryModes[selectedMode] || []).map(
+      (category) =>
+        language === "en"
+          ? translations[category] || category
+          : category
+    );
 
   const text = {
 
@@ -630,6 +631,10 @@ export default function Home() {
           ? fallbackPool
           : categories;
 
+    if (pool.length === 0) {
+      return "";
+    }
+    
     const selected =
       pool[
       Math.floor(Math.random() * pool.length)
