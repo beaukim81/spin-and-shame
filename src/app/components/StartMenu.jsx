@@ -69,8 +69,8 @@ export default function StartMenu({
 
                     <h3 className="text-white/70 font-medium text-base">
                         {language === "nl"
-                            ? "De eerste speler met 10 punten wint"
-                            : "The first player with 10 points wins"}
+                            ? "De eerste speler met 10 punten wint!"
+                            : "The first player with 10 points wins!"}
                     </h3>
 
                 </div>
