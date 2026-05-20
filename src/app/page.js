@@ -418,6 +418,8 @@ export default function Home() {
 
       goToNextPlayer();
 
+      setSelectedChaosPlayer(null);
+
       spinLetter();
 
     }
@@ -1290,10 +1292,18 @@ export default function Home() {
                     addPoint(index);
 
                   }}
+
                   className={`
-  rounded-3xl p-5 text-white font-black uppercase tracking-[2px]
-  backdrop-blur-xl transition-all
-  hover:scale-[1.02] active:scale-[0.98]
+  rounded-3xl
+  p-5
+  text-white
+  font-black
+  uppercase
+  tracking-[2px]
+  backdrop-blur-xl
+  transition-all
+  hover:scale-[1.02]
+  active:scale-[0.98]
   border
   ${selectedChaosPlayer === index
                       ? "bg-green-500/40 border-green-300 shadow-[0_0_30px_rgba(74,222,128,0.8)] scale-[1.03]"
