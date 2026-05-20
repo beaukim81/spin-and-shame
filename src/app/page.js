@@ -1,5 +1,4 @@
 "use client";
-import ScoreBoard from "./components/ScoreBoard";
 import ScoreOverlay from "./components/ScoreOverlay";
 import Confetti from "react-confetti";
 import { useEffect, useState, useRef } from "react";
