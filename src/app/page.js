@@ -1328,7 +1328,9 @@ export default function Home() {
 
               setCurrentPlayer(0);
 
-              spinLetter();
+              setTimeout(() => {
+                spinLetter();
+              }, 50);
 
             }}
             className="w-full mt-8 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-xl py-5 rounded-3xl disabled:opacity-40 disabled:cursor-not-allowed"
