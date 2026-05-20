@@ -819,6 +819,9 @@ export default function Home() {
   }
 
   function spinLetter() {
+    
+    if (isRolling) return;
+
     setIsRolling(true);
 
     setTimer(0);
