@@ -26,7 +26,7 @@ export default function ScoreOverlay({
 
                     {players.map((player, index) => {
 
-                        if (!player.trim()) return null;
+                        if (!player || !player.trim()) return null;
 
                         return (
                             <div
@@ -54,6 +54,8 @@ export default function ScoreOverlay({
                     onClick={() => {
 
                         setShowRoundScore(false);
+
+                        goToNextPlayer();
 
                         spinLetter();
 

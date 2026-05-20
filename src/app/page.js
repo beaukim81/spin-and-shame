@@ -1050,7 +1050,7 @@ export default function Home() {
 
                     animate(
                       introX,
-                      600,
+                      260,
                       {
                         type: "spring",
                         stiffness: 120,
