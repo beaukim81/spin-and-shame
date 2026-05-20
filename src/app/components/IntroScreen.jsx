@@ -93,19 +93,6 @@ export default function IntroScreen({
             style={{
               x: introX,
             }}
-            animate={{
-              boxShadow: [
-                "0 0 25px rgba(251,146,60,0.15)",
-                "0 0 45px rgba(251,146,60,0.35)",
-                "0 0 25px rgba(251,146,60,0.15)",
-              ],
-            }}
-
-            transition={{
-              duration: 2.4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
 
             dragConstraints={{
               left: 0,
@@ -122,21 +109,7 @@ export default function IntroScreen({
 
               if (info.offset.x > 45) {
 
-                animate(
-                  introX,
-                  260,
-                  {
-                    type: "spring",
-                    stiffness: 120,
-                    damping: 18,
-                  }
-                );
-
-                setTimeout(() => {
-
-                  setShowIntro(false);
-
-                }, 300);
+                setShowIntro(false);
 
                 return;
 
