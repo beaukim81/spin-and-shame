@@ -1244,8 +1244,6 @@ export default function Home() {
 
           </div>
 
-        </div>
-
         <div className="bg-white/5 border border-white/10 rounded-[32px] p-6 backdrop-blur-xl mb-6">
 
           <p className="text-sm uppercase tracking-[4px] text-white/80 font-black mb-4">
