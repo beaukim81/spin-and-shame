@@ -89,6 +89,7 @@ export default function Home() {
   const [showRoundScore, setShowRoundScore] = useState(false);
   const [selectedChaosPlayer, setSelectedChaosPlayer] = useState(null);
   const [recentLetterRushLetters, setRecentLetterRushLetters] = useState([]);
+  const [letterRushLetter, setLetterRushLetter] = useState("");
 
 
   const categories =
@@ -721,6 +722,8 @@ export default function Home() {
         setChaosMode={setChaosMode}
         letterRushMode={letterRushMode}
         setLetterRushMode={setLetterRushMode}
+        setLetterRushLetter={setLetterRushLetter}
+        getLetterRushLetter={getLetterRushLetter}
         players={players}
         setPlayers={setPlayers}
         setScores={setScores}
