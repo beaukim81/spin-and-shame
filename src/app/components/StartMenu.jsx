@@ -316,7 +316,8 @@ export default function StartMenu({
                             const selectedLetter =
                                 getLetterRushLetter();
 
-                            setLetterRushLetter(selectedLetter);
+                            letterRushLetterRef.current =
+                                selectedLetter;
 
                             setTimeout(() => {
 
