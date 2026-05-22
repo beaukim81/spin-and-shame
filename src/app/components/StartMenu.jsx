@@ -211,11 +211,11 @@ export default function StartMenu({
                             <div>
 
                                 <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
-                                    Letter Rush
+                                    {text[language].letterRushMode}
                                 </h3>
 
                                 <p className="text-white/60 mt-1">
-                                    Speel de hele wedstrijd met dezelfde letter
+                                    {text[language].letterRushDescription}
                                 </p>
 
                             </div>

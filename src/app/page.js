@@ -45,23 +45,23 @@ export default function Home() {
   const rareLetters = ["Q", "X"];
 
   const letterRushLetters = [
-  "A",
-  "B",
-  "E",
-  "G",
-  "H",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "R",
-  "S",
-  "T",
-  "V",
-  "W",
-];
+    "A",
+    "B",
+    "E",
+    "G",
+    "H",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "R",
+    "S",
+    "T",
+    "V",
+    "W",
+  ];
 
   const [players, setPlayers] = useState(["", "", "", ""]);
   const [currentLetter, setCurrentLetter] = useState("S");
@@ -133,6 +133,8 @@ export default function Home() {
       fastest: "SNELST!",
       tooLate: "TE LAAT!",
       swipeInstruction: "Swipe naar rechts om te spelen",
+      letterRushMode: "LETTER RUSH",
+      letterRushDescription: "De hele wedstrijd met éénzelfde letter",
     },
 
     en: {
@@ -167,6 +169,8 @@ export default function Home() {
       fastest: "FASTEST!",
       tooLate: "TOO LATE!",
       swipeInstruction: "Swipe to the right to play",
+      letterRushMode: "LETTER RUSH",
+      letterRushDescription: "The same letter for the entire game"
     }
 
   };
@@ -308,6 +312,41 @@ export default function Home() {
     feedback,
     soundEnabled
   ]);
+
+  function getLetterRushLetter() {
+
+    const availableLetters =
+      letterRushLetters.filter(
+        (letter) =>
+          !recentLetterRushLetters.includes(letter)
+      );
+
+    const pool =
+      availableLetters.length > 0
+        ? availableLetters
+        : letterRushLetters;
+
+    const selectedLetter =
+      pool[
+      Math.floor(
+        Math.random() * pool.length
+      )
+      ];
+
+    setRecentLetterRushLetters((prev) => {
+
+      const updated = [
+        ...prev,
+        selectedLetter,
+      ];
+
+      return updated.slice(-5);
+
+    });
+
+    return selectedLetter;
+
+  }
 
   function getUniqueCategory(letter) {
 
