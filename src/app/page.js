@@ -60,6 +60,7 @@ export default function Home() {
   const [selectedMode, setSelectedMode] = useState("family");
   const [gameTime, setGameTime] = useState(10);
   const [chaosMode, setChaosMode] = useState(false);
+  const [letterRushMode, setLetterRushMode] = useState(false);
   const [language, setLanguage] = useState("nl");
   const [isPaused, setIsPaused] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
@@ -68,6 +69,7 @@ export default function Home() {
   const [showPointAnimation, setShowPointAnimation] = useState(false);
   const [showRoundScore, setShowRoundScore] = useState(false);
   const [selectedChaosPlayer, setSelectedChaosPlayer] = useState(null);
+
 
   const categories =
     (categoryModes[selectedMode] || []).map(
@@ -658,6 +660,8 @@ export default function Home() {
         setCompetitiveMode={setCompetitiveMode}
         chaosMode={chaosMode}
         setChaosMode={setChaosMode}
+        letterRushMode={letterRushMode}
+        setLetterRushMode={setLetterRushMode}
         players={players}
         setPlayers={setPlayers}
         setScores={setScores}

@@ -11,6 +11,8 @@ export default function StartMenu({
     setCompetitiveMode,
     chaosMode,
     setChaosMode,
+    letterRushMode,
+    setLetterRushMode,
     players,
     setPlayers,
     setScores,
@@ -159,6 +161,8 @@ export default function StartMenu({
                             }
 
                         }}
+
+
                         className={`w-full rounded-3xl p-5 border transition-all text-left mt-4 ${chaosMode
                             ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
                             : "bg-white/5 border-white/10"
@@ -183,6 +187,43 @@ export default function StartMenu({
                                 className={`w-5 h-5 rounded-full ${chaosMode
                                     ? "bg-purple-400"
                                     : "bg-white/20"
+                                    }`}
+                            />
+
+                        </div>
+
+                    </button>
+
+                    <button
+                        onClick={() => {
+
+                            setLetterRushMode(!letterRushMode);
+
+                        }}
+                        className={`w-full rounded-3xl p-5 border transition-all text-left mt-4 ${letterRushMode
+                                ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+                                : "bg-white/5 border-white/10"
+                            }`}
+                    >
+
+                        <div className="flex items-center justify-between">
+
+                            <div>
+
+                                <h3 className="text-white font-black tracking-[2px] uppercase text-lg">
+                                    Letter Rush
+                                </h3>
+
+                                <p className="text-white/60 mt-1">
+                                    Eén letter voor de hele wedstrijd
+                                </p>
+
+                            </div>
+
+                            <div
+                                className={`w-5 h-5 rounded-full ${letterRushMode
+                                        ? "bg-purple-400"
+                                        : "bg-white/20"
                                     }`}
                             />
 
