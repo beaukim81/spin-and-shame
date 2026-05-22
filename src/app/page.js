@@ -89,7 +89,7 @@ export default function Home() {
   const [showRoundScore, setShowRoundScore] = useState(false);
   const [selectedChaosPlayer, setSelectedChaosPlayer] = useState(null);
   const [recentLetterRushLetters, setRecentLetterRushLetters] = useState([]);
-  const [letterRushLetter, setLetterRushLetter] = useState("");
+  const [letterRushLetter, setLetterRushLetter] = useState(null);
 
 
   const categories =
@@ -183,6 +183,7 @@ export default function Home() {
   const countdownSound = useRef(null);
   const spinInterval = useRef(null);
   const spinTimeout = useRef(null);
+  const letterRushLetterRef = useRef("");
 
   const x = useMotionValue(0);
   const introX = useMotionValue(0);
@@ -607,7 +608,9 @@ export default function Home() {
 
     if (letterRushMode) {
 
-      finalLetter = letterRushLetter;
+      finalLetter =
+        letterRushLetter ||
+        getLetterRushLetter();
 
     } else {
 
