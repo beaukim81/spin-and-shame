@@ -608,9 +608,7 @@ export default function Home() {
 
     if (letterRushMode) {
 
-      finalLetter =
-        letterRushLetter ||
-        getLetterRushLetter();
+      finalLetter = letterRushLetter;
 
     } else {
 
