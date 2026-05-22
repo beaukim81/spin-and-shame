@@ -12,6 +12,7 @@ export default function StartMenu({
     chaosMode,
     setChaosMode,
     letterRushMode,
+    letterRushLetterRef,
     setLetterRushMode,
     setLetterRushLetter,
     getLetterRushLetter,
@@ -315,9 +316,7 @@ export default function StartMenu({
                             const selectedLetter =
                                 getLetterRushLetter();
 
-                            setLetterRushLetter(
-                                selectedLetter
-                            );
+                            setLetterRushLetter(selectedLetter);
 
                             setTimeout(() => {
 
