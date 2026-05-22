@@ -44,6 +44,25 @@ export default function Home() {
   ];
   const rareLetters = ["Q", "X"];
 
+  const letterRushLetters = [
+  "A",
+  "B",
+  "E",
+  "G",
+  "H",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "R",
+  "S",
+  "T",
+  "V",
+  "W",
+];
+
   const [players, setPlayers] = useState(["", "", "", ""]);
   const [currentLetter, setCurrentLetter] = useState("S");
   const [displayLetter, setDisplayLetter] = useState("S");
@@ -69,6 +88,7 @@ export default function Home() {
   const [showPointAnimation, setShowPointAnimation] = useState(false);
   const [showRoundScore, setShowRoundScore] = useState(false);
   const [selectedChaosPlayer, setSelectedChaosPlayer] = useState(null);
+  const [recentLetterRushLetters, setRecentLetterRushLetters] = useState([]);
 
 
   const categories =

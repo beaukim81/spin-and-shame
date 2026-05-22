@@ -215,7 +215,7 @@ export default function StartMenu({
                                 </h3>
 
                                 <p className="text-white/60 mt-1">
-                                    Eén letter voor de hele wedstrijd
+                                    Speel de hele wedstrijd met dezelfde letter
                                 </p>
 
                             </div>
