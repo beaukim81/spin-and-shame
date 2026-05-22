@@ -602,18 +602,31 @@ export default function Home() {
       }
 
     }, 160);
-    const shouldUseRareLetter =
-      Math.random() < 0.05;
 
-    const letterPool =
-      shouldUseRareLetter
-        ? rareLetters
-        : letters;
+    let finalLetter;
 
-    const finalLetter =
-      letterPool[
-      Math.floor(Math.random() * letterPool.length)
-      ];
+    if (letterRushMode) {
+
+      finalLetter = letterRushLetter;
+
+    } else {
+
+      const shouldUseRareLetter =
+        Math.random() < 0.05;
+
+      const letterPool =
+        shouldUseRareLetter
+          ? rareLetters
+          : letters;
+
+      finalLetter =
+        letterPool[
+        Math.floor(
+          Math.random() * letterPool.length
+        )
+        ];
+
+    }
 
     const randomCategory =
       getUniqueCategory(finalLetter);

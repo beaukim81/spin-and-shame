@@ -13,6 +13,8 @@ export default function StartMenu({
     setChaosMode,
     letterRushMode,
     setLetterRushMode,
+    setLetterRushLetter,
+    getLetterRushLetter,
     players,
     setPlayers,
     setScores,
@@ -201,8 +203,8 @@ export default function StartMenu({
 
                         }}
                         className={`w-full rounded-3xl p-5 border transition-all text-left mt-4 ${letterRushMode
-                                ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
-                                : "bg-white/5 border-white/10"
+                            ? "bg-purple-500/20 border-purple-400 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
+                            : "bg-white/5 border-white/10"
                             }`}
                     >
 
@@ -222,8 +224,8 @@ export default function StartMenu({
 
                             <div
                                 className={`w-5 h-5 rounded-full ${letterRushMode
-                                        ? "bg-purple-400"
-                                        : "bg-white/20"
+                                    ? "bg-purple-400"
+                                    : "bg-white/20"
                                     }`}
                             />
 
@@ -307,6 +309,14 @@ export default function StartMenu({
                         setGameStarted(true);
 
                         setCurrentPlayer(0);
+
+                        if (letterRushMode) {
+
+                            setLetterRushLetter(
+                                getLetterRushLetter()
+                            );
+
+                        }
 
                         setTimeout(() => {
 
