@@ -312,17 +312,32 @@ export default function StartMenu({
 
                         if (letterRushMode) {
 
+                            const selectedLetter =
+                                getLetterRushLetter();
+
                             setLetterRushLetter(
-                                getLetterRushLetter()
+                                selectedLetter
                             );
+
+                            setTimeout(() => {
+
+                                spinLetter();
+
+                            }, 50);
+
+                            return;
 
                         }
 
-                        setTimeout(() => {
+                        if (!letterRushMode) {
 
-                            spinLetter();
+                            setTimeout(() => {
 
-                        }, 50);
+                                spinLetter();
+
+                            }, 50);
+
+                        }
 
                     }}
 
