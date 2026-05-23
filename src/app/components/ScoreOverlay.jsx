@@ -6,6 +6,8 @@ export default function ScoreOverlay({
     scores,
     language,
     setShowRoundScore,
+    spinLetter,
+    goToNextPlayer,
 }) {
 
     return (
@@ -52,7 +54,7 @@ export default function ScoreOverlay({
                     onClick={() => {
 
                         console.log("GA VERDER");
-
+                        
                         setShowRoundScore(false);
 
                     }}
