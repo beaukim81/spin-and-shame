@@ -8,6 +8,8 @@ export default function ScoreOverlay({
     setShowRoundScore,
     spinLetter,
     goToNextPlayer,
+    letterRushMode,
+    spinLetterRush,
 }) {
 
     return (
@@ -53,9 +55,19 @@ export default function ScoreOverlay({
                 <button
                     onClick={() => {
 
-                        console.log("GA VERDER KLIK");
-                        
                         setShowRoundScore(false);
+
+                        goToNextPlayer();
+
+                        if (letterRushMode) {
+
+                            spinLetterRush();
+
+                        } else {
+
+                            spinLetter();
+
+                        }
 
                     }}
                     className="w-full mt-6 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-black text-lg py-4 rounded-2xl"

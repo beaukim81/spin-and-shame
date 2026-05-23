@@ -819,6 +819,8 @@ export default function Home() {
               setShowRoundScore={setShowRoundScore}
               spinLetter={spinLetter}
               goToNextPlayer={goToNextPlayer}
+              letterRushMode={letterRushMode}
+              spinLetterRush={spinLetterRush}
             />
 
           )}
