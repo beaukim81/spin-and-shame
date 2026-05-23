@@ -586,7 +586,7 @@ export default function Home() {
 
   function spinLetter() {
 
-    console.log("spinLetter");
+    console.trace("spinLetter");
 
     if (isRolling) return;
 
