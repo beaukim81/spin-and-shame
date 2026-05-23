@@ -676,6 +676,12 @@ export default function Home() {
 
     setCurrentCategory(randomCategory);
 
+    setDisplayLetter(finalLetter);
+
+    setCurrentLetter(finalLetter);
+
+    setIsRolling(false);
+
   }
 
   if (winner) {
@@ -767,6 +773,7 @@ export default function Home() {
         setGameStarted={setGameStarted}
         setCurrentPlayer={setCurrentPlayer}
         spinLetter={spinLetter}
+        spinLetterRush={spinLetterRush}
         setTimer={setTimer}
       />
     );

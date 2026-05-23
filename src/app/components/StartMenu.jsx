@@ -22,6 +22,7 @@ export default function StartMenu({
     setGameStarted,
     setCurrentPlayer,
     spinLetter,
+    spinLetterRush,
     setTimer,
 }) {
 
@@ -321,9 +322,9 @@ export default function StartMenu({
 
                             setTimeout(() => {
 
-                                spinLetter();
+                                spinLetterRush();
 
-                            }, 500);
+                            }, 150);
 
                             return;
 
