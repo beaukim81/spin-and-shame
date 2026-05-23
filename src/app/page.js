@@ -659,6 +659,23 @@ export default function Home() {
 
   function spinLetterRush() {
 
+    if (isRolling) return;
+
+    clearInterval(spinInterval.current);
+    clearTimeout(spinTimeout.current);
+
+    setIsRolling(true);
+
+    setTimer(gameTime);
+
+    const finalLetter =
+      letterRushLetterRef.current;
+
+    const randomCategory =
+      getUniqueCategory(finalLetter);
+
+    setCurrentCategory(randomCategory);
+
   }
 
   if (winner) {
