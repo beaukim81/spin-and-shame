@@ -323,7 +323,7 @@ export default function StartMenu({
 
                                 spinLetter();
 
-                            }, 150);
+                            }, 500);
 
                             return;
 
