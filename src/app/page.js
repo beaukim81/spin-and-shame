@@ -608,7 +608,8 @@ export default function Home() {
 
     if (letterRushMode) {
 
-      finalLetter = letterRushLetter;
+      finalLetter =
+        letterRushLetterRef.current;
 
     } else {
 
@@ -653,6 +654,10 @@ export default function Home() {
       setTimer(gameTime);
 
     }, 2000);
+
+  }
+
+  function spinLetterRush() {
 
   }
 
@@ -736,6 +741,7 @@ export default function Home() {
         setChaosMode={setChaosMode}
         letterRushMode={letterRushMode}
         setLetterRushMode={setLetterRushMode}
+        letterRushLetterRef={letterRushLetterRef}
         setLetterRushLetter={setLetterRushLetter}
         getLetterRushLetter={getLetterRushLetter}
         players={players}
