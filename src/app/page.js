@@ -586,6 +586,8 @@ export default function Home() {
 
   function spinLetter() {
 
+    console.log("spinLetter");
+
     if (isRolling) return;
 
     clearInterval(spinInterval.current);
@@ -674,6 +676,8 @@ export default function Home() {
   }
 
   function spinLetterRush() {
+
+    console.log("spinLetterRush");
 
     if (isRolling) return;
 
