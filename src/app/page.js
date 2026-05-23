@@ -89,7 +89,6 @@ export default function Home() {
   const [showRoundScore, setShowRoundScore] = useState(false);
   const [selectedChaosPlayer, setSelectedChaosPlayer] = useState(null);
   const [recentLetterRushLetters, setRecentLetterRushLetters] = useState([]);
-  const [letterRushLetter, setLetterRushLetter] = useState(null);
 
 
   const categories =
@@ -817,8 +816,6 @@ export default function Home() {
               scores={scores}
               language={language}
               setShowRoundScore={setShowRoundScore}
-              spinLetter={spinLetter}
-              goToNextPlayer={goToNextPlayer}
             />
 
           )}
