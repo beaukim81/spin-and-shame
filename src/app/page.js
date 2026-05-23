@@ -1007,7 +1007,7 @@ export default function Home() {
                         {text[language].currentPlayer}
                       </p>
 
-                      <h3 className="text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-[1px] mt-1 text-white">
+                      <h3 className="text-[clamp(1.8rem,4.5vw,3rem)] font-black uppercase tracking-[1px] mt-1 text-white">
                         {players[currentPlayer]}
                       </h3>
                     </>
