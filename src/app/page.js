@@ -484,7 +484,15 @@ export default function Home() {
 
       goToNextPlayer();
 
-      spinLetter();
+      if (letterRushMode) {
+
+        spinLetterRush();
+
+      } else {
+
+        spinLetter();
+
+      }
 
     }
 
@@ -557,7 +565,15 @@ export default function Home() {
 
       goToNextPlayer();
 
-      spinLetter();
+      if (letterRushMode) {
+
+        spinLetterRush();
+
+      } else {
+
+        spinLetter();
+
+      }
 
     }
 
