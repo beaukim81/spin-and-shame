@@ -53,7 +53,7 @@ export default function ScoreOverlay({
                 <button
                     onClick={() => {
 
-                        console.log("GA VERDER");
+                        console.log("GA VERDER KLIK");
                         
                         setShowRoundScore(false);
 
