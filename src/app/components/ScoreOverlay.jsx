@@ -36,7 +36,7 @@ export default function ScoreOverlay({
                                 className="flex items-center justify-between bg-white/10 border border-white/20 rounded-2xl p-4"
                             >
 
-                                <span className="text-white text-2xl md:text-3xl font-black uppercase tracking-[1px]">
+                                <span className="text-white text-xl md:text-2xl font-black uppercase tracking-[1px]">
                                     {player}
                                 </span>
 
