@@ -896,7 +896,7 @@ export default function Home() {
                   {text[language].category}
                 </p>
 
-                <h3 className="text-[clamp(1.3rem,4vw,2.5rem)] font-semibold leading-snug text-white">
+                <h3 className="text-[clamp(2rem,6vw,4rem)] font-bold leading-tight text-white">
                   {currentCategory}
                 </h3>
               </motion.div>
