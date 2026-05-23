@@ -10,6 +10,7 @@ export default function ScoreOverlay({
     goToNextPlayer,
     letterRushMode,
     spinLetterRush,
+    text,
 }) {
 
     return (
@@ -21,7 +22,7 @@ export default function ScoreOverlay({
                 <h2 className="text-white text-2xl font-black mb-6 text-center">
                     {chaosMode
                         ? "🔥 CHAOS SCOREBOARD"
-                        : "🏆 TUSSENSTAND"}
+                        : text[language].scoreboard}
                 </h2>
 
                 <div className="space-y-3">

@@ -136,6 +136,7 @@ export default function Home() {
       swipeInstruction: "Swipe naar rechts om te spelen",
       letterRushMode: "LETTER RUSH",
       letterRushDescription: "De hele wedstrijd met éénzelfde letter",
+      scoreboard: "🏆 TUSSENSTAND",
     },
 
     en: {
@@ -171,7 +172,8 @@ export default function Home() {
       tooLate: "TOO LATE!",
       swipeInstruction: "Swipe to the right to play",
       letterRushMode: "LETTER RUSH",
-      letterRushDescription: "The same letter for the entire game"
+      letterRushDescription: "The same letter for the entire game",
+      scoreboard: "🏆 SCOREBOARD",
     }
 
   };
@@ -821,6 +823,7 @@ export default function Home() {
               goToNextPlayer={goToNextPlayer}
               letterRushMode={letterRushMode}
               spinLetterRush={spinLetterRush}
+              text={text}
             />
 
           )}
@@ -1004,7 +1007,7 @@ export default function Home() {
                         {text[language].currentPlayer}
                       </p>
 
-                      <h3 className="text-[clamp(2.5rem,8vw,5rem)] font-black uppercase tracking-[1px] mt-1 text-white">
+                      <h3 className="text-[clamp(2rem,5vw,3.5rem)] font-black uppercase tracking-[1px] mt-1 text-white">
                         {players[currentPlayer]}
                       </h3>
                     </>
