@@ -16,7 +16,7 @@ export default function ScoreOverlay({
 
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md rounded-[36px]">
 
-            <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-[32px] p-6">
+            <div className="w-full max-w-md bg-black/80 border border-white/20 rounded-[32px] p-6">
 
                 <h2 className="text-white text-2xl font-black mb-6 text-center">
                     {chaosMode
@@ -33,14 +33,14 @@ export default function ScoreOverlay({
                         return (
                             <div
                                 key={index}
-                                className="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-4"
+                                className="flex items-center justify-between bg-white/10 border border-white/20 rounded-2xl p-4"
                             >
 
                                 <span className="text-white font-bold uppercase">
                                     {player}
                                 </span>
 
-                                <span className="text-orange-400 text-2xl font-black">
+                                <span className="text-orange-400 text-3xl font-black">
                                     {scores[index]}
                                 </span>
 
