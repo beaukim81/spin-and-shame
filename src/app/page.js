@@ -3,7 +3,9 @@ import ChaosMode from "./components/ChaosMode";
 import StartMenu from "./components/StartMenu";
 import IntroScreen from "./components/IntroScreen";
 import { categoryModes } from "./data/categories";
+import { LETTERS, LETTER_RUSH_LETTERS, RARE_LETTERS } from "./data/letters";
 import { translations } from "./data/translations";
+import { uiText } from "./data/uiText";
 import ScoreOverlay from "./components/ScoreOverlay";
 import Confetti from "react-confetti";
 import { useEffect, useState, useRef } from "react";
@@ -13,55 +15,8 @@ import {
   useTransform,
   animate
 } from "framer-motion";
-import Image from "next/image";
 
 export default function Home() {
-
-  const letters = [
-    "A", "A", "A",
-    "B", "B",
-    "C", "C",
-    "D", "D",
-    "E", "E", "E", "E",
-    "F",
-    "G", "G",
-    "H", "H",
-    "I", "I", "I",
-    "J",
-    "K", "K",
-    "L", "L",
-    "M", "M",
-    "N", "N", "N",
-    "O", "O", "O",
-    "P", "P",
-    "R", "R", "R",
-    "S", "S", "S",
-    "T", "T", "T",
-    "U", "U",
-    "V", "V",
-    "W",
-    "IJ",
-  ];
-  const rareLetters = ["Q", "X"];
-
-  const letterRushLetters = [
-    "A",
-    "B",
-    "E",
-    "G",
-    "H",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "R",
-    "S",
-    "T",
-    "V",
-    "W",
-  ];
 
   const [players, setPlayers] = useState(["", "", "", ""]);
   const [currentLetter, setCurrentLetter] = useState("S");
@@ -100,83 +55,7 @@ export default function Home() {
           : category
     );
 
-  const text = {
-
-    nl: {
-      startGame: "START SPEL",
-      category: "CATEGORIE",
-      currentPlayer: "HUIDIGE SPELER",
-      chaosMode: "CHAOS MODE",
-      fastestPlayer: "Wie was het snelst?",
-      skip: "SKIP!",
-      correct: "CORRECT!",
-      timer: "TIMER",
-      gameMode: "SPELMODE",
-      extraMode: "EXTRA MODUS",
-      players: "SPELERS",
-      introTitle: "Twijfel niet. Roep. Swipe. Win.",
-      swipeLeft: "SWIPE LINKS",
-      swipeRight: "SWIPE RECHTS",
-      chaosDescription: "Iedereen roept tegelijk. Tik op de snelste speler.",
-      player: "Speler",
-      winner: "WINNAAR",
-      hasWon: "heeft gewonnen!",
-      playAgain: "SPEEL OPNIEUW",
-      nextRound: "VOLGENDE RONDE",
-      hardcoreMode: "HARDCORE MODE",
-      hardcoreDescription: "Verlies een punt als je te laat bent",
-      maxPlayers: "Voeg spelers toe — maximaal 8 spelers",
-      howItWorks: "HOE HET WERKT",
-      correctTitle: "CORRECT",
-      skipDescription: "Geen antwoord?\nGeen punt.",
-      correctDescription: "Goed antwoord?\nPak je punt.",
-      currentLetterLabel: "DE LETTER IS",
-      fastest: "SNELST!",
-      tooLate: "TE LAAT!",
-      swipeInstruction: "Swipe naar rechts om te spelen",
-      letterRushMode: "LETTER RUSH",
-      letterRushDescription: "De hele wedstrijd met éénzelfde letter",
-      scoreboard: "🏆 TUSSENSTAND",
-    },
-
-    en: {
-      startGame: "START GAME",
-      category: "CATEGORY",
-      currentPlayer: "CURRENT PLAYER",
-      chaosMode: "CHAOS MODE",
-      fastestPlayer: "Who was the fastest?",
-      skip: "SKIP!",
-      correct: "CORRECT!",
-      timer: "TIMER",
-      gameMode: "GAME MODE",
-      extraMode: "EXTRA MODE",
-      players: "PLAYERS",
-      introTitle: "Don't hesitate. Shout. Swipe. Win.",
-      swipeLeft: "SWIPE LEFT",
-      swipeRight: "SWIPE RIGHT",
-      chaosDescription: "Everyone shouts at once. Tap the fastest player.",
-      player: "Player",
-      winner: "WINNER",
-      hasWon: "has won!",
-      playAgain: "PLAY AGAIN",
-      nextRound: "NEXT ROUND",
-      hardcoreMode: "HARDCORE MODE",
-      hardcoreDescription: "Lose a point when you're too late",
-      maxPlayers: "Add players — maximum 8 players",
-      howItWorks: "HOW IT WORKS",
-      correctTitle: "CORRECT",
-      skipDescription: "No answer?\nNo point.",
-      correctDescription: "Correct answer?\nClaim your point.",
-      currentLetterLabel: "THE LETTER IS",
-      fastest: "FASTEST!",
-      tooLate: "TOO LATE!",
-      swipeInstruction: "Swipe to the right to play",
-      letterRushMode: "LETTER RUSH",
-      letterRushDescription: "The same letter for the entire game",
-      scoreboard: "🏆 SCOREBOARD",
-    }
-
-  };
+  const text = uiText;
 
   const correctSound = useRef(null);
   const wrongSound = useRef(null);
@@ -320,7 +199,7 @@ export default function Home() {
   function getLetterRushLetter() {
 
     const availableLetters =
-      letterRushLetters.filter(
+      LETTER_RUSH_LETTERS.filter(
         (letter) =>
           !recentLetterRushLetters.includes(letter)
       );
@@ -328,7 +207,7 @@ export default function Home() {
     const pool =
       availableLetters.length > 0
         ? availableLetters
-        : letterRushLetters;
+        : LETTER_RUSH_LETTERS;
 
     const selectedLetter =
       pool[
@@ -602,8 +481,8 @@ export default function Home() {
     spinInterval.current = setInterval(() => {
 
       const spinningPool = [
-        ...letters,
-        ...rareLetters
+        ...LETTERS,
+        ...RARE_LETTERS
       ];
 
       const randomLetter =
@@ -638,8 +517,8 @@ export default function Home() {
 
       const letterPool =
         shouldUseRareLetter
-          ? rareLetters
-          : letters;
+          ? RARE_LETTERS
+          : LETTERS;
 
       finalLetter =
         letterPool[
