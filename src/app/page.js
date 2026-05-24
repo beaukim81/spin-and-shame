@@ -3,7 +3,7 @@ import ChaosMode from "./components/ChaosMode";
 import StartMenu from "./components/StartMenu";
 import IntroScreen from "./components/IntroScreen";
 import { categoryModes } from "./data/categories";
-import { LETTERS, LETTER_RUSH_LETTERS, RARE_LETTERS } from "./data/letters";
+import { LETTERS, LETTER_RUSH_LETTERS, RARE_LETTER_CHANCE, RARE_LETTERS } from "./data/letters";
 import { translations } from "./data/translations";
 import { uiText } from "./data/uiText";
 import ScoreOverlay from "./components/ScoreOverlay";
@@ -513,7 +513,7 @@ export default function Home() {
     } else {
 
       const shouldUseRareLetter =
-        Math.random() < 0.05;
+        Math.random() < RARE_LETTER_CHANCE;
 
       const letterPool =
         shouldUseRareLetter

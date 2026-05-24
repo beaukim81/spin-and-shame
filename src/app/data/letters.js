@@ -24,7 +24,9 @@ export const LETTERS = [
   "IJ",
 ];
 
-export const RARE_LETTERS = ["Q", "X"];
+export const RARE_LETTERS = ["Q", "X", "Y", "Z"];
+
+export const RARE_LETTER_CHANCE = 0.02;
 
 export const LETTER_RUSH_LETTERS = [
   "A",
