@@ -15,11 +15,15 @@ export const metadata = {
   title: "Spin & Shame",
   description: "Het partyspel met letters",
 
-  manifest: "/manifest.json",
+  manifest: "/manifest.webmanifest",
 
   icons: {
-    icon: "/icon.png",
-    apple: "/icon.png",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
 };
 
